@@ -554,9 +554,14 @@ video {
   display: none;
 }
 
-.divide-blue-600 > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-opacity: 1;
-  border-color: rgb(37 99 235 / var(--tw-divide-opacity, 1));
+.bg-accent-olive {
+  --tw-bg-opacity: 1;
+  background-color: rgb(170 166 104 / var(--tw-bg-opacity, 1));
+}
+
+.bg-text-base {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 38 37 / var(--tw-bg-opacity, 1));
 }
 
 .text-3xl {
@@ -566,6 +571,11 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.text-accent-olive {
+  --tw-text-opacity: 1;
+  color: rgb(170 166 104 / var(--tw-text-opacity, 1));
 }
 
 .underline {
