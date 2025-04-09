@@ -4,21 +4,35 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Farger fra styleguiden
+        black: "#252625",
+        brown: "#8C6C45",
+        beige: "#DBB391",
+        olive: "#AAA668",
+        white: "#FFFFFF",
+        blue: "#4D8FB8",
+        lightblue: "#A0DBF8",
+        red: "#9C0000",
+
         text: {
-          base: "#252625",
-          inverted: "#FFFFFF",
-        },
-        background: {
-          primary: "#8C6C45",
-          secondary: "#DBB391",
+          default: "#252625",
           light: "#FFFFFF",
         },
-        accent: {
-          olive: "#AAA668",
-          sky: "#A0DBF8",
+
+        button: {
+          prime: "#4D8FB8",
+          secondary: "#AAA668",
+          third: "#8C6C45",
+          four: "#DBB391",
+          white: "#FFFFFF",
         },
-        brand: {
-          blue: "#A0DBF8",
+
+        // Hover states = white bg with original color as text
+        hover: {
+          primeText: "#4D8FB8",
+          secondaryText: "#AAA668",
+          thirdText: "#8C6C45",
+          fourText: "#DBB391",
         },
       },
       fontFamily: {
@@ -26,15 +40,14 @@ module.exports = {
         body: ['Inter', 'sans-serif'],
       },
       fontSize: {
-        h1: ['2.25rem', '2.5rem'], // 36px
-        h2: ['1.875rem', '2.25rem'], // 30px
-        h3: ['1.5rem', '2rem'], // 24px
-        textLg: ['1.25rem', '1.75rem'], // 20px
-        textBase: ['1rem', '1.5rem'], // 16px
-        textSm: ['0.875rem', '1.25rem'], // 14px
+        h1: ['2.25rem', '2.5rem'],
+        h2: ['1.875rem', '2.25rem'],
+        h3: ['1.5rem', '2rem'],
+        textLg: ['1.25rem', '1.75rem'],
+        textBase: ['1rem', '1.5rem'],
+        textSm: ['0.875rem', '1.25rem'],
       },
     },
   },
   plugins: [],
 };
-

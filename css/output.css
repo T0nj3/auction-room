@@ -554,14 +554,121 @@ video {
   display: none;
 }
 
-.bg-accent-olive {
+.btn {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.btn-prime {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(77 143 184 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.btn-prime:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(77 143 184 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(77 143 184 / var(--tw-text-opacity, 1));
+}
+
+.btn-secondary {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(170 166 104 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.btn-secondary:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(170 166 104 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(170 166 104 / var(--tw-text-opacity, 1));
+}
+
+.btn-third {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(140 108 69 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.btn-third:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(140 108 69 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(140 108 69 / var(--tw-text-opacity, 1));
+}
+
+.btn-four {
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 179 145 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.btn-four:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(219 179 145 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(219 179 145 / var(--tw-text-opacity, 1));
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.bg-button-four {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 179 145 / var(--tw-bg-opacity, 1));
+}
+
+.bg-button-prime {
+  --tw-bg-opacity: 1;
+  background-color: rgb(77 143 184 / var(--tw-bg-opacity, 1));
+}
+
+.bg-button-secondary {
   --tw-bg-opacity: 1;
   background-color: rgb(170 166 104 / var(--tw-bg-opacity, 1));
 }
 
-.bg-text-base {
+.bg-button-third {
   --tw-bg-opacity: 1;
-  background-color: rgb(37 38 37 / var(--tw-bg-opacity, 1));
+  background-color: rgb(140 108 69 / var(--tw-bg-opacity, 1));
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .text-3xl {
@@ -573,9 +680,9 @@ video {
   font-weight: 700;
 }
 
-.text-accent-olive {
+.text-white {
   --tw-text-opacity: 1;
-  color: rgb(170 166 104 / var(--tw-text-opacity, 1));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .underline {
@@ -585,4 +692,29 @@ video {
 .first-letter\:text-6xl::first-letter {
   font-size: 3.75rem;
   line-height: 1;
+}
+
+.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:text-hover-fourText:hover {
+  --tw-text-opacity: 1;
+  color: rgb(219 179 145 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-hover-primeText:hover {
+  --tw-text-opacity: 1;
+  color: rgb(77 143 184 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-hover-secondaryText:hover {
+  --tw-text-opacity: 1;
+  color: rgb(170 166 104 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-hover-thirdText:hover {
+  --tw-text-opacity: 1;
+  color: rgb(140 108 69 / var(--tw-text-opacity, 1));
 }
