@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         // Farger fra styleguiden
         black: "#252625",
-        brown: "#8C6C45",
+        brown: "#514439",
         beige: "#DBB391",
         olive: "#AAA668",
         white: "#FFFFFF",
