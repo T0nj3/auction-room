@@ -3,6 +3,11 @@ module.exports = {
   content: ["./**/*.{html,js}","!./node_modules/**/*.{html,js}"],
   theme: {
     extend: {
+
+        boxShadow: {
+          fancy: '0px 10px 30px rgba(0, 0, 0, 0.25)',
+        },
+
       colors: {
         // Farger fra styleguiden
         black: "#252625",
