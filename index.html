@@ -6,10 +6,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/output.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="../js/carousel.js"></script>
+    <script src="../js/carousel.js" defer></script>
+    <script src="../js/hamburger.js" defer></script>
 </head>
 <header class="relative w-full border-b px-6 py-4 grid grid-cols-3 items-center">
-    <!--venstre-->
+    <!-- Venstre -->
     <div class="hidden md:flex space-x-6 justify-start">
       <a href="#" class="hover:underline">Feed</a>
       <a href="#" class="hover:underline">Landing</a>
@@ -17,19 +18,19 @@
   
     <!-- Midten -->
     <h1 class="text-lg sm:text-xl md:text-lg font-inter font-black text-center whitespace-nowrap">
-        <span class="text-button-prime">The</span> <span class="text-black">Auction Room</span>
-      </h1>
+      <span class="text-button-prime">The</span> <span class="text-black">Auction Room</span>
+    </h1>
   
-    <!--Høyre-->
+    <!-- Høyre -->
     <div class="flex justify-end">
-
       <!-- Desktop meny -->
-      <nav class="hidden md:flex space-x-6 ">
-        <a href="#" class="hover:underline">Login</a>
-        <a href="#"class="hover:underline">Credits</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="auth/login.html" class="hover:underline">Login</a>
+        <a href="#" class="hover:underline">Credits</a>
       </nav>
   
-      <button class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 border-2 border-button-third rounded-md p-1">
+      <!-- Hamburger (mobil) -->
+      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2  rounded-md p-2">
         <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2"
           viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -38,15 +39,23 @@
       </button>
     </div>
   </header>
+  
+  <!-- Mobilmeny dropdown -->
+<nav
+  id="mobile-menu"
+  class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in"
+>
+  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Feed</a>
+  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Landing</a>
+  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Login</a>
+  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Credits</a>
+</nav>
+
 
   <!-- Hero seksjonen med den blå bilen, GJENSTÅR: bildet må være like høyt som det brune -->
-  <section class="max-w-6xl mx-auto my-10 flex flex-col md:flex-row rounded shadow-lg overflow-hidden">
-    <div class="w-full h-[240px] md:h-[360px] md:w-1/2 order-1 md:order-2">
-      <img src="assets/heroindex.png" alt="Blue Car" class="w-full h-full object-cover"/>
-    </div>
-  
- 
-    <div class="bg-brown text-white w-full md:w-1/2 flex items-center justify-center px-8 py-10 order-2 md:order-1">
+  <section class="max-w-6xl mx-auto my-10 grid md:grid-cols-2 rounded shadow-lg overflow-hidden h-auto md:h-[360px]">
+    <!-- Venstre: Tekst -->
+    <div class="bg-brown text-white flex items-center justify-center px-8 py-10">
       <div class="text-center space-y-6 max-w-md">
         <h2 class="text-h2 font-heading font-medium">Register to Participate in Auctions</h2>
         <p class="italic text-text-light textBase">As a registered user, you can:</p>
@@ -55,20 +64,25 @@
           <li>List your own items for auction</li>
           <li>Access your personal dashboard</li>
         </ul>
-        <a href="#"
-          class="bg-button-prime text-white text-lg font-bold px-6 py-2 rounded-md hover:bg-white hover:text-button-prime border border-button-prime transition mx-auto inline-block"
-        >
-          Registration
-        </a>
+        <a href="../auth/register.html" class="bg-button-prime text-white text-lg font-bold px-6 py-2 rounded-md hover:bg-white hover:text-button-prime border border-button-prime transition mx-auto inline-block"> Registration</a>
       </div>
+    </div>
+  
+    <!-- Høyre: Bilde -->
+    <div class="h-full w-full">
+      <img
+        src="assets/heroindex.png"
+        alt="Blue Car"
+        class="w-full h-full object-cover"
+      />
     </div>
   </section>
 
     <!-- News seksjonen -->
     <section class="max-w-6xl mx-auto px-4 mb-16">
-      <h3 class="font-serif text-xs uppercase mb-6">News</h3>
+      <h3 class="font-serif text-s uppercase mb-6">News</h3>
 
-      <!-- karusellen på telefon-versjonen -->
+      <!-- karusellen på telefon-versjonen (kortene trenger litt mer finpussing)-->
       <div class="relative md:hidden">
         <div id="news-carousel" class="flex overflow-x-auto snap-x gap-4 scroll-smooth">
           <div class="min-w-full snap-center bg-white shadow-lg">
@@ -103,28 +117,43 @@
       </div>
     </section>
 
-    <!-- velkommen seksjonen -->
-    <section class="max-w-6xl mx-auto mb-20 flex flex-col md:flex-row">
-        <!-- Image -->
-        <div class="md:w-1/2">
+    <!-- velkommen seksjonen (MANGLER RIKTIG FONT)-->
+    <section class=" max-w-6xl mx-auto my-10 shadow-[0_10px_40px_rgba(0,0,0,0.2)] rounded overflow-hidden grid md:grid-cols-2 md:h-[360px]">
+        <!-- Bilde venstre (kun desktop) -->
+        <div class="hidden md:block h-full w-full">
           <img src="assets/hero2index.png" alt="Books" class="w-full h-full object-cover" />
         </div>
-        <!-- velkommen teksten -->
-        <div class="bg-brown text-white p-6 md:w-1/2 flex flex-col justify-center">
-          <h2 class="text-xs font-bold uppercase mb-2 tracking-wide">
-            Welcome to the Auction Room
-          </h2>
-          <p class="text-sm mb-3">You're all set – now it’s time to explore the auctions!</p>
-          <p class="text-sm mb-4">
-            Click below to browse live listings, place bids, and discover what others are selling.
-          </p>
-          <a href="#" class="btn btn-prime w-fit">Go to Feed</a>
+      
+        <!-- Tekst og bakgrunn -->
+        <div class="relative h-[420px] md:h-auto w-full flex items-center justify-center px-6 py-10 text-white">
+          <!-- Mobil-bilde -->
+          <img src="assets/hero2index.png" alt="Books" class="absolute inset-0 w-full h-full object-cover md:hidden" />
+          
+          <!-- Overlegg -->
+          <div class="absolute inset-0 bg-brown bg-opacity-80 md:bg-opacity-100"></div>
+      
+          <!-- Innhold -->
+          <div class="relative z-10 text-center space-y-5 max-w-md">
+            <h2 class="text-text-light text-h2 space-y-1 text-left mx-auto w-fit">
+              Welcome to the Auction Room
+            </h2>
+            <p class="text-textLg md:text-sm">
+              You're all set – now it’s time to explore the auctions!
+            </p>
+            <p class="text-textLg md:text-sm">
+              Click below to browse live listings, place bids, and discover what others are selling.
+            </p>
+            <a href="#"
+              class="bg-button-prime text-white text-lg font-bold px-6 py-2 rounded-md hover:bg-white hover:text-button-prime border border-button-prime transition inline-block">
+              Go to Feed
+            </a>
+          </div>
         </div>
       </section>
   
       <!-- Oldest seksjonen -->
       <section class="max-w-6xl mx-auto px-4 mb-16">
-        <h3 class="font-serif text-xs uppercase mb-6">Oldest</h3>
+        <h3 class="font-serif text-s uppercase mb-6">Oldest</h3>
   
         <!-- Oldest karusellen mobilversjon -->
         <div class="relative md:hidden">
