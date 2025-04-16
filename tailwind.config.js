@@ -52,6 +52,10 @@ module.exports = {
         textBase: ['1rem', '1.5rem'],
         textSm: ['0.875rem', '1.25rem'],
       },
+      backgroundImage: {
+        'login-bg': "url('/assets/bg_login.jpg')",
+        'register-bg': "url('/assets/register.jpeg')",
+      },
     },
   },
   plugins: [],
