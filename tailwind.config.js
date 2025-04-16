@@ -41,8 +41,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['Playfair Display', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Inter', 'serif'],
+        body: ['Playfair Display', 'sans-serif'],
       },
       fontSize: {
         h1: ['2.25rem', '2.5rem'],
