@@ -54,7 +54,7 @@ module.exports = {
       },
       backgroundImage: {
         'login-bg': "url('/assets/bg_login.jpg')",
-        'register-bg': "url('/assets/register.jpeg')",
+        'reg-bg': "url('/assets/bg_reg.jpeg')"
       },
     },
   },

@@ -3,9 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <meta name="description" content="Login page for the auction site">
+    <meta name="author" content="Andre Lier og Tonje Albertisen">
+    <meta name="keywords" content="auction, login, authentication">
+    <link rel="stylesheet" href="../css/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/hamburger.js" defer></script>
+    <title>Login for the the auction page</title>
 </head>
 <body>
-    <h1>Register</h1>
+    <header class="relative w-full border-b px-6 py-4 grid grid-cols-3 items-center">
+        <!-- Venstre -->
+        <div class="hidden md:flex space-x-6 justify-start">
+          <a href="../listings/feed.html" class="hover:underline">Feed</a>
+          <a href="../index.html" class="hover:underline">Landing</a>
+        </div>
+      
+        <!-- Midten -->
+        <h1 class="text-lg sm:text-xl md:text-lg font-inter font-black text-center whitespace-nowrap cursor-pointer">
+          <span class="text-button-prime">The</span> <span class="text-black">Auction Room</span>
+        </h1>
+      
+        <!-- Høyre -->
+        <div class="flex justify-end">
+          <!-- Desktop meny -->
+          <nav class="hidden md:flex space-x-6">
+            <a href="./login.html" class="hover:underline">Login</a>
+            <a href="#" class="hover:underline">Credits</a>
+          </nav>
+      
+          <!-- Hamburger (mobil) -->
+          <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2  rounded-md p-2">
+            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </header>
+      
+      <!-- Mobilmeny dropdown -->
+    <nav
+      id="mobile-menu"
+      class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in"
+    >
+      <a href="../listings/feed.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Feed</a>
+      <a href="../index.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Landing</a>
+      <a href="./login.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Login</a>
+      <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Credits</a>
+    </nav>
+    <main>
+    <div class="flex flex-col items-center justify-center min-h-screen -mt-12">
+        <div class="w-full max-w-md p-8 space-y-6 bg-reg-bg bg-cover bg-center rounded-xl shadow-md md:max-w-xl min-h-[400px]">
+            <h2 class="text-2xl font-bold text-center text-white">Registration</h2>
+            <p class="text-sm text-center font-body text-white">Welcome to<br>The Auction Room!</p>
+            <form action="/registration" method="POST" class="space-y-4 md:w-80 w-full mx-auto">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-white">Email</label>
+                    <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
+                  </div>
+                <div> 
+                    <label for="username" class="block text-sm font-medium text-white">Username</label>
+                    <input type="text" name="username" id="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown md:w-80">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-white">Password</label>
+                    <input type="password" name="password" id="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown md:w-80">
+                </div>
+                <div>
+                    <label for="password-confirm" class="block text-sm font-medium text-white">Confirm Password</label>
+                    <input type="password" name="password-confirm" id="password-confirm" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown md:w-80">
+                </div>
+                <div class="flex items-center justify-center">
+                <button type="submit" class="btn btn-prime rounded-2xl mt-6">Login</button>
+                </div>
+            </form>
+            <p class="text-sm text-center text-white font-body">Already have a account? <a href="./login.html" class="text-blue-600 hover:underline hover:text-lightblue">Go to login</a></p>
+        </div>
+    </div>
+</main>
+    <footer class="bg-brown text-white text-center py-6">
+        <p class="font-bold text-sm">&copy; The Auction Room</p>
+      </footer>
 </body>
 </html>

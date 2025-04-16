@@ -15,12 +15,12 @@
     <header class="relative w-full border-b px-6 py-4 grid grid-cols-3 items-center">
         <!-- Venstre -->
         <div class="hidden md:flex space-x-6 justify-start">
-          <a href="#" class="hover:underline">Feed</a>
-          <a href="#" class="hover:underline">Landing</a>
+          <a href="../listings/feed.html" class="hover:underline">Feed</a>
+          <a href="../index.html" class="hover:underline">Landing</a>
         </div>
       
         <!-- Midten -->
-        <h1 class="text-lg sm:text-xl md:text-lg font-inter font-black text-center whitespace-nowrap">
+        <h1 class="text-lg sm:text-xl md:text-lg font-inter font-black text-center whitespace-nowrap cursor-pointer">
           <span class="text-button-prime">The</span> <span class="text-black">Auction Room</span>
         </h1>
       
@@ -28,7 +28,7 @@
         <div class="flex justify-end">
           <!-- Desktop meny -->
           <nav class="hidden md:flex space-x-6">
-            <a href="auth/login.html" class="hover:underline">Login</a>
+            <a href="./login.html" class="hover:underline">Login</a>
             <a href="#" class="hover:underline">Credits</a>
           </nav>
       
@@ -48,9 +48,9 @@
       id="mobile-menu"
       class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in"
     >
-      <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Feed</a>
-      <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Landing</a>
-      <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Login</a>
+      <a href="../listings/feed.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Feed</a>
+      <a href="../index.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Landing</a>
+      <a href="./login.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Login</a>
       <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Credits</a>
     </nav>
     <main>
@@ -58,7 +58,7 @@
         <div class="w-full max-w-md p-8 space-y-6 bg-login-bg bg-cover bg-center rounded-xl shadow-md md:max-w-xl min-h-[400px]">
             <h2 class="text-2xl font-bold text-center text-white">Login</h2>
             <p class="text-sm text-center font-body text-white">Welcome back to <br>The Auction Room!</p>
-            <form action="/login" method="POST" class="space-y-4">
+            <form action="/login" method="POST" class="space-y-4 md:w-80 w-full mx-auto">
                 <div>
                     <label for="email" class="block text-sm font-medium text-white">Email</label>
                     <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
