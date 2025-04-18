@@ -8,29 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="../js/carousel.js" defer></script>
     <script src="../js/hamburger.js" defer></script>
+    <script type="module" src="../js/listings.js"></script>
 </head>
-<header class="relative w-full border-b px-6 py-4 grid grid-cols-3 items-center">
+<body>
+  <header class="relative w-full border-b px-6 py-4 grid grid-cols-3 items-center">
     <!-- Venstre -->
     <div class="hidden md:flex space-x-6 justify-start">
       <a href="#" class="hover:underline">Feed</a>
       <a href="#" class="hover:underline">Landing</a>
     </div>
-  
+
     <!-- Midten -->
     <h1 class="text-lg sm:text-xl md:text-lg font-inter font-black text-center whitespace-nowrap">
       <span class="text-button-prime">The</span> <span class="text-black">Auction Room</span>
     </h1>
-  
+
     <!-- Høyre -->
     <div class="flex justify-end">
-      <!-- Desktop meny -->
       <nav class="hidden md:flex space-x-6">
         <a href="auth/login.html" class="hover:underline">Login</a>
         <a href="#" class="hover:underline">Credits</a>
       </nav>
-  
-      <!-- Hamburger (mobil) -->
-      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2  rounded-md p-2">
+      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
         <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2"
           viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -39,22 +38,16 @@
       </button>
     </div>
   </header>
-  
-  <!-- Mobilmeny dropdown -->
-<nav
-  id="mobile-menu"
-  class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in"
->
-  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Feed</a>
-  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Landing</a>
-  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Login</a>
-  <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Credits</a>
-</nav>
 
+  <nav id="mobile-menu" class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in">
+    <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Feed</a>
+    <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Landing</a>
+    <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Login</a>
+    <a href="#" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Credits</a>
+  </nav>
 
-  <!-- Hero seksjonen med den blå bilen, GJENSTÅR: bildet må være like høyt som det brune -->
+  <!-- Hero seksjonen -->
   <section class="max-w-6xl mx-auto my-10 grid md:grid-cols-2 rounded shadow-lg overflow-hidden h-auto md:h-[360px]">
-    <!-- Venstre: Tekst -->
     <div class="bg-brown text-white flex items-center justify-center px-8 py-10">
       <div class="text-center space-y-6 max-w-md">
         <h2 class="text-h2 font-heading font-medium">Register to Participate in Auctions</h2>
@@ -67,133 +60,63 @@
         <a href="../auth/register.html" class="bg-button-prime text-white text-lg font-bold px-6 py-2 rounded-md hover:bg-white hover:text-button-prime border border-button-prime transition mx-auto inline-block"> Registration</a>
       </div>
     </div>
-  
-    <!-- Høyre: Bilde -->
     <div class="h-full w-full">
-      <img
-        src="assets/heroindex.png"
-        alt="Blue Car"
-        class="w-full h-full object-cover"
-      />
+      <img src="assets/heroindex.png" alt="Blue Car" class="w-full h-full object-cover" />
     </div>
   </section>
 
-    <!-- News seksjonen -->
-    <section class="max-w-6xl mx-auto px-4 mb-16">
-      <h3 class="font-serif text-s uppercase mb-6">News</h3>
+  <!-- News seksjonen -->
+  <section class="max-w-6xl mx-auto px-4 mb-16">
+    <h3 class="font-serif text-s uppercase mb-6">News</h3>
 
-      <!-- karusellen på telefon-versjonen (kortene trenger litt mer finpussing)-->
-      <div class="relative md:hidden">
-        <div id="news-carousel" class="flex overflow-x-auto snap-x gap-4 scroll-smooth">
-          <div class="min-w-full snap-center bg-white shadow-lg">
-            <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" class="w-full" />
-            <p class="text-center font-serif py-2">Macbook Air</p>
-          </div>
-          <div class="min-w-full snap-center bg-white shadow-lg">
-            <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" class="w-full" />
-            <p class="text-center font-serif py-2">Macbook Air</p>
-          </div>
-          <div class="min-w-full snap-center bg-white shadow-lg">
-            <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" class="w-full" />
-            <p class="text-center font-serif py-2">Macbook Air</p>
-          </div>
-        </div>
+<!-- Mobilkarusell -->
+<div class="relative md:hidden">
+  <div id="news-carousel" class="flex overflow-x-auto snap-x gap-4 scroll-smooth"></div>
+</div>
+<!-- Desktop-grid -->
+<div id="news-grid" class="hidden md:grid grid-cols-3 gap-6"></div>
+
+    <!-- Desktop grid -->
+    <div id="news-grid" class="hidden md:grid grid-cols-3 gap-6">
+      <!-- Nyeste innlegg renderes her -->
+    </div>
+  </section>
+
+  <!-- Velkommen-seksjon -->
+  <section class="max-w-6xl mx-auto my-10 shadow-[0_10px_40px_rgba(0,0,0,0.2)] rounded overflow-hidden grid md:grid-cols-2 md:h-[360px]">
+    <div class="hidden md:block h-full w-full">
+      <img src="assets/hero2index.png" alt="Books" class="w-full h-full object-cover" />
+    </div>
+    <div class="relative h-[420px] md:h-auto w-full flex items-center justify-center px-6 py-10 text-white">
+      <img src="assets/hero2index.png" alt="Books" class="absolute inset-0 w-full h-full object-cover md:hidden" />
+      <div class="absolute inset-0 bg-brown bg-opacity-80 md:bg-opacity-100"></div>
+      <div class="relative z-10 text-center space-y-5 max-w-md">
+        <h2 class="text-text-light text-h2 space-y-1 text-left mx-auto w-fit">Welcome to the Auction Room</h2>
+        <p class="text-textLg md:text-sm">You're all set – now it’s time to explore the auctions!</p>
+        <p class="text-textLg md:text-sm">Click below to browse live listings, place bids, and discover what others are selling.</p>
+        <a href="#" class="bg-button-prime text-white text-lg font-bold px-6 py-2 rounded-md hover:bg-white hover:text-button-prime border border-button-prime transition inline-block">Go to Feed</a>
       </div>
+    </div>
+  </section>
 
-      <!-- Grid på desktop versjonen -->
-      <div class="hidden md:grid grid-cols-3 gap-6">
-        <div class="bg-white shadow-lg">
-          <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" />
-          <p class="text-center font-serif py-2">Macbook Air</p>
-        </div>
-        <div class="bg-white shadow-lg">
-          <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" />
-          <p class="text-center font-serif py-2">Macbook Air</p>
-        </div>
-        <div class="bg-white shadow-lg">
-          <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" />
-          <p class="text-center font-serif py-2">Macbook Air</p>
-        </div>
-      </div>
-    </section>
+  <!-- Oldest seksjonen -->
+  <section class="max-w-6xl mx-auto px-4 mb-16">
+    <h3 class="font-serif text-s uppercase mb-6">Oldest</h3>
 
-    <!-- velkommen seksjonen (MANGLER RIKTIG FONT)-->
-    <section class=" max-w-6xl mx-auto my-10 shadow-[0_10px_40px_rgba(0,0,0,0.2)] rounded overflow-hidden grid md:grid-cols-2 md:h-[360px]">
-        <!-- Bilde venstre (kun desktop) -->
-        <div class="hidden md:block h-full w-full">
-          <img src="assets/hero2index.png" alt="Books" class="w-full h-full object-cover" />
-        </div>
-      
-        <!-- Tekst og bakgrunn -->
-        <div class="relative h-[420px] md:h-auto w-full flex items-center justify-center px-6 py-10 text-white">
-          <!-- Mobil-bilde -->
-          <img src="assets/hero2index.png" alt="Books" class="absolute inset-0 w-full h-full object-cover md:hidden" />
-          
-          <!-- Overlegg -->
-          <div class="absolute inset-0 bg-brown bg-opacity-80 md:bg-opacity-100"></div>
-      
-          <!-- Innhold -->
-          <div class="relative z-10 text-center space-y-5 max-w-md">
-            <h2 class="text-text-light text-h2 space-y-1 text-left mx-auto w-fit">
-              Welcome to the Auction Room
-            </h2>
-            <p class="text-textLg md:text-sm">
-              You're all set – now it’s time to explore the auctions!
-            </p>
-            <p class="text-textLg md:text-sm">
-              Click below to browse live listings, place bids, and discover what others are selling.
-            </p>
-            <a href="#"
-              class="bg-button-prime text-white text-lg font-bold px-6 py-2 rounded-md hover:bg-white hover:text-button-prime border border-button-prime transition inline-block">
-              Go to Feed
-            </a>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Oldest seksjonen -->
-      <section class="max-w-6xl mx-auto px-4 mb-16">
-        <h3 class="font-serif text-s uppercase mb-6">Oldest</h3>
-  
-        <!-- Oldest karusellen mobilversjon -->
-        <div class="relative md:hidden">
-          <div id="oldest-carousel" class="flex overflow-x-auto snap-x gap-4 scroll-smooth">
-            <div class="min-w-full snap-center bg-white shadow-lg">
-              <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" class="w-full" />
-              <p class="text-center font-serif py-2">Macbook Air</p>
-            </div>
-            <div class="min-w-full snap-center bg-white shadow-lg">
-              <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" class="w-full" />
-              <p class="text-center font-serif py-2">Macbook Air</p>
-            </div>
-            <div class="min-w-full snap-center bg-white shadow-lg">
-              <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" class="w-full" />
-              <p class="text-center font-serif py-2">Macbook Air</p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- oldest versjonen på desktop -->
-        <div class="hidden md:grid grid-cols-3 gap-6">
-          <div class="bg-white shadow-lg">
-            <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" />
-            <p class="text-center font-serif py-2">Macbook Air</p>
-          </div>
-          <div class="bg-white shadow-lg">
-            <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" />
-            <p class="text-center font-serif py-2">Macbook Air</p>
-          </div>
-          <div class="bg-white shadow-lg">
-            <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Macbook Air" />
-            <p class="text-center font-serif py-2">Macbook Air</p>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Footer -->
-      <footer class="bg-brown text-white text-center py-6 mt-12">
-        <p class="font-bold text-sm">&copy; The Auction Room</p>
-      </footer>
-    </body>
+    <!-- Mobilkarusell -->
+    <div class="relative md:hidden">
+      <div id="oldest-carousel" class="flex overflow-x-auto snap-x gap-4 scroll-smooth"></div>
+    </div>
+    <div id="oldest-grid" class="hidden md:grid grid-cols-3 gap-6"></div>
+
+    <!-- Desktop grid -->
+    <div id="oldest-grid" class="hidden md:grid grid-cols-3 gap-6">
+    </div>
+  </section>
+
+  <footer class="bg-brown text-white text-center py-6 mt-12">
+    <p class="font-bold text-sm">&copy; The Auction Room</p>
+  </footer>
+</body>
   </html>
 </html>
