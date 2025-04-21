@@ -25,3 +25,29 @@ export async function loginUser(userData) {
     throw error;
   }
 }
+
+export async function registerUser(userData) {
+    try {
+      const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Noroff-API-Key": X_NOROFF_API_KEY,
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      const result = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(
+          result.errors ? result.errors[0].message : "Registrering feilet"
+        );
+      }
+  
+      return result;
+    } catch (error) {
+        console.error("Registrering feilet:", error);  
+        alert("Registrering feilet: " + error.message);  
+      }
+  }
