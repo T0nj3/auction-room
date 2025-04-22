@@ -1,4 +1,5 @@
-import { registerUser } from '../apiauth.js';
+import { registerUser } from "../apiauth.js";
+import { validateForm } from "../error/errorAuth.js";
 
 const emailInputField = document.querySelector("#email");
 const usernameInputField = document.querySelector("#username");
@@ -14,68 +15,39 @@ function getRegisterData() {
   return { email, username, password, confirmPassword };
 }
 
-function validateForm() {
-  const { email, username, password, confirmPassword } = getRegisterData();
+function clickRegisterButton() {
+  registerButton.addEventListener("click", async (event) => {
+    event.preventDefault();
 
-  if (!email || !username || !password || !confirmPassword) {
-    alert("Vennligst fyll inn alle felt.");
-    return false;
-  }
+    const registerData = getRegisterData();
 
-  if (!email.endsWith("@stud.noroff.no") && !email.endsWith("@noroff.no")) {
-    alert("E-post må være en Noroff-adresse.");
-    return false;
-  }
+    if (validateForm(registerData)) {
+      const { email, username, password } = registerData;
 
-  if (password.length < 8) {
-    alert("Passord må være minst 8 tegn.");
-    return false;
-  }
+      try {
+        const result = await registerUser({ email, name: username, password });
+        console.log("Resultat fra registerUser:", result);
 
-  if (password !== confirmPassword) {
-    alert("Passordene samsvarer ikke.");
-    return false;
-  }
-
-  return true;
+        if (result.data) {
+          alert("Registrering vellykket! Vennligst logg inn.");
+          window.location.href = "./login.html";
+        } else {
+          alert("Registrering feilet.");
+        }
+      } catch (error) {
+        console.error("Registrering feilet:", error);
+        alert("Registrering feilet: " + error.message);
+      }
+    }
+  });
 }
 
-function clickRegisterButton() {
-    registerButton.addEventListener("click", async (event) => {
-      event.preventDefault();
-  
-      if (validateForm()) {
-        const { email, username, password } = getRegisterData(); 
-  
-        try {
-          const result = await registerUser({ email, name: username, password });
-          console.log("Resultat fra registerUser:", result);
-
-          if (result.data) {
-            alert("Registrering vellykket! Vennligst logg inn.");
-            window.location.href = "./login.html"; 
-          } else {
-            alert("Registrering feilet.");
-          }
-        } catch (error) {
-          console.error("Registrering feilet:", error);
-          alert("Registrering feilet: " + error.message);
-        }
-      }
-    });
-  }
-//   
-  
-
-document.addEventListener("DOMContentLoaded", () => {
-  clickRegisterButton();
-});
-
-// denne skal bort etter at vi har fått til å logget inn og ut
-function forgetToken( ) {
+function forgetToken() {
   const token = localStorage.getItem("token");
   if (token) {
     localStorage.removeItem("token");
   }
 }
+
 forgetToken();
+clickRegisterButton();
