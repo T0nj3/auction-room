@@ -63,21 +63,25 @@
                 <div>
                     <label for="email" class="block text-sm font-medium text-white">Email</label>
                     <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
+                    <div id="email-error" class="text-red-500 text-sm mt-1 hidden">Please enter a valid email address.</div> 
                   </div>
                 <div> 
                     <label for="username" class="block text-sm font-medium text-white">Username</label>
                     <input type="text" name="username" id="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown md:w-80">
+                    <div id="username-error" class="text-red-500 text-sm mt-1 hidden">please enter a username</div> 
                 </div>
                 <div>
                     <label for="password" class="block text-sm font-medium text-white">Password</label>
                     <input type="password" name="password" id="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown md:w-80">
+                    <div id="password-error" class="text-red-500 text-sm mt-1 hidden">Password must be at least 8 characters long.</div>
                 </div>
                 <div>
                     <label for="password-confirm" class="block text-sm font-medium text-white">Confirm Password</label>
                     <input type="password" name="password-confirm" id="password-confirm" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown md:w-80">
+                    <div id="password-confirm-error" class="text-red-500 text-sm mt-1 hidden">Passwords do not match.</div>
                 </div>
                 <div class="flex items-center justify-center">
-                <button type="submit" id="register-button" class="btn btn-prime rounded-2xl mt-6">Login</button>
+                <button type="submit" id="register-button" class="btn btn-prime rounded-2xl mt-6">Register</button>
                 </div>
             </form>
             <p class="text-sm text-center text-white font-body">Already have a account? <a href="./login.html" class="text-blue-600 hover:underline hover:text-lightblue">Go to login</a></p>

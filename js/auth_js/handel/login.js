@@ -1,25 +1,14 @@
-import { loginUser } from '../apiauth.js';
+import { loginUser } from "../apiauth.js";
+import { validateLoginForm } from "../error/errorAuth.js";
 
 const emailInputField = document.querySelector("#email");
 const passwordInputField = document.querySelector("#password");
 const loginButton = document.querySelector("#login-button");
 
 function getLoginData() {
-  const email = emailInputField.value;
-  const password = passwordInputField.value;
+  const email = emailInputField.value.trim();
+  const password = passwordInputField.value.trim();
   return { email, password };
-}
-
-function validateForm() {
-  const { email, password } = getLoginData();
-  if (email === "" || password === "") {
-    alert("Please fill in all fields");
-    return false;
-  } else if (password.length < 8) {
-    alert("Password must be at least 8 characters");
-    return false;
-  }
-  return true;
 }
 
 function ShowError(message) {
@@ -33,17 +22,15 @@ function clickLoginButton() {
   loginButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    if (validateForm()) {
-      const userData = getLoginData();
-      try {
+    const userData = getLoginData();
 
-        const result = await loginUser(userData); 
+    if (validateLoginForm(userData)) {
+      try {
+        const result = await loginUser(userData);
 
         if (result.data?.accessToken) {
-
           localStorage.setItem("token", result.data.accessToken);
-
-          window.location.href = "../index.html";  
+          window.location.href = "../index.html";
         } else {
           ShowError("No access token received.");
         }
@@ -55,6 +42,4 @@ function clickLoginButton() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  clickLoginButton();
-});
+clickLoginButton();
