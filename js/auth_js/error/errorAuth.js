@@ -36,14 +36,14 @@ export function validateForm() {
     isValid = false;
   }
 
-  if (!username) {
+  if (username === "") {
     document.getElementById("username-error").textContent =
       "Vennligst fyll inn brukernavn.";
     document.getElementById("username-error").classList.remove("hidden");
     isValid = false;
   }
 
-  if (!password) {
+  if (password === "") {
     document.getElementById("password-error").textContent =
       "Vennligst fyll inn passord.";
     document.getElementById("password-error").classList.remove("hidden");
@@ -55,7 +55,7 @@ export function validateForm() {
     isValid = false;
   }
 
-  if (!confirmPassword) {
+  if (confirmPassword === "") {
     document.getElementById("password-confirm-error").textContent =
       "Vennligst bekreft passordet.";
     document
@@ -75,16 +75,16 @@ export function validateForm() {
 }
 
 export function validateLoginForm(userData) {
-  const { email, password } = userData; // Bruk dataene sendt som argument
+  const { email, password } = userData; 
   let isValid = true;
 
-  // Skjul eksisterende feilmeldinger
+
   ["email-error", "password-error"].forEach((id) => {
     const el = document.getElementById(id);
     if (el) el.classList.add("hidden");
   });
 
-  if (!email) {
+  if (email === "") {
     document.getElementById("email-error").textContent =
       "Vennligst fyll inn e-post.";
     document.getElementById("email-error").classList.remove("hidden");
@@ -99,7 +99,7 @@ export function validateLoginForm(userData) {
     isValid = false;
   }
 
-  if (!password) {
+  if (password === "") {
     document.getElementById("password-error").textContent =
       "Vennligst fyll inn passord.";
     document.getElementById("password-error").classList.remove("hidden");
