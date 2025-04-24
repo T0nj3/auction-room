@@ -30,3 +30,38 @@ export async function fetchListingById(id) {
     const data = await response.json();
     return data.data;
   }
+
+  export async function fetchAllListings() {
+    const url = "https://v2.api.noroff.dev/auction/listings?_bids=true&sort=created&sortOrder=desc";
+  
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Noroff-API-Key": "580b33a9-04f3-4da3-bb38-de9adcf9d9f8",
+        },
+      });
+      const data = await response.json();
+      return data.data || [];
+    } catch (error) {
+      console.error("Error fetching listings:", error);
+      return [];
+    }
+  }
+
+  export async function fetchPaginatedListings(page = 1, limit = 12) {
+    const url = `${API_BASE_URL}/listings?limit=${limit}&offset=${(page - 1) * limit}`;
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Noroff-API-Key": API_KEY,
+        },
+      });
+      const data = await response.json();
+      return data.data || [];
+    } catch (error) {
+      console.error("Feil ved paginert henting:", error);
+      return [];
+    }
+  }
