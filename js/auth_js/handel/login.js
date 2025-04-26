@@ -30,6 +30,8 @@ function clickLoginButton() {
 
         if (result.data?.accessToken) {
           localStorage.setItem("token", result.data.accessToken);
+          localStorage.setItem("username", result.data.name); 
+          localStorage.setItem("credits", result.data.credits);
           window.location.href = "../index.html";
         } else {
           ShowError("No access token received.");
@@ -43,3 +45,5 @@ function clickLoginButton() {
 }
 
 clickLoginButton();
+localStorage.setItem("username", result.data.name);
+localStorage.setItem("credits", result.data.credits);

@@ -65,3 +65,23 @@ export async function fetchListingById(id) {
       return [];
     }
   }
+
+  export async function fetchCredits(username) {
+    const token = localStorage.getItem("token");
+    const url = `https://v2.api.noroff.dev/auction/profiles/${username}/credits`;
+  
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": API_KEY,
+      },
+    });
+  
+    if (!response.ok) {
+      throw new Error("Kunne ikke hente credits");
+    }
+  
+    const data = await response.json();
+    return data.data;
+  }
