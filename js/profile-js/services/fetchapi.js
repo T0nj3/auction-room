@@ -29,9 +29,13 @@ function displayUserImages(profile) {
     const avatarImg = document.getElementById("avatar");
     const bannerImg = document.getElementById("banner");
 
+
     if (profile.avatar && profile.avatar.url) {
         avatarImg.src = profile.avatar.url;
         avatarImg.alt = profile.avatar.alt || "User avatar";
+
+        avatarImg.style.width = "8rem";  
+        avatarImg.style.height = "8rem";
     }
 
     if (profile.banner && profile.banner.url) {
