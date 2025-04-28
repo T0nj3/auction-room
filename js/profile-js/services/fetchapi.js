@@ -3,7 +3,7 @@ import { getUserProfile } from "../apiprofile.js";
 const token = localStorage.getItem("token");
 function accessProfile() {
     if (token === null) {
-        alert("Du må være innlogget for å få tilgang til profilen din."); //denne linjen er lagt til for å gi tilbakemelding til brukeren. vi bytter den ut med en annen når vi har laget en feilmelding.
+        alert("Du må være innlogget for å få tilgang til profilen din."); 
         window.location.href = "../index.html";
     }
 }
@@ -29,11 +29,23 @@ function displayUserImages(profile) {
     const avatarImg = document.getElementById("avatar");
     const bannerImg = document.getElementById("banner");
 
+
     if (profile.avatar && profile.avatar.url) {
         avatarImg.src = profile.avatar.url;
         avatarImg.alt = profile.avatar.alt || "User avatar";
+
+
+        avatarImg.style.width = "8rem";
+        avatarImg.style.height = "8rem";
+
+        
+        if (window.innerWidth >= 640) { 
+            avatarImg.style.width = "10rem";  
+            avatarImg.style.height = "10rem";
+        }
     }
 
+    // Set banner image
     if (profile.banner && profile.banner.url) {
         bannerImg.src = profile.banner.url;
         bannerImg.alt = profile.banner.alt || "User banner";
