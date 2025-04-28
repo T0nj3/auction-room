@@ -41,3 +41,44 @@ export async function getUserProfile() {
         return null;
     }
 }
+
+export async function updateUserProfile(name, bio, avatar, banner) {
+    const token = localStorage.getItem('token');  // Hent token fra localStorage
+    if (!token) {
+        console.error('Token is missing');
+        return null;
+    }
+
+    // Hvis bio, avatar eller banner er tomme, returner null og logg en feil
+    if (!bio || !avatar || !banner) {
+        console.error('Missing required fields: bio, avatar, or banner.');
+        return null;
+    }
+
+    // Forbered dataene med riktig struktur
+    const dataToSend = {
+        bio: bio,  // Vi sender bio som en enkel tekst
+        avatar: { url: avatar, alt: "User avatar" },  // Avatar som objekt med url og alt
+        banner: { url: banner, alt: "User banner" }   // Banner som objekt med url og alt
+    };
+
+    console.log("Sending data to API:", dataToSend);  // Logg dataene før de sendes
+
+    const response = await fetch(`${API_BASE_URL}/profiles/${name}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "X-Noroff-API-Key": X_NOROFF_API_KEY,  // Sørg for at denne er definert og tilgjengelig
+        },
+        body: JSON.stringify(dataToSend),  // Send dataene som JSON
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();  // Få mer informasjon om feilen fra serveren
+        console.error(`Failed to update profile. Status: ${response.status}. Message: ${errorText}`);
+        return null;
+    }
+
+    return await response.json();  // Returner svaret fra API-et
+}

@@ -53,14 +53,12 @@
       </div>
     </nav>
     <main class="max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12">
-      <!-- Banner -->
       <div class="relative md:w-full md:bg-brown md:bg-opacity-60 md:rounded-lg">
         <img
           id="banner"
           alt="User banner"
           class="w-full h-36 object-cover"
         />
-    
           <div class="absolute inset-0 flex justify-center mt-16 md:justify-start md:ml-12 md:mt-24">
           <img
             id="avatar"
@@ -72,8 +70,35 @@
         <h2 id="name" class="text-lg font-bold text-black uppercase md:text-white md:text-textLg"></h2>
         <p id="bio" class="font-body text-black md:text-white md:text-textBase md:mt-2"></p>
       </div>
+      <div class="flex justify-center mt-4 md:mt-0">
+        <button id="edit-profile-btn" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">
+          Edit Profile
+        </button>
+        </div>
       </div>
+      <section>
+        <div id="edit-profile-form" class=" bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4">
+          <h3 class="text-lg font-bold text-white mb-4">Edit Profile</h3>
+          <form id="profile-form">
+            <div class="mb-4">
+              <label for="avatar" class="block text-sm font-medium text-white">Avatar</label>
+              <input type="text" id="avatar-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+            </div>
+            <div class="mb-4">
+              <label for="banner" class="block text-sm font-medium text-white">Banner</label>
+              <input type="text" id="banner-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+            </div>
+            <div class="mb-4">
+              <label for="bio" class="block text-sm font-medium text-white ">Bio</label>
+              <textarea id="bio-input" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
+            </div>
 
+            <button type="submit" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Save Changes</button>
+          </form>
+        </div>
+        <div id="edit-profile-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
+          <p>Profile updated successfully!</p>
+      </section>
       <div class="px-6 py-4 flex justify-center">
         <h3 class="text-lg font-bold text-black border-b font-thin">Your Auctions</h3>
         <div id="auctions" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
