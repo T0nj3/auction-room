@@ -52,30 +52,30 @@
       <div id="mobile-user-links" class="flex flex-col gap-3">
       </div>
     </nav>
-    <main class="max-w-xl mx-auto mt-8 bg-white rounded-lg shadow-md overflow-hidden">
+    <main class="max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12">
       <!-- Banner -->
-      <div class="relative">
+      <div class="relative md:w-full md:bg-brown md:bg-opacity-60 md:rounded-lg">
         <img
           id="banner"
           alt="User banner"
           class="w-full h-36 object-cover"
         />
-        <div class="absolute inset-0 bg-black opacity-20"></div>
     
-        <div class="absolute inset-0 flex items-center justify-center mt-12">
+          <div class="absolute inset-0 flex justify-center mt-16 md:justify-start md:ml-12 md:mt-24">
           <img
             id="avatar"
             alt="User avatar"
-            class="rounded-full border-4 border-white object-cover shadow-md" 
+            class="rounded-full border-4 border-white object-cover shadow-md md:w-36 md:h-32" 
           />
         </div>
-      <div class="mt-32 mt-16 text-center px-6 pb-8">
-        <h2 id="name" class="text-lg font-bold text-gray-800 uppercase"></h2>
-        <p id="bio" class="text-gray-600 mt-2"></p>
+      <div class="mt-12 text-center px-6 pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16">
+        <h2 id="name" class="text-lg font-bold text-black uppercase md:text-white md:text-textLg"></h2>
+        <p id="bio" class="font-body text-black md:text-white md:text-textBase md:mt-2"></p>
+      </div>
       </div>
 
-      <div class="px-6 py-4">
-        <h3 class="text-lg font-bold text-gray-800">Your Auctions</h3>
+      <div class="px-6 py-4 flex justify-center">
+        <h3 class="text-lg font-bold text-black border-b font-thin">Your Auctions</h3>
         <div id="auctions" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
         </div>
     </main>
