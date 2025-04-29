@@ -1,11 +1,12 @@
 import { getUserProfile } from "../apiprofile.js";
 import { updateUserProfile } from "../apiprofile.js";
+import {createPost} from "../apiprofile.js";
 
 const token = localStorage.getItem("token");
 
 function accessProfile() {
     if (token === null) {
-        alert("Du må være innlogget for å få tilgang til profilen din.");
+        alert("You need to log in to access this page.");
         window.location.href = "../index.html";
     }
 }
@@ -20,14 +21,13 @@ async function loadUserProfile() {
             displayName(profile);
             displayBio(profile);
         } else {
-            console.log("Kunne ikke hente brukerprofil.");
+            console.log("coud not get your profile.");
         }
     } catch (error) {
-        console.error("Feil ved henting av brukerprofil:", error);
+        console.error("fail with loading your profile:", error);
     }
 }
 
-// Vis avatar og banner
 function displayUserImages(profile) {
     const avatarImg = document.getElementById("avatar");
     const bannerImg = document.getElementById("banner");
@@ -51,23 +51,22 @@ function displayUserImages(profile) {
     }
 }
 
-// Vis brukernavn
 function displayName(profile) {
     const nameElement = document.getElementById("name");
-    const name = profile.name || "Ingen navn tilgjengelig";
+    const name = profile.name || "No name found";
     nameElement.textContent = name;
 }
 
 function displayBio(profile) {
     const bioElement = document.getElementById("bio");
-    const bio = profile.bio || "Ingen bio tilgjengelig";
+    const bio = profile.bio || "No bio found";
     bioElement.textContent = bio;
 }
 
 function getuser() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || !user.name) {
-        console.error("Brukernavn ikke funnet i localStorage!");
+        console.error("user name not fount in localstorage!");
         return null;
     }
     return user;
@@ -94,6 +93,7 @@ async function handleProfileUpdate(event) {
     if (response ) {
         updateLocalStorageUser(response);
         updateProfileDisplay(response);
+        window.location.reload();
     } else {
         console.error("could not update profile");
     }
@@ -120,3 +120,41 @@ function initializeProfilePage() {
 }
 
 initializeProfilePage();
+
+function getFormData() {
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const imageUrl = document.getElementById("image").value;
+    const endsAt = document.getElementById("due-date").value;
+
+    return { title, description, imageUrl, endsAt,};
+}
+
+function validateInput({ title, description, imageUrl, endsAt }) {
+    if (title === "" || description === "" || imageUrl === ""|| endsAt === "") {
+        alert("Tittel, Description image and due date are required.");
+        return false;
+    }
+    return true;
+}
+
+async function createAuction(title, description, imageUrl, endsAt,) {
+    const result = await createPost(title, description, imageUrl, endsAt,);
+
+    if (result) {
+        alert("Auction created successfully!");
+        console.log(result);  
+        window.location.reload();
+    } else {
+        alert("something went wrong.");
+    }
+}
+document.getElementById("create-auction-btn").addEventListener("click", async function (e) {
+    e.preventDefault();
+
+    const formData = getFormData();
+
+    if (validateInput(formData) === false) return;
+
+    await createAuction(formData.title, formData.description, formData.imageUrl, formData.endsAt);
+});
