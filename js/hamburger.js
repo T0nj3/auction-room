@@ -13,7 +13,9 @@ let currentPage = location.pathname.split("/").pop();
 if (currentPage === "") currentPage = "index.html";
 
 links.forEach(link => {
-  const href = link.getAttribute("href").split("/").pop();
+  let href = link.getAttribute("href").split("/").pop();
+  href = href.replace(/^\.\/|^\.\.\//, ""); // fjerner ./ og ../ fra starten
+
   if (href === currentPage) {
     link.classList.add("text-lightblue", "hover:text-black");
   } else {
