@@ -9,11 +9,12 @@ hamburgerBtn.addEventListener("click", () => {
 
 // Marker aktiv side
 const links = document.querySelectorAll("a[href]");
-const currentPage = location.pathname.split("/").pop();
+let currentPage = location.pathname.split("/").pop();
+if (currentPage === "") currentPage = "index.html";
 
 links.forEach(link => {
-  const href = link.getAttribute("href");
-  if (href.includes(currentPage)) {
+  const href = link.getAttribute("href").split("/").pop();
+  if (href === currentPage) {
     link.classList.add("text-lightblue", "hover:text-black");
   } else {
     link.classList.remove("text-lightblue", "hover:text-black");
