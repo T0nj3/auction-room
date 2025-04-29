@@ -7,7 +7,7 @@ hamburgerBtn.addEventListener("click", () => {
   mobileMenu.classList.toggle("hidden");
 });
 
-// Marker aktiv side
+// Markerer aktiv side
 const links = document.querySelectorAll("a[href]");
 let currentPage = location.pathname.split("/").pop();
 if (currentPage === "") currentPage = "index.html";
