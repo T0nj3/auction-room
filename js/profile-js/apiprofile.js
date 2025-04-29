@@ -43,42 +43,78 @@ export async function getUserProfile() {
 }
 
 export async function updateUserProfile(name, bio, avatar, banner) {
-    const token = localStorage.getItem('token');  // Hent token fra localStorage
+    const token = localStorage.getItem('token'); 
     if (!token) {
         console.error('Token is missing');
         return null;
     }
 
-    // Hvis bio, avatar eller banner er tomme, returner null og logg en feil
+   
     if (!bio || !avatar || !banner) {
         console.error('Missing required fields: bio, avatar, or banner.');
         return null;
     }
 
-    // Forbered dataene med riktig struktur
     const dataToSend = {
-        bio: bio,  // Vi sender bio som en enkel tekst
-        avatar: { url: avatar, alt: "User avatar" },  // Avatar som objekt med url og alt
-        banner: { url: banner, alt: "User banner" }   // Banner som objekt med url og alt
+        bio: bio,  
+        avatar: { url: avatar, alt: "User avatar" },  
+        banner: { url: banner, alt: "User banner" }   
     };
 
-    console.log("Sending data to API:", dataToSend);  // Logg dataene før de sendes
+    console.log("Sending data to API:", dataToSend);  
 
     const response = await fetch(`${API_BASE_URL}/profiles/${name}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-            "X-Noroff-API-Key": X_NOROFF_API_KEY,  // Sørg for at denne er definert og tilgjengelig
+            "X-Noroff-API-Key": X_NOROFF_API_KEY,  
         },
-        body: JSON.stringify(dataToSend),  // Send dataene som JSON
+        body: JSON.stringify(dataToSend), 
     });
 
     if (!response.ok) {
-        const errorText = await response.text();  // Få mer informasjon om feilen fra serveren
+        const errorText = await response.text();  
         console.error(`Failed to update profile. Status: ${response.status}. Message: ${errorText}`);
         return null;
     }
 
-    return await response.json();  // Returner svaret fra API-et
+    return await response.json();  
+}
+
+export async function createPost(title, description, imageUrl, endsAt, amount) {
+    const token = localStorage.getItem("token"); 
+    if (!token) {
+        console.error("no token is found in localStorage.");
+        return null;
+    }
+
+    const postData = {
+        title,
+        description,  
+        media: imageUrl ? [{ url: imageUrl, alt: "Post image" }] : [],
+        endsAt: endsAt,
+    };
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/listings`, {  
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,  
+                "X-Noroff-API-Key": X_NOROFF_API_KEY,
+            },
+            body: JSON.stringify(postData),
+        });
+
+        if (!response.ok) {
+            console.error("Feil ved oppretting av post:", await response.text());
+            return null;
+        }
+
+        return await response.json();  
+    } catch (error) {
+        console.error("Feil under forespørsel:", error);
+        return null;
+    }
 }
