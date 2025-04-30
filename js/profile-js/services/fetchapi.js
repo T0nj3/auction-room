@@ -1,6 +1,7 @@
 import { getUserProfile } from "../apiprofile.js";
 import { updateUserProfile } from "../apiprofile.js";
 import {createPost} from "../apiprofile.js";
+import {showUserListings} from "./listings_profile.js";
 
 const token = localStorage.getItem("token");
 
@@ -158,3 +159,15 @@ document.getElementById("create-auction-btn").addEventListener("click", async fu
 
     await createAuction(formData.title, formData.description, formData.imageUrl, formData.endsAt);
 });
+
+function loadUserListings() {
+    const user = JSON.parse(localStorage.getItem("user"));
+  
+    if (user && user.name) {
+      showUserListings(user.name); 
+    } else {
+      console.error("Bruker er ikke logget inn eller finnes ikke i localStorage.");
+    }
+  }
+  
+  loadUserListings();

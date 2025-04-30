@@ -118,3 +118,32 @@ export async function createPost(title, description, imageUrl, endsAt, amount) {
         return null;
     }
 }
+
+export async function fetchListing(username) {
+    const token = localStorage.getItem("token"); 
+    if (!token) {
+        console.error("no token is found in localStorage.");
+        return null;
+    }
+    try {
+        const url = `${API_BASE_URL}/profiles/${username}/listings`;
+        console.log("Fetching from URL:", url); 
+        
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "X-Noroff-API-Key": X_NOROFF_API_KEY,
+            "Content-Type": "application/json",
+          },
+        });
+        
+        console.log("Response status:", response.status); 
+        
+        if (!response.ok) throw new Error("Could not fetch user posts.");
+        
+        return await response.json();
+    } catch (error) {
+      console.error("Error fetching user posts:", error.message);
+      throw error;
+    }
+  }
