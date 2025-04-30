@@ -1,4 +1,5 @@
-import { fetchListingById } from "./apiUtils.js";
+import { fetchListingById, placeBid } from "./apiUtils.js";
+import { renderUserUI } from "./hamburger.js";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -46,9 +47,17 @@ async function renderListingDetail() {
     imageEl.src = listing.media[0]?.url || "https://placehold.co/400x300?text=No+Image";
     imageEl.alt = listing.media[0]?.alt || listing.title;
 
-    sellerNameEl.textContent = listing.seller?.name || "Unknown";
-    sellerEmailEl.textContent = listing.seller?.email || "";
-    sellerEmailEl.href = `mailto:${listing.seller?.email || ""}`;
+    sellerNameEl.innerHTML = ""; 
+    if (listing.seller?.name) {
+      const sellerLink = document.createElement("a");
+      sellerLink.href = `../profile/public-profile.html?user=${listing.seller.name}`;
+      sellerLink.className = "text-blue-700 underline";
+      sellerLink.textContent = listing.seller.name;
+      sellerNameEl.appendChild(sellerLink);
+    } else {
+      sellerNameEl.textContent = "Unknown";
+    }
+    sellerEmailEl.remove(); 
 
     timeLeftEl.textContent = calculateTimeLeft(listing.endsAt);
 
@@ -89,7 +98,16 @@ async function renderListingDetail() {
       nameLabel.className = "font-medium";
       nameLabel.textContent = "Name:";
       nameLine.appendChild(nameLabel);
-      nameLine.append(` ${bid.bidder?.name || "Unknown"}`);
+      
+      if (bid.bidder?.name) {
+        const bidderLink = document.createElement("a");
+        bidderLink.href = `../profile/public-profile.html?user=${bid.bidder.name}`;
+        bidderLink.textContent = ` ${bid.bidder.name}`;
+        bidderLink.className = "text-blue-700 underline ml-1";
+        nameLine.appendChild(bidderLink);
+      } else {
+        nameLine.append(" Unknown");
+      }
 
       const priceLine = document.createElement("div");
       const priceLabel = document.createElement("span");
@@ -111,3 +129,49 @@ async function renderListingDetail() {
 }
 
 renderListingDetail();
+
+// Bid-funksjon
+const bidButton = document.getElementById("bid-toggle-btn");
+const bidForm = document.createElement("div");
+bidForm.className = "mt-4 space-y-2 hidden";
+
+const bidInput = document.createElement("input");
+bidInput.type = "number";
+bidInput.placeholder = "Enter your bid";
+bidInput.className = "border rounded px-3 py-2 w-full";
+
+const submitBtn = document.createElement("button");
+submitBtn.textContent = "Submit Bid";
+submitBtn.className = "bg-button-prime hover:bg-white hover:text-button-prime text-white font-bold px-6 py-2 rounded-md border border-button-prime transition w-full";
+
+bidForm.appendChild(bidInput);
+bidForm.appendChild(submitBtn);
+bidButton.insertAdjacentElement("afterend", bidForm);
+
+bidButton.addEventListener("click", () => {
+  bidForm.classList.toggle("hidden");
+});
+
+submitBtn.addEventListener("click", async () => {
+  const amount = bidInput.value;
+
+  if (!amount || isNaN(amount) || Number(amount) <= 0) {
+    alert("Please enter a valid bid amount.");
+    return;
+  }
+
+  try {
+    await placeBid(id, amount);
+    alert("Bid placed successfully!");
+    bidInput.value = "";
+    bidForm.classList.add("hidden");
+    
+    renderListingDetail();  
+    renderUserUI(); 
+
+   
+
+  } catch (error) {
+    alert("Error placing bid: " + error.message);
+  }
+});
