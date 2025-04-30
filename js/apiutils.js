@@ -26,10 +26,21 @@ export async function fetchListings(sort = "created", order = "desc") {
 }
 
 export async function fetchListingById(id) {
-    const response = await fetch(`https://v2.api.noroff.dev/auction/listings/${id}`);
-    const data = await response.json();
-    return data.data;
-  }
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(
+    `https://v2.api.noroff.dev/auction/listings/${id}?_seller=true&_bids=true`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const data = await response.json();
+  return data.data;
+}
 
   export async function fetchAllListings() {
     const url = "https://v2.api.noroff.dev/auction/listings?_bids=true&sort=created&sortOrder=desc";
@@ -80,6 +91,68 @@ export async function fetchListingById(id) {
   
     if (!response.ok) {
       throw new Error("Kunne ikke hente credits");
+    }
+  
+    const data = await response.json();
+    return data.data;
+  }
+
+  export async function placeBid(listingId, amount) {
+    const token = localStorage.getItem("token");
+    const url = `https://v2.api.noroff.dev/auction/listings/${listingId}/bids`;
+  
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": "580b33a9-04f3-4da3-bb38-de9adcf9d9f8",
+      },
+      body: JSON.stringify({ amount: Number(amount) }),
+    });
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.errors?.[0]?.message || "Failed to place bid");
+    }
+  
+    return await response.json();
+  }
+
+  export async function fetchListingsByUser(username) {
+    const token = localStorage.getItem("token");
+    const url = `https://v2.api.noroff.dev/auction/profiles/${username}/listings`;
+  
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": API_KEY,
+      },
+    });
+  
+    if (!response.ok) {
+      throw new Error("Could not fetch user's listings");
+    }
+  
+    const data = await response.json();
+    return data.data || [];
+  }
+
+  export async function fetchProfile(username) {
+    const token = localStorage.getItem("token");
+    const url = `https://v2.api.noroff.dev/auction/profiles/${username}`;
+  
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": API_KEY,
+      },
+    });
+  
+    if (!response.ok) {
+      throw new Error("Could not fetch profile");
     }
   
     const data = await response.json();

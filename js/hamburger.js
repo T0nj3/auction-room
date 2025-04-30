@@ -71,3 +71,4 @@ function handleLogout() {
 }
 
 renderUserUI();
+export { renderUserUI };
