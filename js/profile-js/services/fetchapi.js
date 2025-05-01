@@ -161,13 +161,10 @@ document.getElementById("create-auction-btn").addEventListener("click", async fu
 });
 
 function loadUserListings() {
-    const user = JSON.parse(localStorage.getItem("user"));
-  
-    if (user && user.name) {
-      showUserListings(user.name); 
-    } else {
-      console.error("Bruker er ikke logget inn eller finnes ikke i localStorage.");
-    }
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (user && user.name) {
+    showUserListings(user.name);
   }
-  
+}
   loadUserListings();

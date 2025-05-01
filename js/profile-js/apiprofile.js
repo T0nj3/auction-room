@@ -1,8 +1,9 @@
 export const X_NOROFF_API_KEY = "580b33a9-04f3-4da3-bb38-de9adcf9d9f8";
 export const API_BASE_URL = "https://v2.api.noroff.dev/auction"; 
 
+
+const token = localStorage.getItem("token");
 export async function getUserProfile() {
-    const token = localStorage.getItem("token");
 
     if (token === null) {
         console.error("No access; the user is not logged in.");
@@ -43,7 +44,7 @@ export async function getUserProfile() {
 }
 
 export async function updateUserProfile(name, bio, avatar, banner) {
-    const token = localStorage.getItem('token'); 
+
     if (!token) {
         console.error('Token is missing');
         return null;
@@ -63,7 +64,7 @@ export async function updateUserProfile(name, bio, avatar, banner) {
 
     console.log("Sending data to API:", dataToSend);  
 
-    const response = await fetch(`${API_BASE_URL}/profiles/${name}`, {
+    const response = await fetch(`${API_BASE_URL}/listings/${name}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -83,7 +84,7 @@ export async function updateUserProfile(name, bio, avatar, banner) {
 }
 
 export async function createPost(title, description, imageUrl, endsAt, amount) {
-    const token = localStorage.getItem("token"); 
+ 
     if (!token) {
         console.error("no token is found in localStorage.");
         return null;
@@ -120,7 +121,7 @@ export async function createPost(title, description, imageUrl, endsAt, amount) {
 }
 
 export async function fetchListing(username) {
-    const token = localStorage.getItem("token"); 
+ 
     if (!token) {
         console.error("no token is found in localStorage.");
         return null;
@@ -147,3 +148,53 @@ export async function fetchListing(username) {
       throw error;
     }
   }
+
+  export async function deleteUserPost(postId) {
+
+    
+    if (!token) {
+      console.error("No token found in localStorage.");
+      return null;
+    }
+  
+    const response = await fetch(`${API_BASE_URL}/listings/${postId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": X_NOROFF_API_KEY, 
+      },
+    });
+  
+    if (!response.ok) {
+      alert("Failed to delete post. Please try again.");
+      return null;
+    }
+  
+  }
+
+  export async function editPost(postId, newTitle, newBody, newImageUrl) {
+    if (!token) return;
+
+    const updatedPost = {
+        title: newTitle,
+        description: newBody,
+        media: newImageUrl ? [{ url: newImageUrl, alt: "Updated image" }] : [],
+    };
+
+    const response = await fetch(`${API_BASE_URL}/listings/${postId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "X-Noroff-API-Key": X_NOROFF_API_KEY,
+        },
+        body: JSON.stringify(updatedPost),
+    });
+
+    if (!response.ok) {
+        console.error("Failed to update post.");
+        return;
+    }
+
+    return await response.json();
+}
