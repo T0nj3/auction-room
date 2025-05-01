@@ -100,7 +100,7 @@
           <h3 class="text-lg font-bold text-black mb-4">Create Auction</h3>
           <div class="mb-4">
             <label for="auction-title" class="block text-sm font-medium text-black">Auction Title</label>
-            <input type="text" id="title" 
+            <input type="text" id="title"
               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
           </div>
           <div class="mb-4">
@@ -110,25 +110,47 @@
           </div>
           <div>
             <label for="image">Image of the product</label>
-            <input type="text" id="image" 
+            <input type="text" id="image"
               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
           </div>
           <div>
             <label for="due-date">Due date</label>
-            <input type="date" id="due-date" 
+            <input type="date" id="due-date"
               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
           </div>
-          <button type="submit" id="create-auction-btn" 
+          <button type="submit" id="create-auction-btn"
             class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Create Auction</button>
         </form>
       </div>
     </section>
-    <div class="px-6 py-4 flex justify-center">
-      <h3 class="text-lg font-bold text-black border-b font-thin">Your Auctions</h3>
-      <div id="auctions" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+    <section>
+      <div class="px-6 py-4 flex justify-center">
+        <h3 class="text-lg font-bold text-black border-b font-thin">Your Auctions</h3>
       </div>
-    </div>
-        <div id="productsContainer"></div>
+      <div id="productsContainer">
+      </div>
+    </section>
+    <section id="edit-form" style="display: none;" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4">
+      <h3 class="text-lg font-bold text-white mb-4">Edit Auction</h3>
+      <form id="edit-auction-form">
+          <div class="mb-4">
+              <label for="auction-title" class="block text-sm font-medium">Auction Title</label>
+              <input type="text" id="auction-title-edit"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+          </div>
+          <div class="mb-4">
+              <label for="auction-description" class="block text-sm font-medium">Auction Description</label>
+              <textarea id="auction-description-edit" rows="3"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
+          </div>
+          <div class="mb-4">
+              <label for="image" class="block text-sm font-medium">Image of the product</label>
+              <input type="text" id="image-edit"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+          </div>
+          <button type="submit" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Save Changes</button>
+      </form>
+  </section>
   </main>
   <footer class="bg-brown text-white text-center py-6">
     <p class="font-bold text-sm">&copy; The Auction Room</p>
