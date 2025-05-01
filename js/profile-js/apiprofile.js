@@ -64,7 +64,7 @@ export async function updateUserProfile(name, bio, avatar, banner) {
 
     console.log("Sending data to API:", dataToSend);  
 
-    const response = await fetch(`${API_BASE_URL}/listings/${name}`, {
+    const response = await fetch(`${API_BASE_URL}/profiles/${name}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
