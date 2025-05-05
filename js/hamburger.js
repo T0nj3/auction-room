@@ -36,26 +36,26 @@ async function renderUserUI() {
       const { credits } = await fetchCredits(username);
 
       userLinks.innerHTML = `
-        <a href="../profile/index.html" class="font-semibold hover:underline">${username}</a>
-        <span>${credits} kr</span>
-        <button id="logout-btn" class="text-red-600 hover:underline">Log out</button>
+      <span>${credits} kr</span>
+      <a href="../profile/index.html" class="font-semibold hover:underline">${username}</a>
+      <button id="logout-btn" class="text-red-600 hover:underline">Sign Out</button>
       `;
 
       mobileUserLinks.innerHTML = `
-        <a href="../profile/index.html" class="font-semibold border-b pb-2">${username}</a>
-        <span class="border-b pb-2">${credits} kr</span>
-        <button id="mobile-logout-btn" class="text-red-600 border-b pb-2">Log out</button>
+      <span class="border-b pb-2 uppercase">${credits} kr</span>
+      <button id="mobile-logout-btn" class="text-red-600 border-b pb-2">Sign Out</button>
+      <a href="../profile/index.html" class="font-semibold font-inter text-[15px] border-b pb-2">${username}</a>
       `;
 
       document.getElementById("logout-btn").addEventListener("click", handleLogout);
       document.getElementById("mobile-logout-btn").addEventListener("click", handleLogout);
     } catch (error) {
-      console.error("Feil ved henting av credits:", error);
+      console.error("Error fetching credits:", error);
     }
   } else {
     userLinks.innerHTML = `
-      <a href="../auth/login.html" class="hover:underline">Login</a>
-      <a href="../profile/index.html" class="hover:underline">Credits</a>
+      <a href="../auth/login.html" class="hover:underline">LOGIN</a>
+      <a href="../profile/index.html" class="hover:underline">CREDITS</a>
     `;
 
     mobileUserLinks.innerHTML = `
