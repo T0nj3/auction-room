@@ -2,6 +2,7 @@ import { getUserProfile } from "../apiprofile.js";
 import { updateUserProfile } from "../apiprofile.js";
 import {createPost} from "../apiprofile.js";
 import {showUserListings} from "./listings_profile.js";
+import{SeeWinningAuction} from "../apiprofile.js";
 
 const token = localStorage.getItem("token");
 
@@ -168,3 +169,55 @@ function loadUserListings() {
   }
 }
   loadUserListings();
+
+  async function displayWinningAuctions() {
+    const container = document.getElementById("winning_bid");
+    container.innerHTML = ""; // Clear the container before adding new data
+
+    // Fetch winning auctions data
+    const response = await SeeWinningAuction();
+    const winningAuctions = response?.data || [];
+
+    if (winningAuctions.length === 0) {
+        container.innerHTML = "<p>You have not won any auctions.</p>";
+        return;
+    }
+
+    // Loop through each winning auction
+    winningAuctions.forEach((auction) => {
+        const card = document.createElement("div");
+        card.classList.add("winning-card");
+
+        // Title of the auction
+        const title = document.createElement("h4");
+        title.textContent = auction.title;
+
+        // Image of the auction (if available)
+        const image = document.createElement("img");
+        if (auction.media && auction.media.length > 0) {
+            image.src = auction.media[0].url;
+            image.alt = auction.media[0].alt || "Auction image";
+        }
+
+    
+        const endsAt = new Date(auction.endsAt).toLocaleString();
+        const endInfo = document.createElement("p");
+        endInfo.textContent = `End: ${endsAt}`;
+
+
+        const winningBid = document.createElement("p");
+        winningBid.textContent = "Winning bid"
+
+        card.appendChild(image);
+        card.appendChild(title);
+        card.appendChild(endInfo);
+        card.appendChild(winningBid);
+
+        console.log(auction.bids);
+        container.appendChild(card);
+    });
+    
+}
+
+
+displayWinningAuctions();
