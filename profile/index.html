@@ -11,8 +11,9 @@
   <title>The Auction Room Profile</title>
   <link rel="stylesheet" href="../css/output.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script type="module" src="../js/hamburger.js" defer></script>
-  <script type="module" src="../js/profile-js/services/fetchapi.js"></script>
+  <script type="module" src="../js/profile-js/services/fetchapi.js" defer></script>
   <script type="module" src="../js/profile-js/fuction/button.js" defer></script>
 </head>
 
@@ -31,8 +32,7 @@
 
     <!-- Høyre -->
     <div class="flex justify-end">
-      <nav class="hidden md:flex space-x-6 items-center" id="user-links">
-      </nav>
+      <nav class="hidden md:flex space-x-6 items-center" id="user-links"></nav>
       <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
         <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -41,137 +41,120 @@
     </div>
   </header>
 
-  <nav id="mobile-menu"
-    class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in">
+  <nav id="mobile-menu" class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in">
     <a href="../index.html" class="hover:text-button-prime border-b pb-2">Home</a>
     <a href="feed.html" class="hover:text-button-prime border-b pb-2">Feed</a>
-    <div id="mobile-user-links" class="flex flex-col gap-3">
-    </div>
+    <div id="mobile-user-links" class="flex flex-col gap-3"></div>
   </nav>
 
-  <main class="max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12">
+  <main class="max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12 relative">
+    <button id="toggle-create-btn"
+            class="fixed bottom-6 right-6 bg-button-prime text-white rounded-full p-4 shadow-lg hover:bg-hover-primeText transition">
+      <span class="material-icons text-2xl">add</span>
+    </button>
+
     <div class="relative md:w-full md:bg-brown md:bg-opacity-60 md:rounded-lg">
       <img id="banner" alt="User banner" class="w-full h-36 object-cover" />
+      <div class="absolute top-4 right-6">
+        <button id="edit-profile-btn"
+                class="text-button-prime hover:text-white ease-in-out rounded-full pt-1 pl-2 pr-2 bg-white hover:bg-button-prime transition duration-300">
+          <span class="material-icons">edit</span>
+        </button>
+      </div>
       <div class="absolute inset-0 flex justify-center mt-16 md:justify-start md:ml-12 md:mt-24">
-        <img id="avatar" alt="User avatar"
-          class="rounded-full border-4 border-white object-cover shadow-md md:w-36 md:h-32" />
+        <img id="avatar" alt="User avatar" class="rounded-full border-4 border-white object-cover shadow-md md:w-36 md:h-32" />
       </div>
       <div class="mt-12 text-center px-6 pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16">
         <h2 id="name" class="text-lg font-bold text-black uppercase md:text-white md:text-textLg"></h2>
         <p id="bio" class="font-body text-black md:text-white md:text-textBase md:mt-2"></p>
       </div>
-      </div>
+    </div>
 
     <section>
-      <div class="flex justify-center mt-4 md:mt-0">
-        <button id="edit-profile-btn" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">
-          Edit Profile
-        </button>
-        </div>
-      <div id="edit-profile-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 ">
+      <div id="edit-profile-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 hidden">
         <h3 class="text-lg font-bold text-white mb-4">Edit Profile</h3>
-        <form class="" id="profile-form">
+        <form id="profile-form">
           <div class="mb-4">
             <label for="avatar" class="block text-sm font-medium text-white">Avatar</label>
-            <input type="text" id="avatar-edit"
-              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+            <input type="text" id="avatar-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
           </div>
           <div class="mb-4">
             <label for="banner" class="block text-sm font-medium text-white">Banner</label>
-            <input type="text" id="banner-edit"
-              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+            <input type="text" id="banner-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
           </div>
           <div class="mb-4">
             <label for="bio" class="block text-sm font-medium text-white">Bio</label>
-            <textarea id="bio-input" rows="3"
-              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
+            <textarea id="bio-input" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
           </div>
-
           <button type="submit" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Save Changes</button>
         </form>
       </div>
     </section>
 
-
     <div id="edit-profile-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
       <p>Profile updated successfully!</p>
     </div>
 
-
     <section>
       <div>
-        <form class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 mt-4 text-brown" id="create-auction-form">
-          <h3 class="text-lg font-bold k mb-4 text-white">Create Auction</h3>
+        <form id="create-auction-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 mt-4 text-brown hidden">
+          <h3 class="text-lg font-bold mb-4 text-white">Create Auction</h3>
           <div class="mb-4">
             <label for="auction-title" class="block text-sm font-medium text-white">Auction Title</label>
-            <input type="text" id="title"
-              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+            <input type="text" id="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
           </div>
           <div class="mb-4">
             <label for="auction-description" class="block text-sm font-medium text-white">Auction Description</label>
-            <textarea id="description" rows="3"
-              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
+            <textarea id="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
           </div>
-          <div>
+          <div class="mb-4">
             <label class="text-white" for="image">Image of the product</label>
-            <input type="text" id="image"
-              class="mt-1 mb-2 w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+            <input type="text" id="image" class="mt-1 mb-2 w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
           </div>
-          <div>
+          <div class="mb-4">
             <label for="due-date" class="text-white">Due date</label>
-            <input type="date" id="due-date"
-              class="mt-1 block w-24 border-gray-300 rounded-md shadow-sm" />
+            <input type="date" id="due-date" class="mt-1 block w-24 border-gray-300 rounded-md shadow-sm" />
           </div>
-          <div></div>
-          <button type="submit" id="create-auction-btn"
-            class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText mt-4">Create Auction</button>
+          <button type="submit" id="create-auction-btn" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText mt-4">Create Auction</button>
         </form>
       </div>
     </section>
 
-    <!-- User Auctions Section -->
     <section>
       <div class="px-6 py-4 flex justify-center">
         <h3 class="text-lg font-bold text-black border-b font-thin">Your Auctions</h3>
       </div>
-      <div id="productsContainer"  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 flex justify-center gap-4 p-6">
-      </div>
+      <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6"></div>
     </section>
 
-    <section id="edit-form" style="display: none;" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4">
+    <section id="edit-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4 hidden">
       <h3 class="text-lg font-bold text-white mb-4">Edit Auction</h3>
       <form id="edit-auction-form">
         <div class="mb-4">
           <label for="auction-title" class="block text-sm font-medium">Auction Title</label>
-          <input type="text" id="auction-title-edit"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+          <input type="text" id="auction-title-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
         </div>
         <div class="mb-4">
           <label for="auction-description" class="block text-sm font-medium">Auction Description</label>
-          <textarea id="auction-description-edit" rows="3"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
+          <textarea id="auction-description-edit" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
         </div>
         <div class="mb-4">
-          <label for="image" class="block text-sm font-medium">Image of the product</label>
-          <input type="text" id="image-edit"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+          <label for="image-edit" class="block text-sm font-medium">Image of the product</label>
+          <input type="text" id="image-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus;border-button-prime" />
         </div>
         <button type="submit" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Save Changes</button>
       </form>
     </section>
 
     <section>
-      <h3> Winning bid</h3>
-      <div id="winning_bid" class="">
-
-      </div>
+      <h3>Winning bid</h3>
+      <div id="winning_bid" class="p-6"></div>
     </section>
   </main>
 
   <footer class="bg-brown text-white text-center py-6">
     <p class="font-bold text-sm">&copy; The Auction Room</p>
   </footer>
-
 </body>
 
 </html>

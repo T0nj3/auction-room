@@ -4,6 +4,7 @@ import {createPost} from "../apiprofile.js";
 import {showUserListings} from "./listings_profile.js";
 import{SeeWinningAuction} from "../apiprofile.js";
 
+
 const token = localStorage.getItem("token");
 
 function accessProfile() {
