@@ -172,9 +172,9 @@ function loadUserListings() {
 
   async function displayWinningAuctions() {
     const container = document.getElementById("winning_bid");
-    container.innerHTML = ""; // Clear the container before adding new data
+    container.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"; 
+    container.innerHTML = "";
 
-    // Fetch winning auctions data
     const response = await SeeWinningAuction();
     const winningAuctions = response?.data || [];
 
@@ -183,40 +183,37 @@ function loadUserListings() {
         return;
     }
 
-    // Loop through each winning auction
     winningAuctions.forEach((auction) => {
         const card = document.createElement("div");
-        card.classList.add("winning-card");
+        card.className = "bg-white shadow-lg flex flex-col h-[420px] overflow-hidden";
 
-        // Title of the auction
-        const title = document.createElement("h4");
-        title.textContent = auction.title;
-
-        // Image of the auction (if available)
         const image = document.createElement("img");
-        if (auction.media && auction.media.length > 0) {
-            image.src = auction.media[0].url;
-            image.alt = auction.media[0].alt || "Auction image";
-        }
+        image.src = auction.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
+        image.alt = auction.title;
+        image.className = "w-full h-[300px] object-cover p-3";
 
-    
-        const endsAt = new Date(auction.endsAt).toLocaleString();
+        const title = document.createElement("p");
+        title.textContent = auction.title;
+        title.className = "text-center font-serif font-semibold";
+
         const endInfo = document.createElement("p");
-        endInfo.textContent = `End: ${endsAt}`;
-
+        endInfo.textContent = `Ended ${new Date(auction.endsAt).toLocaleString()}`;
+        endInfo.className = "text-sm text-gray-600";
 
         const winningBid = document.createElement("p");
-        winningBid.textContent = "Winning bid"
+        winningBid.textContent = "Winning bid";
+        winningBid.className = "text-sm text-green-600";
+
+        const infoContainer = document.createElement("div");
+        infoContainer.className = "flex-grow flex flex-col justify-center items-center space-y-1";
+        infoContainer.appendChild(title);
+        infoContainer.appendChild(winningBid);
+        infoContainer.appendChild(endInfo);
 
         card.appendChild(image);
-        card.appendChild(title);
-        card.appendChild(endInfo);
-        card.appendChild(winningBid);
-
-        console.log(auction.bids);
+        card.appendChild(infoContainer);
         container.appendChild(card);
     });
-    
 }
 
 
