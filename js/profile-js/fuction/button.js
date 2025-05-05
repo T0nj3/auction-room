@@ -1,7 +1,7 @@
-// button.js
+
 document.addEventListener('DOMContentLoaded', () => {
-    const editProfileBtn = document.getElementById('edit-profile-btn"'); // Henter knappen
-    const editProfileForm = document.getElementById('edit-profile-form'); // Henter "Edit Profile"-skjemaet
+  const editProfileBtn = document.getElementById('edit-profile-btn');
+    const editProfileForm = document.getElementById('edit-profile-form'); 
 
     if (editProfileBtn) {
 
@@ -11,4 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
  
+  });
+
+  document .addEventListener('DOMContentLoaded', () => {
+    const createPost = document.getElementById('toggle-create-btn');
+    const creatForm = document.getElementById('create-auction-form');
+    
+    if (createPost) {
+
+      createPost.addEventListener('click', () => {
+
+        creatForm.classList.toggle('hidden');
+      });
+    }
   });
