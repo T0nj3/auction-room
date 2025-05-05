@@ -2,39 +2,55 @@ import { fetchListing, deleteUserPost, editPost } from "../apiprofile.js";
 
 export async function showUserListings(username) {
     try {
-        const result = await fetchListing(username);
-        const listings = result?.data || []; // Sørg for at listings alltid er en liste
+      const result = await fetchListing(username);
+      const listings = result?.data || [];
+  
+      const productsContainer = document.getElementById("productsContainer");
+      productsContainer.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6";
+      productsContainer.innerHTML = "";
+  
+      listings.forEach((product) => {
+  
+        const card = document.createElement("div");
+card.className = "product bg-white shadow-lg flex flex-col h-[460px] overflow-hidden";
+  
 
-        const productsContainer = document.getElementById("productsContainer");
-        productsContainer.innerHTML = "";
+        const img = document.createElement("img");
+        img.src = product.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
+        img.alt = product.title;
+        img.className = "w-full h-[300px] object-cover p-3";
+  
+ 
+        const titleContainer = document.createElement("div");
+        titleContainer.className = "flex-grow flex items-center justify-center";
+  
+        const title = document.createElement("p");
+        title.textContent = product.title;
+        title.className = "text-center font-serif";
+  
 
-        listings.forEach((product) => {
-            const productElement = document.createElement("div");
-            productElement.className = "product";
+        const buttonContainer = document.createElement("div");
+        buttonContainer.className = "flex justify-center gap-2 pb-4";
+  
+        const editButton = createEditButton(product);
+        const deleteButton = createDeleteButton(product.id);
+  
 
-            const productImage = document.createElement("img");
-            productImage.src = product.media[0]?.url;
-            productImage.alt = product.title;
-            productImage.className = "product-image";
-
-            const productTitle = document.createElement("h3");
-            productTitle.textContent = product.title;
-            productTitle.className = "product-title";
-
-            const deleteButton = createDeleteButton(product.id);
-            const editButton = createEditButton(product);
-
-            productElement.appendChild(productImage);
-            productElement.appendChild(productTitle);
-            productElement.appendChild(deleteButton);
-            productElement.appendChild(editButton);
-
-            productsContainer.appendChild(productElement);
-        });
+        titleContainer.appendChild(title);
+        buttonContainer.appendChild(editButton);
+        buttonContainer.appendChild(deleteButton);
+  
+        card.appendChild(img);
+        card.appendChild(titleContainer);
+        card.appendChild(buttonContainer);
+  
+        productsContainer.appendChild(card);
+      });
     } catch (error) {
-        console.error("Error fetching user products:", error.message);
+      console.error("Error fetching user products:", error.message);
     }
-}
+  }
+  
 
 function createDeleteButton(postId) {
     const deleteButton = document.createElement("button");
@@ -64,7 +80,7 @@ function createDeleteButton(postId) {
 function createEditButton(product) {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
-    editButton.className = "edit-button bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2";
+    editButton.className = "text-black px-4 py-2 rounded hover:bg-gray-300";
 
     editButton.addEventListener("click", () => {
         document.getElementById("productsContainer").style.display = "none";
@@ -83,33 +99,68 @@ function createEditButton(product) {
 }
 
 
-document.getElementById("edit-auction-form").addEventListener("submit", async (e) => {
+function validateForm(newTitle, newDescription, newImageUrl) {
+    if (newTitle === "" || newDescription === "" || newImageUrl === "") {
+        alert("All fields are required.");
+        return false;
+    }
+    return true;
+}
+
+
+function getFormInputValues() {
+    const newTitle = document.getElementById("auction-title-edit").value;
+    const newDescription = document.getElementById("auction-description-edit").value;
+    const newImageUrl = document.getElementById("image-edit").value;
+
+    return { newTitle, newDescription, newImageUrl };
+}
+
+
+function hideEditForm() {
+    document.getElementById("edit-form").style.display = "none";  
+    document.getElementById("productsContainer").style.display = "block"; 
+}
+
+async function reloadListings() {
+    await showUserListings();
+}
+
+async function submitPostUpdate(postId, newTitle, newDescription, newImageUrl) {
+    try {
+
+        await editPost(postId, newTitle, newDescription, newImageUrl);
+
+        hideEditForm();
+        await reloadListings();
+        
+        window.location.reload(); 
+    } catch (error) {
+        console.error("Error updating post:", error.message);
+        alert("Failed to update the post.");
+    }
+}
+
+
+document.getElementById("edit-auction-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const form = document.getElementById("edit-form");
     const postId = form.dataset.postId;
 
-    const newTitle = document.getElementById("auction-title-edit").value;
-    const newDescription = document.getElementById("auction-description-edit").value;
-    const newImageUrl = document.getElementById("image-edit").value;
+    
+    const formData = getFormInputValues();
+    const { newTitle, newDescription, newImageUrl } = formData;
 
-    if (newTitle === "" || newDescription === "" || newImageUrl === "") {
-        alert("All fields are required.");
+  
+    if (validateForm(newTitle, newDescription, newImageUrl) === false) {
         return;
     }
 
     try {
-
-        await editPost(postId, newTitle, newDescription, newImageUrl);
-        
-        form.style.display = "none";  
-        document.getElementById("productsContainer").style.display = "block"; 
-
-
-        showUserListings();
-        window.location.reload()
+  
+        await submitPostUpdate(postId, newTitle, newDescription, newImageUrl);
     } catch (error) {
-        console.error("Error updating post:", error.message);
-        alert("Failed to update the post.");
+        console.error("Error submitting the post update:", error.message);
     }
 });
