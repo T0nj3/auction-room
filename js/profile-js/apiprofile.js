@@ -198,3 +198,35 @@ export async function fetchListing(username) {
 
     return await response.json();
 }
+
+export async function SeeWinningAuction() {
+    if (!token) {
+        console.error("No token found in localStorage.");
+        return null;
+    }
+
+    const decoded = JSON.parse(
+        window.atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))
+    );
+    const username = decoded.name;
+
+    if (!username) {
+        console.error("Username not found in token.");
+        return null;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/profiles/${username}/wins`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "X-Noroff-API-Key": X_NOROFF_API_KEY,
+        },
+    });
+
+    if (!response.ok) {
+        console.error("Failed to fetch winning auctions.");
+        return null;
+    }
+
+    return await response.json();
+}
