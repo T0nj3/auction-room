@@ -1,5 +1,7 @@
 import { fetchProfile, fetchListingsByUser } from "../../apiutils.js";
 
+const token = localStorage.getItem("token");
+
 const username = new URLSearchParams(window.location.search).get("user");
 
 const nameEl = document.getElementById("public-username");
@@ -11,23 +13,36 @@ const listingsEl = document.getElementById("user-listings");
 const activeTabBtn = document.getElementById("active-tab");
 const oldTabBtn = document.getElementById("old-tab");
 
+function accessProfile() {
+  if (token === null) {
+      alert("You need to log in to access this page.");
+      window.location.href = "../index.html";
+  }
+}
+
+
 function createListingCard(listing) {
+  const cardWrapper = document.createElement("div");
+  cardWrapper.className = "bg-white rounded shadow-md hover:shadow-lg transition w-full max-w-sm p-3";
+
   const a = document.createElement("a");
   a.href = `../listings/detail-listing.html?id=${listing.id}`;
-  a.className = "shadow hover:shadow-lg block bg-white rounded overflow-hidden";
+  a.className = "block";
 
   const img = document.createElement("img");
   img.src = listing.media[0]?.url || "https://placehold.co/400x300?text=No+Image";
   img.alt = listing.title;
-  img.className = "w-full h-52 object-cover";
+  img.className = "w-full h-48 object-cover rounded-t";
 
-  const title = document.createElement("p");
-  title.className = "text-center py-2 font-serif";
+  const title = document.createElement("div");
+  title.className = "text-center font-body text-lg font-medium py-6";
   title.textContent = listing.title;
 
   a.appendChild(img);
   a.appendChild(title);
-  return a;
+  cardWrapper.appendChild(a);
+
+  return cardWrapper;
 }
 
 function renderListings(listings) {
@@ -76,3 +91,4 @@ async function renderProfile() {
 }
 
 renderProfile();
+accessProfile();
