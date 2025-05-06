@@ -43,25 +43,25 @@
 
   <nav id="mobile-menu" class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in">
     <a href="../index.html" class="hover:text-button-prime border-b pb-2">Home</a>
-    <a href="feed.html" class="hover:text-button-prime border-b pb-2">Feed</a>
+    <a href="../listings/feed.html" class="hover:text-button-prime border-b pb-2">Feed</a>
     <div id="mobile-user-links" class="flex flex-col gap-3"></div>
   </nav>
 
   <main class="max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12 relative">
     <button id="toggle-create-btn"
-            class="fixed bottom-6 right-6 bg-button-prime text-white rounded-full p-4 shadow-lg hover:bg-hover-primeText transition">
+            class="fixed bottom-6 right-6 bg-brown text-white rounded-full pt-2 pr-2 pl-2 pb-1 shadow-lg hover:bg-hover-fourText">
       <span class="material-icons text-2xl">add</span>
     </button>
 
     <div class="relative md:w-full md:bg-brown md:bg-opacity-60 md:rounded-lg">
-      <img id="banner" alt="User banner" class="w-full h-36 object-cover" />
+      <img id="banner" alt="User banner" class="w-full h-32 object-cover md:h-56" />
       <div class="absolute top-4 right-6">
         <button id="edit-profile-btn"
-                class="text-button-prime hover:text-white ease-in-out rounded-full pt-1 pl-2 pr-2 bg-white hover:bg-button-prime transition duration-300">
+                class="text-button-prime hover:text-white ease-in-out rounded-full pt-2 pl-2 pr-2 pb-1 bg-white hover:bg-button-prime transition duration-300">
           <span class="material-icons">edit</span>
         </button>
       </div>
-      <div class="absolute inset-0 flex justify-center mt-16 md:justify-start md:ml-12 md:mt-24">
+      <div class="absolute inset-0 flex justify-center mt-12 md:justify-start md:ml-12 md:mt-40">
         <img id="avatar" alt="User avatar" class="rounded-full border-4 border-white object-cover shadow-md md:w-36 md:h-32" />
       </div>
       <div class="mt-12 text-center px-6 pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16">
@@ -69,7 +69,12 @@
         <p id="bio" class="font-body text-black md:text-white md:text-textBase md:mt-2"></p>
       </div>
     </div>
-
+<section>
+  <div class="flex justify-center mt-4 space-x-0.5">
+    <button id="active-auctions-btn" class="btn btn-four">Active Auctions</button>
+    <button id="won-auctions-btn" class="btn btn-four">Won Auctions</button>
+</div>
+</section>
     <section>
       <div id="edit-profile-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 hidden">
         <h3 class="text-lg font-bold text-white mb-4">Edit Profile</h3>
@@ -120,9 +125,9 @@
       </div>
     </section>
 
-    <section>
-      <div class="px-6 py-4 flex justify-center">
-        <h3 class="text-lg font-bold text-black border-b font-thin">Your Auctions</h3>
+    <section class="mb-12 mt-12 mr-4 ml-4" id="active-auctions">
+      <div class="px-6 py-4 flex justify-center md:justify-start">
+        <h3 class="text-lg text-black border-b font-thin">Your Auctions</h3>
       </div>
       <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6"></div>
     </section>
@@ -146,13 +151,16 @@
       </form>
     </section>
 
-    <section>
-      <h3>Winning bid</h3>
+    <section class="hidden mb-12 mt-12 mr-4 ml-4" id="won-auctions">
+      <div class="px-6 py-4 flex justify-center md:justify-start">
+        <h3 class="text-lg text-black border-b font-thin">Won Auctions</h3>
+      <h3 class="text-lg text-black border-b font-thin">Winning bid</h3>
+    </div>
       <div id="winning_bid" class="p-6"></div>
     </section>
   </main>
 
-  <footer class="bg-brown text-white text-center py-6">
+  <footer class="bg-brown text-white text-center py-6 ">
     <p class="font-bold text-sm">&copy; The Auction Room</p>
   </footer>
 </body>
