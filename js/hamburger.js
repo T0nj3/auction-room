@@ -43,8 +43,8 @@ async function renderUserUI() {
 
       mobileUserLinks.innerHTML = `
       <span class="border-b pb-2 uppercase">${credits} kr</span>
-      <button id="mobile-logout-btn" class="text-red-600 border-b pb-2">Sign Out</button>
       <a href="../profile/index.html" class="font-semibold font-inter text-[15px] border-b pb-2">${username}</a>
+      <button id="mobile-logout-btn" class="text-red-600 border-b pb-2">Sign Out</button>
       `;
 
       document.getElementById("logout-btn").addEventListener("click", handleLogout);
