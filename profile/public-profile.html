@@ -8,40 +8,43 @@
   <script type="module" src="../js/profile-js/services/public-profile.js" defer></script>
   <script type="module" src="../js/hamburger.js" defer></script>
 </head>
+<html class="h-full">
 <body class="font-sans bg-white">
-    <header class="relative w-full border-b px-6 py-4 grid grid-cols-3 items-center">
-        <!-- Venstre -->
-        <div class="hidden md:flex space-x-6 justify-start">
-          <a href="../index.html" class="hover:underline">Home</a>
-          <a href="feed.html" class="hover:underline">Feed</a>
-        </div>
-      
-        <!-- Midten -->
-        <h1 class="text-lg sm:text-xl md:text-lg font-inter font-black text-center whitespace-nowrap">
-          <span class="text-button-prime">The</span> <span class="text-black">Auction Room</span>
-        </h1>
-      
-        <!-- Høyre -->
-        <div class="flex justify-end">
-          <nav class="hidden md:flex space-x-6 items-center" id="user-links">
-          </nav>
-          <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
-            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </header>
-      
-      <nav id="mobile-menu"
-        class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in">
-        <a href="../index.html" class="hover:text-button-prime border-b pb-2">Home</a>
-        <a href="feed.html" class="hover:text-button-prime border-b pb-2">Feed</a>
-        <div id="mobile-user-links" class="flex flex-col gap-3">
-        </div>
+  <header class="relative w-full border-b border-[#514439]/40 px-6 py-4 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
+    <!-- Venstre -->
+    <div class="hidden md:flex space-x-6 justify-start">
+      <a href="../index.html" class="hover:underline">HOME</a>
+      <a href="../listings/feed.html" class="hover:underline">FEED</a>
+    </div>
+  
+    <!-- Midten -->
+    <h1 class="text-[20px] text-center whitespace-nowrap">
+      <span class="text-button-prime">The</span> <span class="text-brown">Auction Room</span>
+    </h1>
+  
+    <!-- Høyre -->
+    <div class="flex justify-end">
+      <nav class="hidden md:flex space-x-6 items-center" id="user-links">
+        <!-- Fylles med JS -->
       </nav>
+      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
+        <svg class="w-6 h-6 text-brown" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+  <nav id="mobile-menu"
+    class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
+    <a href="./index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
+    <a href="./listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
+    <div id="mobile-user-links" class="flex flex-col gap-3">
+      <!-- Fylles med JS -->
+    </div>
+  </nav>
 
       <section class="relative md:bg-opacity-60 md:rounded-lg overflow-hidden mt-12 md:bg-brown md:mx-12">
         <!-- Profile Banner Image -->
@@ -78,8 +81,8 @@
         </section>
       </main>
 
-  <footer class="bg-brown text-white text-center py-6 mt-12">
-    <p class="font-bold text-sm">&copy; The Auction Room</p>
-  </footer>
+      <footer class="bg-brown text-white text-center py-6 ">
+        <p class="font-bold text-sm">&copy; The Auction Room</p>
+      </footer>
 </body>
 </html>
