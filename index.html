@@ -49,15 +49,16 @@
 
   <!-- Hero seksjonen -->
   <section class="max-w-6xl mx-auto my-10 overflow-hidden shadow-lg">
-    <div class="relative md:grid md:grid-cols-2 md:h-[360px]">
-      
+    <div class="relative md:grid md:grid-cols-[1fr_1.25fr] md:h-[360px]">
+  
+      <!-- Mobilvisning -->
       <img src="assets/heroindex.png" alt="Blue Car" class="absolute inset-0 w-full h-full object-cover md:hidden" />
       <div class="absolute inset-0 bg-brown/70 backdrop-blur-sm md:hidden"></div>
   
-      <!-- Innhold -->
+      <!-- Venstre tekst -->
       <div class="relative z-10 flex items-center justify-center px-6 py-10 text-white md:static md:bg-brown md:text-white">
         <div class="text-center space-y-6 max-w-md">
-          <h2 class="text-h2 font-heading font-medium">Register to Participate in Auctions</h2>
+          <h2 class="text-h3 font-heading font-extralight">Register to Participate in Auctions</h2>
           <p class="italic text-text-light textBase">As a registered user, you can:</p>
           <ul class="text-text-light text-textLg space-y-1 text-left mx-auto w-fit">
             <li>Place bids on items in real time</li>
@@ -65,12 +66,13 @@
             <li>Access your personal dashboard</li>
           </ul>
           <a href="../auth/register.html"
-             class="bg-button-prime text-white text-lg font-bold px-6 py-2 rounded-md hover:bg-white hover:text-button-prime border border-button-prime transition inline-block">
+             class="bg-button-prime text-white text-base font-bold px-5 py-1.5 rounded-full border-white hover:bg-white hover:text-button-prime border border-button-prime transition inline-block">
             Registration
           </a>
         </div>
       </div>
   
+      <!-- Desktop bilde -->
       <div class="hidden md:block h-full w-full">
         <img src="./assets/heroindex.png" alt="Blue Car" class="w-full h-full object-cover" />
       </div>
