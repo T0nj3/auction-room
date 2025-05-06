@@ -162,13 +162,13 @@ document.getElementById("create-auction-btn").addEventListener("click", async fu
     await createAuction(formData.title, formData.description, formData.imageUrl, formData.endsAt);
 });
 
-function loadUserListings() {
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (user && user.name) {
-    showUserListings(user.name);
+async function loadUserListings() {
+    const user = JSON.parse(localStorage.getItem("user"));
+  
+    if (user && user.name) {
+      await showUserListings(user.name); // Vent på at listen skal lastes
+    }
   }
-}
   loadUserListings();
 
   async function displayWinningAuctions() {
@@ -186,16 +186,16 @@ function loadUserListings() {
 
     winningAuctions.forEach((auction) => {
         const card = document.createElement("div");
-        card.className = "bg-white shadow-lg flex flex-col h-[420px] overflow-hidden";
+        card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3";
 
         const image = document.createElement("img");
         image.src = auction.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
         image.alt = auction.title;
-        image.className = "w-full h-[300px] object-cover p-3";
+        image.className = "w-full h-2/3 object-cover"
 
         const title = document.createElement("p");
         title.textContent = auction.title;
-        title.className = "text-center font-serif font-semibold";
+        title.className = "text-center font-body text-xl font-regular";
 
         const endInfo = document.createElement("p");
         endInfo.textContent = `Ended ${new Date(auction.endsAt).toLocaleString()}`;

@@ -10,37 +10,44 @@ export async function showUserListings(username) {
       productsContainer.innerHTML = "";
   
       listings.forEach((product) => {
-  
         const card = document.createElement("div");
-card.className = "product bg-white shadow-lg flex flex-col h-[460px] overflow-hidden";
+        card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3";
   
-
+        const imageWrapper = document.createElement("div");
+        imageWrapper.className = "relative w-full h-2/3 overflow-hidden group";
+  
         const img = document.createElement("img");
-        img.src = product.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
+        img.src = product.media?.[0]?.url;
         img.alt = product.title;
-        img.className = "w-full h-[300px] object-cover p-3";
+        img.className = "w-full h-full object-cover transition duration-300 group-hover:brightness-75";
   
- 
+        const overlay = document.createElement("div");
+        const endsAt = product.endsAt ? new Date(product.endsAt).toLocaleDateString() : "No end time";
+        overlay.textContent = `Ends: ${endsAt}`;
+        overlay.className = " font-body text-xl absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-medium rounded opacity-0 group-hover:opacity-100 transition";
+  
+  
         const titleContainer = document.createElement("div");
         titleContainer.className = "flex-grow flex items-center justify-center";
   
         const title = document.createElement("p");
         title.textContent = product.title;
-        title.className = "text-center font-serif";
+        title.className = "text-center font-body text-xl font-regular";
   
-
         const buttonContainer = document.createElement("div");
-        buttonContainer.className = "flex justify-center gap-2 pb-4";
+        buttonContainer.className = "flex justify-center gap-1 pb-4";
   
         const editButton = createEditButton(product);
         const deleteButton = createDeleteButton(product.id);
-  
 
+        imageWrapper.appendChild(img);
+        imageWrapper.appendChild(overlay);
+  
         titleContainer.appendChild(title);
         buttonContainer.appendChild(editButton);
         buttonContainer.appendChild(deleteButton);
   
-        card.appendChild(img);
+        card.appendChild(imageWrapper);
         card.appendChild(titleContainer);
         card.appendChild(buttonContainer);
   
