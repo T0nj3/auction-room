@@ -62,7 +62,7 @@ export async function showUserListings(username) {
 function createDeleteButton(postId) {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
-    deleteButton.className = "delete-button";
+    deleteButton.className = "text-black px-4 py-2 rounded hover:bg-gray-300";
 
     deleteButton.addEventListener("click", async () => {
         const confirmDelete = confirm("Are you sure you want to delete this post?");
@@ -74,6 +74,7 @@ function createDeleteButton(postId) {
                 if (productElement) {
                     productElement.remove();
                 }
+                location.reload();
             } catch (error) {
                 console.error("Error deleting post:", error.message);
                 alert("Failed to delete the post.");
