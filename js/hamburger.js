@@ -54,14 +54,14 @@ async function renderUserUI() {
     }
   } else {
     userLinks.innerHTML = `
-      <a href="../auth/login.html" class="hover:underline">LOGIN</a>
-      <a href="../profile/index.html" class="hover:underline">CREDITS</a>
-    `;
+    <a href="../auth/login.html" class="hover:underline">LOGIN</a>
+    <a href="../auth/register.html" class="hover:underline">REGISTER</a>
+  `;
 
-    mobileUserLinks.innerHTML = `
-      <a href="../auth/login.html" class="hover:text-button-prime border-b pb-2">Login</a>
-      <a href="../profile/index.html" class="hover:text-button-prime border-b pb-2">Credits</a>
-    `;
+  mobileUserLinks.innerHTML = `
+  <a href="../auth/login.html" class="hover:text-button-prime border-b pb-2">LOGIN</a>
+  <a href="../auth/register.html" class="hover:text-button-prime border-b pb-2">REGISTER</a>
+`;
   }
 }
 
