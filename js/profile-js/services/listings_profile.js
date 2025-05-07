@@ -19,12 +19,7 @@ export async function showUserListings(username) {
         const img = document.createElement("img");
         img.src = product.media?.[0]?.url;
         img.alt = product.title;
-        img.className = "w-full h-full object-cover transition duration-300 group-hover:brightness-75";
-  
-        const overlay = document.createElement("div");
-        const endsAt = product.endsAt ? new Date(product.endsAt).toLocaleDateString() : "No end time";
-        overlay.textContent = `Ends: ${endsAt}`;
-        overlay.className = " font-body text-xl absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-medium rounded opacity-0 group-hover:opacity-100 transition";
+        img.className = "w-full h-full object-cover transition duration-300";
   
   
         const titleContainer = document.createElement("div");
@@ -41,7 +36,6 @@ export async function showUserListings(username) {
         const deleteButton = createDeleteButton(product.id);
 
         imageWrapper.appendChild(img);
-        imageWrapper.appendChild(overlay);
   
         titleContainer.appendChild(title);
         buttonContainer.appendChild(editButton);
