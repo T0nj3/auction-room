@@ -8,52 +8,47 @@
     <meta name="keywords" content="auction, login, authentication">
     <link rel="stylesheet" href="../css/output.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="../js/hamburger.js" defer></script>
+    <script type="module" src="../js/hamburger.js" defer></script>
     <script type="module" src="../js/auth_js/handel/registration.js"></script>
     <title>Login for the the auction page</title>
 </head>
 <body>
-    <header class="relative w-full border-b px-6 py-4 grid grid-cols-3 items-center">
-        <!-- Venstre -->
-        <div class="hidden md:flex space-x-6 justify-start">
-          <a href="../listings/feed.html" class="hover:underline">Feed</a>
-          <a href="../index.html" class="hover:underline">Landing</a>
-        </div>
-      
-        <!-- Midten -->
-        <h1 class="text-lg sm:text-xl md:text-lg font-inter font-black text-center whitespace-nowrap cursor-pointer">
-          <span class="text-button-prime">The</span> <span class="text-black">Auction Room</span>
-        </h1>
-      
-        <!-- Høyre -->
-        <div class="flex justify-end">
-          <!-- Desktop meny -->
-          <nav class="hidden md:flex space-x-6">
-            <a href="./login.html" class="hover:underline">Login</a>
-            <a href="../profile/index.html" class="hover:underline">Credits</a>
-          </nav>
-      
-          <!-- Hamburger (mobil) -->
-          <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2  rounded-md p-2">
-            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </header>
-      
-      <!-- Mobilmeny dropdown -->
-    <nav
-      id="mobile-menu"
-      class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t shadow-md text-base font-medium tracking-wide uppercase text-black animate-fade-in"
-    >
-      <a href="../listings/feed.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Feed</a>
-      <a href="../index.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Landing</a>
-      <a href="./login.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Login</a>
-      <a href="../profile/index.html" class="hover:text-button-prime transition-colors duration-200 border-b pb-2">Credits</a>
-    </nav>
+  <header class="relative w-full border-b border-[#514439]/40 px-6 py-4 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
+    <!-- Venstre -->
+    <div class="hidden md:flex space-x-6 justify-start">
+      <a href="./index.html" class="hover:underline">HOME</a>
+      <a href="./listings/feed.html" class="hover:underline">FEED</a>
+    </div>
+  
+    <!-- Midten -->
+    <h1 class="text-[20px] text-center whitespace-nowrap">
+      <span class="text-button-prime">The</span> <span class="text-brown">Auction Room</span>
+    </h1>
+  
+    <!-- Høyre -->
+    <div class="flex justify-end">
+      <nav class="hidden md:flex space-x-6 items-center" id="user-links">
+        <!-- Fylles med JS -->
+      </nav>
+      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
+        <svg class="w-6 h-6 text-brown" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+  <nav id="mobile-menu"
+    class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
+    <a href="./index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
+    <a href="./listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
+    <div id="mobile-user-links" class="flex flex-col gap-3">
+      <!-- Fylles med JS -->
+    </div>
+  </nav>
+
     <main>
     <div class="flex flex-col items-center justify-center min-h-screen">
         <div class="w-full max-w-md p-8 space-y-6 bg-reg-bg bg-cover bg-center rounded-xl shadow-md md:max-w-xl min-h-[400px]">
