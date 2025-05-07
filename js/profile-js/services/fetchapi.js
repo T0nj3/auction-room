@@ -217,5 +217,4 @@ async function loadUserListings() {
     });
 }
 
-
 displayWinningAuctions();

@@ -60,3 +60,19 @@ function edtitProfile() {
   }
   
   document.addEventListener("DOMContentLoaded", initAuctionsection);
+
+
+ function closeFormButton() {
+    const closeButton = document.getElementById("close-edit-form-btn");
+    const formSection = document.getElementById("edit-form");
+    const productsContainer = document.getElementById("productsContainer");
+
+    if (closeButton) {
+        closeButton.addEventListener("click", () => {
+            formSection.style.display = "none";
+            productsContainer.style.display = "block";
+        });
+    }
+}
+// den laster seg inn feil etter at man har trykket på knappen
+closeFormButton()

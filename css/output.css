@@ -697,6 +697,10 @@ video {
   right: 2rem;
 }
 
+.top-2 {
+  top: 0.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -863,6 +867,10 @@ video {
 
 .ml-36 {
   margin-left: 9rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .block {
@@ -1133,6 +1141,10 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .gap-10 {
@@ -1431,6 +1443,10 @@ video {
 
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
+}
+
+.bg-opacity-40 {
+  --tw-bg-opacity: 0.4;
 }
 
 .bg-login-bg {
@@ -2010,6 +2026,11 @@ video {
 .hover\:text-hover-fourText:hover {
   --tw-text-opacity: 1;
   color: rgb(219 179 145 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-gray-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {
