@@ -44,23 +44,21 @@ export async function getUserProfile() {
 }
 
 export async function updateUserProfile(name, bio, avatar, banner) {
-
     if (!token) {
         console.error('Token is missing');
         return null;
     }
 
-   
-    if (!bio || !avatar || !banner) {
-        console.error('Missing required fields: bio, avatar, or banner.');
+    const dataToSend = {};
+
+    if (bio) dataToSend.bio = bio;
+    if (avatar) dataToSend.avatar = { url: avatar, alt: "User avatar" };
+    if (banner) dataToSend.banner = { url: banner, alt: "User banner" };
+
+    if (Object.keys(dataToSend).length === 0) {
+        console.error('No fields provided for update.');
         return null;
     }
-
-    const dataToSend = {
-        bio: bio,  
-        avatar: { url: avatar, alt: "User avatar" },  
-        banner: { url: banner, alt: "User banner" }   
-    };
 
     console.log("Sending data to API:", dataToSend);  
 
@@ -69,9 +67,9 @@ export async function updateUserProfile(name, bio, avatar, banner) {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-            "X-Noroff-API-Key": X_NOROFF_API_KEY,  
+            "X-Noroff-API-Key": X_NOROFF_API_KEY,
         },
-        body: JSON.stringify(dataToSend), 
+        body: JSON.stringify(dataToSend),
     });
 
     if (!response.ok) {
@@ -80,7 +78,7 @@ export async function updateUserProfile(name, bio, avatar, banner) {
         return null;
     }
 
-    return await response.json();  
+    return await response.json();
 }
 
 export async function createPost(title, description, imageUrl, endsAt, amount) {
