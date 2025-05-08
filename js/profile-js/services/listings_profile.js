@@ -1,4 +1,4 @@
-import { fetchListing, deleteUserPost, editPost } from "../apiprofile.js"; 
+import { fetchListing, deleteUserPost, editPost, SeeWinningAuction} from "../apiprofile.js"; 
 
 export async function showUserListings(username) {
     try {
@@ -166,3 +166,49 @@ document.getElementById("edit-auction-form").addEventListener("submit", async fu
         console.error("Error submitting the post update:", error.message);
     }
 });
+
+export async function displayWinningAuctions() {
+    const container = document.getElementById("winning_bid");
+    container.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"; 
+    container.innerHTML = "";
+
+    const response = await SeeWinningAuction();
+    const winningAuctions = response?.data || [];
+
+    if (winningAuctions.length === 0) {
+        container.innerHTML = "<p>You have not won any auctions.</p>";
+        return;
+    }
+
+    winningAuctions.forEach((auction) => {
+        const card = document.createElement("div");
+        card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3";
+
+        const image = document.createElement("img");
+        image.src = auction.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
+        image.alt = auction.title;
+        image.className = "w-full h-2/3 object-cover"
+
+        const title = document.createElement("p");
+        title.textContent = auction.title;
+        title.className = "text-center font-body text-xl font-regular";
+
+        const endInfo = document.createElement("p");
+        endInfo.textContent = `Ended ${new Date(auction.endsAt).toLocaleString()}`;
+        endInfo.className = "text-sm text-gray-600";
+
+        const winningBid = document.createElement("p");
+        winningBid.textContent = "Winning bid";
+        winningBid.className = "text-sm text-green-600";
+
+        const infoContainer = document.createElement("div");
+        infoContainer.className = "flex-grow flex flex-col justify-center items-center space-y-1";
+        infoContainer.appendChild(title);
+        infoContainer.appendChild(winningBid);
+        infoContainer.appendChild(endInfo);
+
+        card.appendChild(image);
+        card.appendChild(infoContainer);
+        container.appendChild(card);
+    });
+}
