@@ -86,6 +86,9 @@
       <div id="edit-profile-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 hidden">
         
         <h3 class="text-lg font-bold text-white mb-4">Edit Profile</h3>
+        <div id="edit-profile-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
+          <p>Profile updated successfully!</p>
+        </div>
         <form id="profile-form">
           <div class="mb-4">
             <label for="avatar" class="block text-sm font-medium text-white">Avatar</label>
@@ -103,15 +106,13 @@
         </form>
       </div>
     </section>
-
-    <div id="edit-profile-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
-      <p>Profile updated successfully!</p>
-    </div>
-
     <section>
       <div>
         <form id="create-auction-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 mt-4 text-brown hidden">
           <h3 class="text-lg font-bold mb-4 text-white">Create Auction</h3>
+          <div id="create-auction-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
+            <p>Auction created successfully!</p>
+          </div>
           <div class="mb-4">
             <label for="auction-title" class="block text-sm font-medium text-white">Auction Title</label>
             <input type="text" id="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
@@ -136,6 +137,7 @@
     <section class="mb-12 mt-12 mr-4 ml-4" id="active-auctions">
       <div class="px-6 py-4 flex justify-center md:justify-start">
         <h3 class="text-lg text-black border-b font-thin">Your Auctions</h3>
+
       </div>
       <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6"></div>
     </section>
@@ -143,6 +145,10 @@
     <section id="edit-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4 mb-10 hidden">
 
       <h3 class="text-lg font-bold text-white mb-4">Edit Auction</h3>
+      <div id="edit-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
+        <p>Auction updated successfully!</p>
+      </div>
+
       <form id="edit-auction-form">
         <div class="mb-4">
           <label for="auction-title" class="block text-sm font-medium text-white">Auction Title</label>

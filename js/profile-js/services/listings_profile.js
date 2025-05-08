@@ -130,18 +130,21 @@ async function reloadListings() {
 
 async function submitPostUpdate(postId, newTitle, newDescription, newImageUrl) {
     try {
+      await editPost(postId, newTitle, newDescription, newImageUrl);
+  
 
-        await editPost(postId, newTitle, newDescription, newImageUrl);
-
+      const successMessage = document.getElementById("edit-success");
+      successMessage.classList.remove("hidden");
+  
+      setTimeout(() => {
         hideEditForm();
-        await reloadListings();
-        
-        window.location.reload(); 
+        window.location.reload();
+      }, 2000);
     } catch (error) {
-        console.error("Error updating post:", error.message);
-        alert("Failed to update the post.");
+      console.error("Error updating post:", error.message);
+      alert("Failed to update the post.");
     }
-}
+  }
 
 
 document.getElementById("edit-auction-form").addEventListener("submit", async function (e) {

@@ -93,10 +93,20 @@ async function handleProfileUpdate(event) {
 
     const response = await updateUserProfile(user.name, bio, avatar, banner);
 
-    if (response ) {
+    if (response) {
         updateLocalStorageUser(response);
         updateProfileDisplay(response);
-        window.location.reload();
+
+        // 👉 Vis suksessmelding
+        const successMsg = document.getElementById("edit-profile-success");
+        if (successMsg) {
+            successMsg.classList.remove("hidden");
+
+            // 👉 Vent litt før du laster siden på nytt
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000); // 2 sekunder pause
+        }
     } else {
         console.error("could not update profile");
     }
@@ -141,15 +151,22 @@ function validateInput({ title, description, imageUrl, endsAt }) {
     return true;
 }
 
-async function createAuction(title, description, imageUrl, endsAt,) {
-    const result = await createPost(title, description, imageUrl, endsAt,);
+async function createAuction(title, description, imageUrl, endsAt) {
+    const result = await createPost(title, description, imageUrl, endsAt);
 
     if (result) {
-        alert("Auction created successfully!");
-        console.log(result);  
-        window.location.reload();
+        const successMessage = document.getElementById("create-auction-success");
+        successMessage.classList.remove("hidden");
+
+        console.log(result);
+
+        setTimeout(() => {
+            successMessage.classList.add("hidden");
+            window.location.reload();
+        }, 1000);
+        
     } else {
-        alert("something went wrong.");
+        alert("Something went wrong.");
     }
 }
 document.getElementById("create-auction-btn").addEventListener("click", async function (e) {
@@ -166,7 +183,7 @@ async function loadUserListings() {
     const user = JSON.parse(localStorage.getItem("user"));
   
     if (user && user.name) {
-      await showUserListings(user.name); // Vent på at listen skal lastes
+      await showUserListings(user.name); 
     }
   }
   loadUserListings();
