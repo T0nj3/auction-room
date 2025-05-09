@@ -1,3 +1,5 @@
+import { ShowError } from "./error/errorAuth.js";
+
 const X_NOROFF_API_KEY = "580b33a9-04f3-4da3-bb38-de9adcf9d9f8";
 
 export async function loginUser(userData) {
@@ -27,27 +29,27 @@ export async function loginUser(userData) {
 }
 
 export async function registerUser(userData) {
-    try {
-      const response = await fetch("https://v2.api.noroff.dev/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Noroff-API-Key": X_NOROFF_API_KEY,
-        },
-        body: JSON.stringify(userData),
-      });
-  
-      const result = await response.json();
-  
-      if (!response.ok) {
-        throw new Error(
-          result.errors ? result.errors[0].message : "Registrering feilet"
-        );
-      }
-  
-      return result;
-    } catch (error) {
-        console.error("Registrering feilet:", error);  
-        alert("Registrering feilet: " + error.message);  
-      }
+  try {
+    const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": X_NOROFF_API_KEY,
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      // Kast feilmelding for å fanges i registration.js
+      throw new Error(result.errors ? result.errors[0].message : "Registrering feilet");
+    }
+
+    return result;
+  } catch (error) {
+    // Ikke bruk alert her
+    console.error("Registrering feilet:", error);
+    throw error; // kast videre så det kan håndteres med ShowError()
   }
+}
