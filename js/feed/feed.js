@@ -8,7 +8,7 @@ const paginationContainer = document.getElementById("pagination");
 let allListings = [];
 let currentPage = 1;
 const listingsPerPage = 12;
-let currentTag = "";
+let currentFilter = "all";
 let currentSearch = "";
 
 function createCard(listing) {
@@ -32,10 +32,20 @@ function createCard(listing) {
 }
 
 function renderFeed() {
+  const now = new Date();
   const filtered = allListings.filter((item) => {
     const matchesSearch = item.title.toLowerCase().includes(currentSearch.toLowerCase());
-    const matchesTag = currentTag === "" || item.tags.includes(currentTag);
-    return matchesSearch && matchesTag;
+
+    const endsAt = new Date(item.endsAt);
+    const isActive = endsAt > now;
+    const isEnded = endsAt <= now;
+
+    const matchesFilter =
+      currentFilter === "all" ||
+      (currentFilter === "active" && isActive) ||
+      (currentFilter === "ended" && isEnded);
+
+    return matchesSearch && matchesFilter;
   });
 
   const start = (currentPage - 1) * listingsPerPage;
@@ -71,7 +81,7 @@ function renderPaginationControls(totalItems) {
 
 filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    currentTag = btn.dataset.tag;
+    currentFilter = btn.dataset.filter;
     currentPage = 1;
     renderFeed();
   });
