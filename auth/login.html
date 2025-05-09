@@ -48,32 +48,40 @@
       <!-- Fylles med JS -->
     </div>
   </nav>
-  
-    <main>
-    <div class="flex flex-col items-center justify-center min-h-screen -mt-12">
-        <div class="w-full max-w-md p-8 space-y-6 bg-login-bg bg-cover bg-center rounded-xl shadow-md md:max-w-xl min-h-[400px]">
-            <h2 class="text-2xl font-bold text-center text-white">Login</h2>
-            <p class="text-sm text-center font-body text-white">Welcome back to <br>The Auction Room!</p>
-            <form class="space-y-4 md:w-80 w-full mx-auto">
-              <div>
-                <label for="email" class="block text-sm font-medium text-white">Email</label>
-                <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
-                <div id="email-error" class="hidden text-red-500 text-sm mt-1"></div>  
-            </div>
-            
-            <div>
-                <label for="password" class="block text-sm font-medium text-white">Password</label>
-                <input type="password" name="password" id="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
-                <div id="password-error" class="hidden text-red-500 text-sm mt-1"></div>  
-            </div>
-                <div class="flex items-center justify-center">
-                <button id="login-button" type="submit"  class="btn btn-prime rounded-2xl">Login</button>
-                </div>
-            </form>
-            <p class="text-sm text-center text-white font-body">Don't have an account? <a href="./register.html" class="text-blue-600 hover:underline hover:text-lightblue">Register here</a></p>
-        </div>
+  <main>
+    <div class="flex flex-col items-center justify-center min-h-screen -mt-12 px-4">
+      <div class="w-full max-w-md p-8 space-y-6 bg-login-bg bg-cover bg-center bg-no-repeat rounded-xl shadow-lg md:max-w-xl min-h-[500px] flex flex-col justify-center">
+        <h2 class="text-2xl font-bold text-center text-white">Log in</h2>
+        <p class="text-sm text-center font-body text-white">Welcome back to<br>The Auction Room!</p>
+        
+        <form class="space-y-4 md:w-80 w-full mx-auto" id="login-form">
+          <div>
+            <label for="email" class="block text-sm font-medium text-white">Email</label>
+            <input type="email" name="email" id="email" required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
+            <div id="email-error" class="hidden text-red-500 text-sm mt-1"></div>
+          </div>
+          
+          <div>
+            <label for="password" class="block text-sm font-medium text-white">Password</label>
+            <input type="password" name="password" id="password" required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
+            <div id="password-error" class="hidden text-red-500 text-sm mt-1"></div>
+          </div>
+          
+          <div class="flex items-center justify-center">
+            <button type="submit" id="login-button" class="btn btn-prime border-white rounded-2xl w-full py-2">Login</button>
+          </div>
+        </form>
+        
+        <p class="text-sm text-center text-white font-body">
+          New to Auction Room?
+          <a href="../auth/register.html" class="text-blue-400 hover:underline hover:text-lightblue">Create an account</a>
+        </p>
+      </div>
     </div>
-</main>
+  </main>
+
     <footer class="bg-brown text-white text-center py-6">
         <p class="font-bold text-sm">&copy; The Auction Room</p>
       </footer>
