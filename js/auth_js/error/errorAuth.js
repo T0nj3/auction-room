@@ -108,3 +108,18 @@ export function validateLoginForm(userData) {
 
   return isValid;
 }
+
+export function ShowError(message) {
+  const errorBox = document.getElementById("error-message");
+  const errorText = document.getElementById("error-text");
+  const closeBtn = document.getElementById("close-error");
+
+  if (!errorBox || !errorText || !closeBtn) return;
+
+  errorText.textContent = message;
+  errorBox.classList.remove("hidden");
+
+  closeBtn.addEventListener("click", () => {
+    errorBox.classList.add("hidden");
+  });
+}

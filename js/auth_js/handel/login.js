@@ -1,5 +1,6 @@
 import { loginUser } from "../apiauth.js";
 import { validateLoginForm } from "../error/errorAuth.js";
+import { ShowError } from "../error/errorAuth.js";
 
 const emailInputField = document.querySelector("#email");
 const passwordInputField = document.querySelector("#password");
@@ -11,12 +12,6 @@ function getLoginData() {
   return { email, password };
 }
 
-function ShowError(message) {
-  const errorMessage = document.getElementById("error-message");
-  errorMessage.innerText = message;
-  errorMessage.style.display = "block";
-  setTimeout(() => (errorMessage.style.display = "none"), 2000);
-}
 
 function clickLoginButton() {
   loginButton.addEventListener("click", async (event) => {
@@ -32,7 +27,7 @@ function clickLoginButton() {
           localStorage.setItem("token", result.data.accessToken);
           localStorage.setItem("username", result.data.name); 
           localStorage.setItem("credits", result.data.credits);
-          window.location.href = "../index.html";
+          showSuccess("Login successful. Redirecting...");
         } else {
           ShowError("No access token received.");
         }
@@ -44,6 +39,29 @@ function clickLoginButton() {
   });
 }
 
+function showSuccess() {
+  const spinnerWrapper = document.createElement("div");
+  spinnerWrapper.className = "fixed inset-0 bg-black/50 flex items-center justify-center z-50";
+
+  const spinner = document.createElement("div");
+  spinner.className = "border-4 border-white border-t-button-prime rounded-full w-12 h-12 animate-spin";
+  
+  const successMsg = document.createElement("p");
+  successMsg.className = "text-white text-lg mt-4";
+  successMsg.textContent = "Login successful! Redirecting...";
+
+  const contentWrapper = document.createElement("div");
+  contentWrapper.className = "flex flex-col items-center";
+  contentWrapper.appendChild(spinner);
+  contentWrapper.appendChild(successMsg);
+
+  spinnerWrapper.appendChild(contentWrapper);
+  document.body.appendChild(spinnerWrapper);
+
+  setTimeout(() => {
+    window.location.href = "../index.html";
+  }, 1500);
+}
+
 clickLoginButton();
-localStorage.setItem("username", result.data.name);
-localStorage.setItem("credits", result.data.credits);
+

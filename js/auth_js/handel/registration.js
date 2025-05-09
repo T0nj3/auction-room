@@ -1,5 +1,34 @@
 import { registerUser } from "../apiauth.js";
 import { validateForm } from "../error/errorAuth.js";
+import { ShowError } from "../error/errorAuth.js";
+
+function showSuccess(message) {
+  const overlay = document.createElement("div");
+  overlay.className =
+    "fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50";
+
+  const box = document.createElement("div");
+  box.className =
+    "flex flex-col items-center gap-4 bg-white px-8 py-6 rounded-lg shadow-lg";
+
+  const spinner = document.createElement("div");
+  spinner.className =
+    "w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin";
+
+  const text = document.createElement("p");
+  text.className = "text-center text-brown font-semibold";
+  text.textContent = message;
+
+  box.appendChild(spinner);
+  box.appendChild(text);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    overlay.remove();
+    window.location.href = "./login.html";
+  }, 2000);
+}
 
 const emailInputField = document.querySelector("#email");
 const usernameInputField = document.querySelector("#username");
@@ -15,39 +44,24 @@ function getRegisterData() {
   return { email, username, password, confirmPassword };
 }
 
-function clickRegisterButton() {
-  registerButton.addEventListener("click", async (event) => {
-    event.preventDefault();
+registerButton.addEventListener("click", async (event) => {
+  event.preventDefault();
 
-    const registerData = getRegisterData();
+  const registerData = getRegisterData();
 
-    if (validateForm(registerData)) {
-      const { email, username, password } = registerData;
+  if (validateForm(registerData)) {
+    const { email, username, password } = registerData;
 
-      try {
-        const result = await registerUser({ email, name: username, password });
-        console.log("Resultat fra registerUser:", result);
+    try {
+      const result = await registerUser({ email, name: username, password });
 
-        if (result.data) {
-          alert("Registrering vellykket! Vennligst logg inn.");
-          window.location.href = "./login.html";
-        } else {
-          alert("Registrering feilet.");
-        }
-      } catch (error) {
-        console.error("Registrering feilet:", error);
-        alert("Registrering feilet: " + error.message);
-      }
+      // Suksess!
+      showSuccess("Registration successful. Redirecting...");
+    } catch (error) {
+      ShowError(error.message); // viser error med styling
+      console.error("Registrering feilet:", error.message);
     }
-  });
-}
-
-function forgetToken() {
-  const token = localStorage.getItem("token");
-  if (token) {
-    localStorage.removeItem("token");
   }
-}
+});
 
-forgetToken();
-clickRegisterButton();
+localStorage.removeItem("token");
