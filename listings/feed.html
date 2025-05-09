@@ -49,16 +49,28 @@
 
   <section class="max-w-4xl mx-auto px-6 pt-8 space-y-6 text-center">
     <input
-    id="search-input"
-    type="text"
-    placeholder="Search...."
-    class="rounded px-4 py-2 w-64 mx-auto text-white placeholder-white bg-[#514439]/65"
-  />
-  <div class="flex justify-center gap-12 text-[20px] font-heading font-extralight underline underline-offset-4">
-    <button data-tag="" class="filter-btn">Every post</button>
-    <button data-tag="antique" class="filter-btn">Antique</button>
-    <button data-tag="technology" class="filter-btn">Technology</button>
-  </div>
+      id="search-input"
+      type="text"
+      placeholder="Search..."
+      class="w-64 mx-auto rounded-full px-4 py-2 text-brown placeholder-brown bg-[#514439]/10 border border-brown/30 focus:outline-none focus:ring-2 focus:ring-button-prime transition"
+    />
+    <div class="flex justify-center flex-wrap gap-3 sm:gap-4 text-sm sm:text-base font-inter font-medium text-brown">
+      <button
+        data-filter="all"
+        class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition">
+        All Posts
+      </button>
+      <button
+        data-filter="active"
+        class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition">
+        Active Listings
+      </button>
+      <button
+        data-filter="ended"
+        class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition">
+        Ended Listings
+      </button>
+    </div>
   </section>
 
  
