@@ -56,7 +56,7 @@
 
   <main class="flex-grow max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12 relative">
     <button id="toggle-create-btn"
-            class="fixed bottom-24 right-6 bg-brown text-white rounded-full pt-2 pr-2 pl-2 pb-1 shadow-lg hover:bg-hover-fourText">
+            class="fixed bottom-24 right-6 bg-brown text-white rounded-full pt-2 pr-2 pl-2 pb-1 shadow-lg hover:bg-hover-fourText z-50">
       <span class="material-icons text-2xl">add</span>
     </button>
 
@@ -69,7 +69,7 @@
         </button>
       </div>
       <div class="absolute inset-0 flex justify-center mt-12 md:justify-start md:ml-12 md:mt-40">
-        <img id="avatar" alt="User avatar" class="rounded-full border-4 border-white object-cover shadow-md md:w-36 md:h-32" />
+        <img id="avatar" alt="User avatar" class="rounded-full border-4 border-white object-cover shadow-md w-32 h-32 md:w-44 md:h-44" />
       </div>
       <div class="mt-12 text-center px-6 pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16">
         <h2 id="name" class="text-lg font-bold text-black uppercase md:text-white md:text-textLg"></h2>
@@ -86,7 +86,10 @@
       <div id="edit-profile-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 hidden">
         
         <h3 class="text-lg font-bold text-white mb-4">Edit Profile</h3>
-        <div id="edit-profile-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
+        <div id="edit-profile-success" class=" hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto">
+          <svg class="w-6 h-6 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z" clip-rule="evenodd" />
+          </svg>
           <p>Profile updated successfully!</p>
         </div>
         <form id="profile-form">
@@ -110,7 +113,10 @@
       <div>
         <form id="create-auction-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 mt-4 text-brown hidden">
           <h3 class="text-lg font-bold mb-4 text-white">Create Auction</h3>
-          <div id="create-auction-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
+          <div id="create-auction-success" class=" hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto">
+            <svg class="w-6 h-6 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z" clip-rule="evenodd" />
+            </svg>
             <p>Auction created successfully!</p>
           </div>
           <div class="mb-4">
@@ -127,7 +133,7 @@
           </div>
           <div class="mb-4">
             <label for="due-date" class="text-white">Due date</label>
-            <input type="date" id="due-date" class="mt-1 block w-24 border-gray-300 rounded-md shadow-sm" />
+            <input type="date" id="due-date" class="mt-1 block w-28 border-gray-300 rounded-md shadow-sm" />
           </div>
           <button type="submit" id="create-auction-btn" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText mt-4">Create Auction</button>
         </form>
