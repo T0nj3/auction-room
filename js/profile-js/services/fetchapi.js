@@ -38,14 +38,6 @@ function displayUserImages(profile) {
     if (profile.avatar && profile.avatar.url) {
         avatarImg.src = profile.avatar.url;
         avatarImg.alt = profile.avatar.alt || "User avatar";
-
-        avatarImg.style.width = "8rem";
-        avatarImg.style.height = "8rem";
-
-        if (window.innerWidth >= 640) {
-            avatarImg.style.width = "10rem";
-            avatarImg.style.height = "10rem";
-        }
     }
 
     if (profile.banner && profile.banner.url) {
@@ -97,15 +89,13 @@ async function handleProfileUpdate(event) {
         updateLocalStorageUser(response);
         updateProfileDisplay(response);
 
-        // 👉 Vis suksessmelding
         const successMsg = document.getElementById("edit-profile-success");
         if (successMsg) {
             successMsg.classList.remove("hidden");
 
-            // 👉 Vent litt før du laster siden på nytt
             setTimeout(() => {
                 window.location.reload();
-            }, 2000); // 2 sekunder pause
+            }, 2000); 
         }
     } else {
         console.error("could not update profile");
