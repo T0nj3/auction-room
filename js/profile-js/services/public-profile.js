@@ -74,14 +74,14 @@ async function renderProfile() {
     renderListings(activeListings);
 
     activeTabBtn.addEventListener("click", () => {
-      activeTabBtn.classList.add("font-bold", "text-brown", "border-b-4", "border-brown");
-      oldTabBtn.classList.remove("font-bold", "text-brown", "border-b-4", "border-brown");
+      activeTabBtn.classList.add("bg-brown");
+      oldTabBtn.classList.remove("bg-brown");
       renderListings(activeListings);
     });
-
+    
     oldTabBtn.addEventListener("click", () => {
-      oldTabBtn.classList.add("font-bold", "text-brown", "border-b-4", "border-brown");
-      activeTabBtn.classList.remove("font-bold", "text-brown", "border-b-4", "border-brown");
+      oldTabBtn.classList.add("bg-brown");
+      activeTabBtn.classList.remove("bg-brown");
       renderListings(oldListings);
     });
 

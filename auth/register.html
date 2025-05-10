@@ -56,14 +56,14 @@
         <p class="text-sm text-center font-body text-white">Welcome to<br>The Auction Room!</p>
 
         <div id="error-message"
-        class="hidden flex items-center justify-between bg-red-100/90 text-red-900 font-semibold px-4 py-3 rounded-lg mb-4 shadow-md backdrop-blur-sm border-2 border-red-600">
+        class="hidden flex items-center justify-between bg-red-100/90 text-red-900 font-semibold px-4 py-3 rounded-lg mb-4 shadow-md backdrop-blur-sm border-2 border-red-600 text-white">
         <div class="flex items-center gap-2">
           <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z" clip-rule="evenodd" />
           </svg>
-          <span id="error-text" class="text-red-700"></span>
+          <span id="error-text" class=""></span>
         </div>
-        <button id="close-error" class="text-xl font-bold text-red-600 hover:text-red-800">&times;</button>
+        <button id="close-error" class="text-xl font-bold">&times;</button>
       </div>
   
         <form class="space-y-4 md:w-80 w-full mx-auto" id="register-form">
@@ -71,28 +71,28 @@
             <label for="email" class="block text-sm font-medium text-white">Email</label>
             <input type="email" name="email" id="email" required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
-            <div id="email-error" class="hidden text-red-500 text-sm mt-1"></div>
+            <div id="email-error" class="hidden text-red-500 text-sm mt-1 text-white"></div>
           </div>
   
           <div>
             <label for="username" class="block text-sm font-medium text-white">Username</label>
             <input type="text" name="username" id="username" required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
-            <div id="username-error" class="hidden text-red-500 text-sm mt-1"></div>
+            <div id="username-error" class="hidden text-red-500 text-sm mt-1 text-white"></div>
           </div>
   
           <div>
             <label for="password" class="block text-sm font-medium text-white">Password</label>
             <input type="password" name="password" id="password" required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
-            <div id="password-error" class="hidden text-red-500 text-sm mt-1"></div>
+            <div id="password-error" class="hidden text-red-500 text-sm mt-1 text-white"></div>
           </div>
   
           <div>
             <label for="password-confirm" class="block text-sm font-medium text-white">Confirm Password</label>
             <input type="password" name="password-confirm" id="password-confirm" required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-2xl shadow-sm text-brown">
-            <div id="password-confirm-error" class="hidden text-red-500 text-sm mt-1"></div>
+            <div id="password-confirm-error" class="hidden text-red-500 text-sm mt-1 text-white"></div>
           </div>
   
           <div class="flex items-center justify-center">

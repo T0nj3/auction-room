@@ -1373,6 +1373,10 @@ video {
   border-top-width: 1px;
 }
 
+.border-b-0 {
+  border-bottom-width: 0px;
+}
+
 .border-\[\#514439\]\/40 {
   border-color: rgb(81 68 57 / 0.4);
 }
@@ -1729,6 +1733,14 @@ video {
 
 .pb-0 {
   padding-bottom: 0px;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
+.pb-0\.5 {
+  padding-bottom: 0.125rem;
 }
 
 .text-left {
