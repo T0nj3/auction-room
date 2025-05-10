@@ -4,6 +4,7 @@ export async function showUserListings(username) {
     try {
       const result = await fetchListing(username);
       const listings = result?.data || [];
+
   
       const productsContainer = document.getElementById("productsContainer");
       productsContainer.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6";
@@ -19,8 +20,11 @@ export async function showUserListings(username) {
         const img = document.createElement("img");
         img.src = product.media?.[0]?.url;
         img.alt = product.title;
-        img.className = "w-full h-full object-cover transition duration-300";
-  
+        img.className = "w-full h-full object-cover transition duration-300 cursor-pointer hover:scale-105 group-hover:scale-105";
+
+        img.addEventListener("click", () => {
+            window.location.href = `/listings/detail-listing.html?id=${product.id}`;
+          });
   
         const titleContainer = document.createElement("div");
         titleContainer.className = "flex-grow flex items-center justify-center";
