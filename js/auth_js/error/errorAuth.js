@@ -7,10 +7,9 @@ export function getRegisterData() {
 }
 
 export function validateForm() {
-  const { email, username, password, confirmPassword } = getRegisterData(); // Nå kaller vi getRegisterData her
+  const { email, username, password, confirmPassword } = getRegisterData();
   let isValid = true;
 
-  // Skjul eksisterende feilmeldinger
   [
     "email-error",
     "username-error",
@@ -21,50 +20,51 @@ export function validateForm() {
     if (el) el.classList.add("hidden");
   });
 
-  if (!email) {
-    document.getElementById("email-error").textContent =
-      "Vennligst fyll inn e-post.";
-    document.getElementById("email-error").classList.remove("hidden");
+  if (email === "") {
+    const emailError = document.getElementById("email-error");
+    emailError.textContent = "Vennligst fyll inn e-post.";
+    emailError.classList.remove("hidden");
+    emailError.classList.add("text-red-500"); 
     isValid = false;
   } else if (
     !email.endsWith("@stud.noroff.no") &&
     !email.endsWith("@noroff.no")
   ) {
     document.getElementById("email-error").textContent =
-      "E-post må være en Noroff-adresse.";
+      "email need to be a Noroff domain.";
     document.getElementById("email-error").classList.remove("hidden");
     isValid = false;
   }
 
   if (username === "") {
     document.getElementById("username-error").textContent =
-      "Vennligst fyll inn brukernavn.";
+      "please fill in Username.";
     document.getElementById("username-error").classList.remove("hidden");
     isValid = false;
   }
 
   if (password === "") {
     document.getElementById("password-error").textContent =
-      "Vennligst fyll inn passord.";
+      "please fill in your password.";
     document.getElementById("password-error").classList.remove("hidden");
     isValid = false;
   } else if (password.length < 8) {
     document.getElementById("password-error").textContent =
-      "Passord må være minst 8 tegn.";
+      "password need to be a least 8 letters.";
     document.getElementById("password-error").classList.remove("hidden");
     isValid = false;
   }
 
   if (confirmPassword === "") {
     document.getElementById("password-confirm-error").textContent =
-      "Vennligst bekreft passordet.";
+      "please confirm your password.";
     document
       .getElementById("password-confirm-error")
       .classList.remove("hidden");
     isValid = false;
   } else if (password !== confirmPassword) {
     document.getElementById("password-confirm-error").textContent =
-      "Passordene samsvarer ikke.";
+      "Password does not match.";
     document
       .getElementById("password-confirm-error")
       .classList.remove("hidden");
@@ -86,7 +86,7 @@ export function validateLoginForm(userData) {
 
   if (email === "") {
     document.getElementById("email-error").textContent =
-      "Vennligst fyll inn e-post.";
+      "Please fill in your email.";
     document.getElementById("email-error").classList.remove("hidden");
     isValid = false;
   } else if (
@@ -94,14 +94,14 @@ export function validateLoginForm(userData) {
     !email.endsWith("@noroff.no")
   ) {
     document.getElementById("email-error").textContent =
-      "E-post må være en Noroff-adresse.";
+      "email need to be a Noroff domain.";
     document.getElementById("email-error").classList.remove("hidden");
     isValid = false;
   }
 
   if (password === "") {
     document.getElementById("password-error").textContent =
-      "Vennligst fyll inn passord.";
+      "please fill in your password.";
     document.getElementById("password-error").classList.remove("hidden");
     isValid = false;
   }
