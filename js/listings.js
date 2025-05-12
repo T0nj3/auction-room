@@ -21,13 +21,13 @@ function createCardElement(listing) {
   const img = document.createElement("img");
   img.src = listing.media?.[0]?.url || "https://placehold.co/240x240?text=No+Image";
   img.alt = listing.title;
-  img.className = "w-full h-full object-cover rounded";
+  img.className = "w-full h-full object-cover";
 
   imageBox.appendChild(img);
 
   const content = document.createElement("div");
   content.className =
-    "flex flex-col justify-end items-center text-center px-2 pt-8 pb-4 mt-auto gap-1";
+    "flex flex-col justify-end items-center text-center px-2 pt-8 pb-4 mt-auto w-full";
 
   const title = document.createElement("h3");
   title.className = "text-base font-bold";

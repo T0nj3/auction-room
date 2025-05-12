@@ -14,19 +14,57 @@ let currentSearch = "";
 function createCard(listing) {
   const wrapper = document.createElement("a");
   wrapper.href = `detail-listing.html?id=${listing.id}`;
-  wrapper.className = "shadow-lg hover:shadow-xl transition block bg-white rounded";
+  wrapper.className = "block";
+
+  const card = document.createElement("div");
+  card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3 border border-brown-100 hover:shadow-xl transition bg-white hover:scale-105 cursor-pointer rounded-lg group";
+
+  const imageWrapper = document.createElement("div");
+  imageWrapper.className = "relative w-full h-2/3 overflow-hidden group border";
 
   const img = document.createElement("img");
-  img.src = listing.media[0]?.url || "https://placehold.co/400x300?text=No+Image";
-  img.alt = listing.media[0]?.alt || listing.title;
-  img.className = "w-full h-60 object-cover";
+  img.src = listing.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
+  img.alt = listing.media?.[0]?.alt || listing.title;
+  img.className = "w-full h-full object-cover transition duration-300 cursor-pointer hover:scale-105 group-hover:scale-105";
+
+  imageWrapper.appendChild(img);
+
+  const infoContainer = document.createElement("div");
+  infoContainer.className = "flex-grow flex flex-col items-center justify-center text-center gap-1";
 
   const title = document.createElement("p");
   title.textContent = listing.title;
-  title.className = "text-center font-serif py-2";
+  title.className = "text-center font-body text-xl font-regular text-brown-900";
 
-  wrapper.appendChild(img);
-  wrapper.appendChild(title);
+
+  const timeLeft = document.createElement("p");
+  const endsAt = new Date(listing.endsAt);
+  const timeDiff = Math.max(endsAt - new Date(), 0); 
+  
+
+  const days = parseInt(timeDiff / (1000 * 60 * 60 * 24)); 
+  const hours = parseInt((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); 
+  const minutes = parseInt((timeDiff % (1000 * 60 * 60)) / (1000 * 60)); 
+
+  const price = listing.bids?.length
+    ? Math.max(...listing.bids.map((b) => b.amount))
+    : 0;
+  const priceText = document.createElement("p");
+  priceText.textContent = `Highest bid: ${price} credits`;
+  priceText.className = "text-sm text-gray-700";
+  if (price === 0) {
+    priceText.textContent = "No bids yet";
+    priceText.className = "text-sm text-brown-700";
+  }
+
+  timeLeft.textContent = `Time left: ${days}d ${hours}h ${minutes}m`;
+  timeLeft.className = "text-sm text-gray-700 mt-2"; 
+
+  infoContainer.appendChild(title);
+  infoContainer.appendChild(timeLeft);
+  infoContainer.appendChild(priceText);
+  card.append(imageWrapper, infoContainer);
+  wrapper.appendChild(card);
 
   return wrapper;
 }

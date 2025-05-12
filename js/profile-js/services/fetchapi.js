@@ -97,7 +97,7 @@ async function handleProfileUpdate(event) {
 
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 1000);
     }
   } else {
     console.error("could not update profile");
