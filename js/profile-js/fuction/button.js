@@ -82,9 +82,9 @@ function edtitProfile() {
     if (closeButton) {
         closeButton.addEventListener("click", () => {
             formSection.style.display = "none";
-            productsContainer.style.display = "block";
+            productsContainer.style.display = "grid";
         });
     }
 }
-// den laster seg inn feil etter at man har trykket på knappen
+
 closeFormButton()

@@ -176,7 +176,7 @@ document.getElementById("edit-auction-form").addEventListener("submit", async fu
 
 export async function displayWinningAuctions() {
     const container = document.getElementById("winning_bid");
-    container.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"; 
+    container.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 cursor-pointer hover:bg-gray-100 transition duration-300"; 
     container.innerHTML = "";
 
     const response = await SeeWinningAuction();
@@ -238,15 +238,20 @@ export async function showYourOwnBids() {
         }
 
         ownBids.forEach((bid) => {
-            console.log("Bid data:", bid); // Logge hver bud-data for å se om listing finnes
+            console.log("Bid data:", bid); 
 
             const card = document.createElement("div");
-            card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3";
+            card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3 cursor-pointer hover:bg-gray-100 transition duration-300";
 
             const image = document.createElement("img");
             image.src = bid.listing?.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
             image.alt = bid.listing?.title || "No title";
             image.className = "w-full h-2/3 object-cover";
+
+            image.addEventListener("click", () => {
+                window.location.href = `/listings/detail-listing.html?id=${bid.listing?.id}`;
+            }
+            );
 
             const title = document.createElement("p");
             title.textContent = bid.listing?.title || "No title";
