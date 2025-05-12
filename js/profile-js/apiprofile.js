@@ -228,3 +228,36 @@ export async function SeeWinningAuction() {
 
     return await response.json();
 }
+
+export async function yourOwnBids() {
+    const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");  
+
+    if (!token) {
+        console.error("No token found in localStorage.");
+        return null;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/profiles/${username}/bids`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "X-Noroff-API-Key": X_NOROFF_API_KEY,
+            },
+        });
+
+        if (!response.ok) {
+            console.error("Failed to fetch your bids.");
+            return null;
+        }
+
+        const responseData = await response.json();
+        console.log("API response data:", responseData); 
+
+        return responseData;
+    } catch (error) {
+        console.error("Error fetching your bids:", error.message);
+        return null;
+    }
+}

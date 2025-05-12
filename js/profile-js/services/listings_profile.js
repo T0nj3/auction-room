@@ -1,4 +1,4 @@
-import { fetchListing, deleteUserPost, editPost, SeeWinningAuction} from "../apiprofile.js"; 
+import { fetchListing, deleteUserPost, editPost, SeeWinningAuction, yourOwnBids} from "../apiprofile.js"; 
 
 export async function showUserListings(username) {
     try {
@@ -218,4 +218,61 @@ export async function displayWinningAuctions() {
         card.appendChild(infoContainer);
         container.appendChild(card);
     });
+}
+
+export async function showYourOwnBids() {
+    const container = document.getElementById("active-bids");
+    container.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"; 
+    container.innerHTML = "";
+
+    try {
+        const response = await yourOwnBids();
+
+        console.log("Full Response:", response); 
+
+        const ownBids = Array.isArray(response?.data) ? response.data : [];
+
+        if (ownBids.length === 0) {
+            container.innerHTML = "<p>You have not placed any bids.</p>";
+            return;
+        }
+
+        ownBids.forEach((bid) => {
+            console.log("Bid data:", bid); // Logge hver bud-data for å se om listing finnes
+
+            const card = document.createElement("div");
+            card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3";
+
+            const image = document.createElement("img");
+            image.src = bid.listing?.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
+            image.alt = bid.listing?.title || "No title";
+            image.className = "w-full h-2/3 object-cover";
+
+            const title = document.createElement("p");
+            title.textContent = bid.listing?.title || "No title";
+            title.className = "text-center font-body text-xl font-regular";
+
+            const endInfo = document.createElement("p");
+            endInfo.textContent = `Ends ${new Date(bid.listing?.endsAt).toLocaleString()}`;
+            endInfo.className = "text-sm text-gray-600";
+
+            const bidAmount = document.createElement("p");
+            bidAmount.textContent = `Bid: ${bid.amount}`;
+            bidAmount.className = "text-sm text-blue-600";
+
+            const infoContainer = document.createElement("div");
+            infoContainer.className = "flex-grow flex flex-col justify-center items-center space-y-1";
+            infoContainer.appendChild(title);
+            infoContainer.appendChild(bidAmount);
+            infoContainer.appendChild(endInfo);
+
+            card.appendChild(image);
+            card.appendChild(infoContainer);
+            container.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Error fetching your bids:", error.message);
+        container.innerHTML = "<p>There was an error loading your bids. Please try again later.</p>";
+    }
 }
