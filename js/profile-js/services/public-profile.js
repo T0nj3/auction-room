@@ -22,27 +22,50 @@ function accessProfile() {
 
 
 function createListingCard(listing) {
-  const cardWrapper = document.createElement("div");
-  cardWrapper.className = "bg-white rounded shadow-md hover:shadow-lg transition w-full max-w-sm p-3";
+  const wrapper = document.createElement("a");
+  wrapper.href = `../listings/detail-listing.html?id=${listing.id}`;
+  wrapper.className = "block";
 
-  const a = document.createElement("a");
-  a.href = `../listings/detail-listing.html?id=${listing.id}`;
-  a.className = "block";
+  const card = document.createElement("div");
+  card.className =
+    "bg-white border border-gray-300 rounded shadow-lg w-full max-w-[280px] h-[420px] flex flex-col items-center p-4";
+
+  const imageBox = document.createElement("div");
+  imageBox.className =
+    "w-full h-[250px] flex items-center justify-center bg-white p-2";
 
   const img = document.createElement("img");
-  img.src = listing.media[0]?.url || "https://placehold.co/400x300?text=No+Image";
+  img.src = listing.media[0]?.url || "https://placehold.co/240x240?text=No+Image";
   img.alt = listing.title;
-  img.className = "w-full h-48 object-cover rounded-t";
+  img.className = "w-full h-full object-cover rounded";
 
-  const title = document.createElement("div");
-  title.className = "text-center font-body text-lg font-medium py-6";
+  imageBox.appendChild(img);
+
+  const content = document.createElement("div");
+  content.className =
+  "flex flex-col justify-end items-center text-center px-2 pt-8 pb-4 mt-auto gap-1";
+
+  const title = document.createElement("h3");
+  title.className = "text-base font-bold";
   title.textContent = listing.title;
 
-  a.appendChild(img);
-  a.appendChild(title);
-  cardWrapper.appendChild(a);
+  const bid = document.createElement("p");
+  bid.className = "text-sm text-gray-700";
+  bid.textContent = listing.bids?.length
+    ? `Highest bid: ${Math.max(...listing.bids.map((b) => b.amount))} credits`
+    : "Highest bid: No bids yet";
 
-  return cardWrapper;
+  const time = document.createElement("p");
+  time.className = "text-xs text-gray-500";
+  time.textContent = `Time left: ${Math.max(
+    Math.floor((new Date(listing.endsAt) - new Date()) / 3600000),
+    0
+  )}h`;
+
+  content.append(title, bid, time);
+  card.append(imageBox, content);
+  wrapper.appendChild(card);
+  return wrapper;
 }
 
 function renderListings(listings) {

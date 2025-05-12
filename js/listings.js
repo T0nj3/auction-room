@@ -6,34 +6,50 @@ const oldMobile = document.getElementById("oldest-carousel");
 const oldDesktop = document.getElementById("oldest-grid");
 
 function createCardElement(listing) {
-  const image =
-    Array.isArray(listing.media) &&
-    listing.media.length > 0 &&
-    listing.media[0].url
-      ? listing.media[0].url
-      : "https://placehold.co/400x300?text=No+Image";
+  const wrapper = document.createElement("a");
+  wrapper.href = `./listings/detail-listing.html?id=${listing.id}`;
+  wrapper.className = "block";
 
-  const card = document.createElement("a");
-  card.href = `./listings/detail-listing.html?id=${listing.id}`;
-  card.className = "min-w-full md:min-w-0 snap-center bg-white shadow-lg flex flex-col h-[420px] overflow-hidden";
+  const card = document.createElement("div");
+  card.className =
+    "bg-white border border-gray-300 rounded shadow-lg w-full max-w-[280px] h-[420px] flex flex-col items-center p-4";
+
+  const imageBox = document.createElement("div");
+  imageBox.className =
+    "w-full h-[250px] flex items-center justify-center bg-white p-2";
 
   const img = document.createElement("img");
-  img.src = image;
+  img.src = listing.media?.[0]?.url || "https://placehold.co/240x240?text=No+Image";
   img.alt = listing.title;
-  img.className = "w-full h-[300px] object-cover p-3";
+  img.className = "w-full h-full object-cover rounded";
 
-  const titleWrapper = document.createElement("div");
-  titleWrapper.className = "flex-grow flex items-center justify-center";
+  imageBox.appendChild(img);
 
-  const title = document.createElement("p");
-  title.className = "text-center font-serif";
+  const content = document.createElement("div");
+  content.className =
+    "flex flex-col justify-end items-center text-center px-2 pt-8 pb-4 mt-auto gap-1";
+
+  const title = document.createElement("h3");
+  title.className = "text-base font-bold";
   title.textContent = listing.title;
 
-  titleWrapper.appendChild(title);
-  card.appendChild(img);
-  card.appendChild(titleWrapper);
+  const bid = document.createElement("p");
+  bid.className = "text-sm text-gray-700";
+  bid.textContent = listing.bids?.length
+    ? `Highest bid: ${Math.max(...listing.bids.map((b) => b.amount))} credits`
+    : "Highest bid: No bids yet";
 
-  return card;
+  const time = document.createElement("p");
+  time.className = "text-xs text-gray-500";
+  time.textContent = `Time left: ${Math.max(
+    Math.floor((new Date(listing.endsAt) - new Date()) / 3600000),
+    0
+  )}h`;
+
+  content.append(title, bid, time);
+  card.append(imageBox, content);
+  wrapper.appendChild(card);
+  return wrapper;
 }
   
   function insertListings(listings, mobileContainer, desktopContainer) {
