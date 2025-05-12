@@ -1,8 +1,8 @@
 import { getUserProfile } from "../apiprofile.js";
 import { updateUserProfile } from "../apiprofile.js";
 import {createPost} from "../apiprofile.js";
-import {showUserListings, displayWinningAuctions} from "./listings_profile.js";
-import{SeeWinningAuction} from "../apiprofile.js";
+import {showUserListings, displayWinningAuctions, showYourOwnBids} from "./listings_profile.js";
+
 
 
 const token = localStorage.getItem("token");
@@ -179,3 +179,4 @@ async function loadUserListings() {
   loadUserListings();
 
 displayWinningAuctions();
+showYourOwnBids();
