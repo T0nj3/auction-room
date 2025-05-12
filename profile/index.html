@@ -47,8 +47,8 @@
   
   <nav id="mobile-menu"
     class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
-    <a href="./index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
-    <a href="./listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
+    <a href="../index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
+    <a href="../listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
     <div id="mobile-user-links" class="flex flex-col gap-3">
       <!-- Fylles med JS -->
     </div>
@@ -77,7 +77,7 @@
       </div>
     </div>
 <section>
-  <div class="flex justify-center mt-4 space-x-0.5">
+  <div class="flex justify-center mt-4 space-x-0.5 mr-2 ml-2"> 
     <button id="active-auctions-btn" class="btn btn-four">Active Auctions</button>
     <button id="won-auctions-btn" class="btn btn-four">Won Auctions</button>
     <button id="active-bids-btn" class="btn btn-four">Bid history</button>
@@ -141,7 +141,7 @@
       </div>
     </section>
 
-    <section class="mb-12 mt-12 mr-4 ml-4" id="active-auctions">
+    <section class="m-4 md:m-12" id="active-auctions">
       <div class="px-6 py-4 flex justify-center md:justify-start">
         <h3 class="text-lg text-black border-b font-thin">Your Auctions</h3>
 
@@ -152,8 +152,11 @@
     <section id="edit-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4 mb-10 hidden">
 
       <h3 class="text-lg font-bold text-white mb-4">Edit Auction</h3>
-      <div id="edit-success" class="hidden bg-green-100 text-green-800 p-4 rounded-md mt-4">
-        <p>Auction updated successfully!</p>
+      <div id="edit-success" class=" hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto">
+        <svg class="w-6 h-6 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z" clip-rule="evenodd" />
+        </svg>
+        <p>Auction created successfully!</p>
       </div>
 
       <form id="edit-auction-form">
