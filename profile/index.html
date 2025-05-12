@@ -80,6 +80,7 @@
   <div class="flex justify-center mt-4 space-x-0.5">
     <button id="active-auctions-btn" class="btn btn-four">Active Auctions</button>
     <button id="won-auctions-btn" class="btn btn-four">Won Auctions</button>
+    <button id="active-bids-btn" class="btn btn-four">Bid history</button>
 </div>
 </section>
     <section>
@@ -182,11 +183,11 @@
       <div id="winning_bid" class="p-6"></div>
     </section>
 
-  <section>
-    <div>
-      <h3> See your active bids</h3>
-      <div id="active-bids" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6"></div>
+  <section class="hidden mb-12 mt-12 mr-4 ml-4" id="active-bids-section">
+    <div class="px-6 py-4 flex justify-center md:justify-start">
+      <h3 class="text-lg text-black border-b font-thin mb-6">See your active bids</h3>
     </div>
+      <div id="active-bids" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6"></div>
   </section>
   </main>
 

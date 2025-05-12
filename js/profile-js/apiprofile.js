@@ -239,7 +239,7 @@ export async function yourOwnBids() {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}/profiles/${username}/bids`, {
+        const response = await fetch(`${API_BASE_URL}/profiles/${username}/bids?_listings=true`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
