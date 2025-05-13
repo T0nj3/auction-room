@@ -78,9 +78,9 @@
     </div>
 <section>
   <div class="flex justify-center mt-4 space-x-0.5 mr-2 ml-2"> 
-    <button id="active-auctions-btn" class="btn btn-four">Active Auctions</button>
-    <button id="won-auctions-btn" class="btn btn-four">Won Auctions</button>
-    <button id="active-bids-btn" class="btn btn-four">Bid history</button>
+    <button id="active-auctions-btn" class="btn">Active Auctions</button>
+    <button id="won-auctions-btn" class="btn">Won Auctions</button>
+    <button id="active-bids-btn" class="btn">Bid history</button>
 </div>
 </section>
     <section>
@@ -141,13 +141,6 @@
       </div>
     </section>
 
-    <section class="m-4 md:m-12" id="active-auctions">
-      <div class="px-6 py-4 flex justify-center md:justify-start">
-        <h3 class="text-lg text-black border-b font-thin">Your Auctions</h3>
-
-      </div>
-      <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto max-w-6xl px-4"></div>
-    </section>
 
     <section id="edit-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4 mb-10 hidden">
 
@@ -179,19 +172,26 @@
       </form>
     </section>
 
-    <section class="hidden mb-12 mt-12 mr-4 ml-4" id="won-auctions">
-      <div class="px-6 py-4 flex justify-center md:justify-start">
-        <h3 class="text-lg text-black border-b font-thin">Won Auctions</h3>
-    </div>
-      <div id="winning_bid" class="p-6"></div>
-    </section>
+<section class="max-w-5xl mx-auto px-4 mt-12 mb-12" id="active-auctions">
+  <div class="px-6 py-4 flex justify-center md:justify-start">
+    <h3 class="text-lg text-black border-b font-thin font-body">Your Auctions</h3>
+  </div>
+  <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+</section>
 
-  <section class="hidden mb-12 mt-12 mr-4 ml-4" id="active-bids-section">
-    <div class="px-6 py-4 flex justify-center md:justify-start">
-      <h3 class="text-lg text-black border-b font-thin mb-6">See your active bids</h3>
-    </div>
-      <div id="active-bids" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6"></div>
-  </section>
+<section class="hidden mb-12 mt-12 max-w-5xl mx-auto px-4" id="won-auctions">
+  <div class="px-6 py-4 flex justify-center md:justify-start">
+    <h3 class="text-lg text-black border-b font-thin font-body">Won Auctions</h3>
+  </div>
+  <div id="winning_bid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+</section>
+
+<section class="hidden mb-12 mt-12 max-w-5xl mx-auto px-4" id="active-bids-section">
+  <div class="px-6 py-4 flex justify-center md:justify-start">
+    <h3 class="text-lg text-black border-b font-thin font-body">Your Active Bids</h3>
+  </div>
+  <div id="active-bids" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+</section>
   </main>
 
   <footer class="bg-brown text-white text-center py-6 ">
