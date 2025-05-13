@@ -18,6 +18,7 @@ module.exports = {
         blue: "#4D8FB8",
         lightblue: "#A0DBF8",
         red: "#9C0000",
+        twobrown: "#7D6148",
 
         text: {
           default: "#252625",

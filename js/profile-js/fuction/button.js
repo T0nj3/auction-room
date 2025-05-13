@@ -28,35 +28,27 @@ function edtitProfile() {
   document.addEventListener('DOMContentLoaded', initEditProfile);
 
   function setActivesection(section) {
-    const activeSection = document.getElementById("active-auctions");
-    const wonSection = document.getElementById("won-auctions");
-    const bidsSection = document.getElementById("active-bids-section");
+    const sections = {
+      active: document.getElementById("active-auctions"),
+      won: document.getElementById("won-auctions"),
+      bids: document.getElementById("active-bids-section"),
+    };
   
-    const activeBtn = document.getElementById("active-auctions-btn");
-    const wonBtn = document.getElementById("won-auctions-btn");
-    const bidsBtn = document.getElementById("active-bids-btn");
-  
+    const buttons = {
+      active: document.getElementById("active-auctions-btn"),
+      won: document.getElementById("won-auctions-btn"),
+      bids: document.getElementById("active-bids-btn"),
+    };
+ 
+    Object.values(sections).forEach((el) => el.classList.add("hidden"));
+    Object.values(buttons).forEach((btn) => {
+      btn.classList.remove("bg-button-prime", "text-white");
+      btn.classList.add("bg-brown", "text-white");
+    });
 
-    activeSection.classList.add("hidden");
-    wonSection.classList.add("hidden");
-    bidsSection.classList.add("hidden");
-  
-   
-    activeBtn.classList.remove("bg-brown");
-    wonBtn.classList.remove("bg-brown");
-    bidsBtn.classList.remove("bg-brown");
-  
-
-    if (section === "active") {
-      activeSection.classList.remove("hidden");
-      activeBtn.classList.add("bg-brown");
-    } else if (section === "won") {
-      wonSection.classList.remove("hidden");
-      wonBtn.classList.add("bg-brown");
-    } else if (section === "bids") {
-      bidsSection.classList.remove("hidden");
-      bidsBtn.classList.add("bg-brown");
-    }
+    sections[section].classList.remove("hidden");
+    buttons[section].classList.remove("bg-brown");
+    buttons[section].classList.add("bg-button-prime");
   }
 
   function initAuctionsection() {

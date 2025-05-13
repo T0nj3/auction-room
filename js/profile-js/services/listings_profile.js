@@ -18,44 +18,41 @@ export async function showUserListings() {
     productsContainer.innerHTML = "";
 
     listings.forEach((product) => {
-      const card = document.createElement("div");
-      card.className = " flex flex-col items-center aspect-[3/4] p-3 border border-brown-100 cursor-pointer";
+      const wrapper = document.createElement("div");
+      wrapper.className = "bg-white border border-gray-300 rounded shadow-lg w-full h-[420px] flex flex-col p-4 cursor-pointer";
 
-      const imageWrapper = document.createElement("div");
-      imageWrapper.className = "relative w-full h-2/3 overflow-hidden group";
+      const imageBox = document.createElement("div");
+      imageBox.className = "w-full h-[250px] flex items-center justify-center bg-white p-2";
 
       const img = document.createElement("img");
-      img.src = product.media?.[0]?.url;
+      img.src = product.media?.[0]?.url || "https://placehold.co/240x240?text=No+Image";
       img.alt = product.title;
-      img.className = "w-full h-full object-cover transition duration-300 cursor-pointer";
-
+      img.className = "w-full h-full object-cover rounded";
       img.addEventListener("click", () => {
         window.location.href = `/listings/detail-listing.html?id=${product.id}`;
       });
 
-      const titleContainer = document.createElement("div");
-      titleContainer.className = "flex-grow flex items-center justify-center";
+      imageBox.appendChild(img);
 
-      const title = document.createElement("p");
+      const content = document.createElement("div");
+      content.className = "flex flex-col justify-end items-center text-center px-2 pt-6 pb-4 mt-auto gap-1";
+
+      const title = document.createElement("h3");
+      title.className = "text-base font-bold";
       title.textContent = product.title;
-      title.className = "text-center font-body text-xl font-regular";
 
       const buttonContainer = document.createElement("div");
-      buttonContainer.className = "flex justify-center gap-1 pb-4";
+      buttonContainer.className = "flex gap-2 mt-2";
 
       const editButton = createEditButton(product);
       const deleteButton = createDeleteButton(product.id);
 
-      imageWrapper.appendChild(img);
-      titleContainer.appendChild(title);
       buttonContainer.appendChild(editButton);
       buttonContainer.appendChild(deleteButton);
 
-      card.appendChild(imageWrapper);
-      card.appendChild(titleContainer);
-      card.appendChild(buttonContainer);
-
-      productsContainer.appendChild(card);
+      content.append(title, buttonContainer);
+      wrapper.append(imageBox, content);
+      productsContainer.appendChild(wrapper);
     });
   } catch (error) {
     console.error("Error fetching user products:", error.message);
@@ -190,41 +187,44 @@ export async function displayWinningAuctions() {
   const winningAuctions = response?.data || [];
 
   winningAuctions.forEach((auction) => {
-    const card = document.createElement("div");
-    card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3 border border-brown-100 hover:scale-105 cursor-pointer transition";
-    card.addEventListener("click", () => {
+    const wrapper = document.createElement("div");
+    wrapper.className =
+      "bg-white border border-gray-300 rounded shadow-lg w-full h-[420px] flex flex-col p-4 cursor-pointer";
+
+    wrapper.addEventListener("click", () => {
       window.location.href = `/listings/detail-listing.html?id=${auction.id}`;
     });
 
-    const imageWrapper = document.createElement("div");
-    imageWrapper.className = "relative w-full h-2/3 overflow-hidden group border";
+    const imageBox = document.createElement("div");
+    imageBox.className =
+      "w-full h-[250px] flex items-center justify-center bg-white p-2";
 
     const img = document.createElement("img");
-    img.src = auction.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
+    img.src = auction.media?.[0]?.url || "https://placehold.co/240x240?text=No+Image";
     img.alt = auction.title;
-    img.className = "w-full h-full object-cover duration-300";
+    img.className = "w-full h-full object-cover rounded";
 
-    imageWrapper.appendChild(img);
+    imageBox.appendChild(img);
 
-    const infoContainer = document.createElement("div");
-    infoContainer.className = "flex-grow flex flex-col items-center justify-center text-center gap-1";
+    const content = document.createElement("div");
+    content.className =
+      "flex flex-col justify-end items-center text-center px-2 pt-6 pb-4 mt-auto gap-1";
 
-    const title = document.createElement("p");
+    const title = document.createElement("h3");
+    title.className = "text-base font-bold";
     title.textContent = auction.title;
-    title.className = "text-center font-body text-xl font-regular";
 
-    const winningText = document.createElement("p");
-    winningText.className = "text-sm text-green-600";
-    winningText.textContent = "Won Auction!";
+    const status = document.createElement("p");
+    status.className = "text-sm text-green-600";
+    status.textContent = "Won Auction!";
 
-    const endInfo = document.createElement("p");
-    endInfo.className = "text-xs text-brown-700";
-    endInfo.textContent = `Ended ${new Date(auction.endsAt).toLocaleString()}`;
+    const endDate = document.createElement("p");
+    endDate.className = "text-xs text-gray-500";
+    endDate.textContent = `Ended ${new Date(auction.endsAt).toLocaleDateString()}`;
 
-    infoContainer.append(title, winningText, endInfo);
-
-    card.append(imageWrapper, infoContainer);
-    container.appendChild(card);
+    content.append(title, status, endDate);
+    wrapper.append(imageBox, content);
+    container.appendChild(wrapper);
   });
 }
 
@@ -244,7 +244,7 @@ export async function showYourOwnBids() {
 
     ownBids.forEach((bid) => {
       const card = document.createElement("div");
-      card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3 border border-brown-100 hover:scale-105 cursor-pointer";
+      card.className = "bg-white border border-gray-300 rounded shadow-lg w-full h-[420px] flex flex-col p-4 cursor-pointer";
       card.addEventListener("click", () => {
         window.location.href = `/listings/detail-listing.html?id=${bid.listing?.id}`;
       });
