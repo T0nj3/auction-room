@@ -18,41 +18,44 @@ export async function showUserListings() {
     productsContainer.innerHTML = "";
 
     listings.forEach((product) => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "bg-white border border-gray-300 rounded shadow-lg w-full h-[420px] flex flex-col p-4 cursor-pointer";
+      const card = document.createElement("div");
+      card.className = " flex flex-col items-center aspect-[3/4] p-3 border border-brown-100 cursor-pointer";
 
-      const imageBox = document.createElement("div");
-      imageBox.className = "w-full h-[250px] flex items-center justify-center bg-white p-2";
+      const imageWrapper = document.createElement("div");
+      imageWrapper.className = "relative w-full h-2/3 overflow-hidden group";
 
       const img = document.createElement("img");
-      img.src = product.media?.[0]?.url || "https://placehold.co/240x240?text=No+Image";
+      img.src = product.media?.[0]?.url;
       img.alt = product.title;
-      img.className = "w-full h-full object-cover rounded";
+      img.className = "w-full h-full object-cover transition duration-300 cursor-pointer";
+
       img.addEventListener("click", () => {
         window.location.href = `/listings/detail-listing.html?id=${product.id}`;
       });
 
-      imageBox.appendChild(img);
+      const titleContainer = document.createElement("div");
+      titleContainer.className = "flex-grow flex items-center justify-center";
 
-      const content = document.createElement("div");
-      content.className = "flex flex-col justify-end items-center text-center px-2 pt-6 pb-4 mt-auto gap-1";
-
-      const title = document.createElement("h3");
-      title.className = "text-base font-bold";
+      const title = document.createElement("p");
       title.textContent = product.title;
+      title.className = "text-center font-body text-xl font-regular";
 
       const buttonContainer = document.createElement("div");
-      buttonContainer.className = "flex gap-2 mt-2";
+      buttonContainer.className = "flex justify-center gap-1 pb-4";
 
       const editButton = createEditButton(product);
       const deleteButton = createDeleteButton(product.id);
 
+      imageWrapper.appendChild(img);
+      titleContainer.appendChild(title);
       buttonContainer.appendChild(editButton);
       buttonContainer.appendChild(deleteButton);
 
-      content.append(title, buttonContainer);
-      wrapper.append(imageBox, content);
-      productsContainer.appendChild(wrapper);
+      card.appendChild(imageWrapper);
+      card.appendChild(titleContainer);
+      card.appendChild(buttonContainer);
+
+      productsContainer.appendChild(card);
     });
   } catch (error) {
     console.error("Error fetching user products:", error.message);
@@ -61,10 +64,9 @@ export async function showUserListings() {
   
 
 function createDeleteButton(postId) {
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Delete";
-  deleteButton.style.color = "red";
-  deleteButton.className = "px-4 py-2 rounded hover:bg-brown-300";
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.className = "text-red px-4 py-2";
 
     deleteButton.addEventListener("click", async () => {
         const confirmDelete = confirm("Are you sure you want to delete this post?");
@@ -90,7 +92,7 @@ function createDeleteButton(postId) {
 function createEditButton(product) {
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
-    editButton.className = "text-black px-4 py-2 rounded hover:bg-brown-300";
+    editButton.className = "text-black px-4";
 
     editButton.addEventListener("click", () => {
         document.getElementById("productsContainer").style.display = "none";
@@ -187,44 +189,41 @@ export async function displayWinningAuctions() {
   const winningAuctions = response?.data || [];
 
   winningAuctions.forEach((auction) => {
-    const wrapper = document.createElement("div");
-    wrapper.className =
-      "bg-white border border-gray-300 rounded shadow-lg w-full h-[420px] flex flex-col p-4 cursor-pointer";
-
-    wrapper.addEventListener("click", () => {
+    const card = document.createElement("div");
+    card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3 border border-brown-100 hover:scale-105 cursor-pointer transition";
+    card.addEventListener("click", () => {
       window.location.href = `/listings/detail-listing.html?id=${auction.id}`;
     });
 
-    const imageBox = document.createElement("div");
-    imageBox.className =
-      "w-full h-[250px] flex items-center justify-center bg-white p-2";
+    const imageWrapper = document.createElement("div");
+    imageWrapper.className = "relative w-full h-2/3 overflow-hidden group border";
 
     const img = document.createElement("img");
-    img.src = auction.media?.[0]?.url || "https://placehold.co/240x240?text=No+Image";
+    img.src = auction.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
     img.alt = auction.title;
-    img.className = "w-full h-full object-cover rounded";
+    img.className = "w-full h-full object-cover duration-300";
 
-    imageBox.appendChild(img);
+    imageWrapper.appendChild(img);
 
-    const content = document.createElement("div");
-    content.className =
-      "flex flex-col justify-end items-center text-center px-2 pt-6 pb-4 mt-auto gap-1";
+    const infoContainer = document.createElement("div");
+    infoContainer.className = "flex-grow flex flex-col items-center justify-center text-center gap-1";
 
-    const title = document.createElement("h3");
-    title.className = "text-base font-bold";
+    const title = document.createElement("p");
     title.textContent = auction.title;
+    title.className = "text-center font-body text-xl font-regular";
 
-    const status = document.createElement("p");
-    status.className = "text-sm text-green-600";
-    status.textContent = "Won Auction!";
+    const winningText = document.createElement("p");
+    winningText.className = "text-sm text-green-600";
+    winningText.textContent = "Won Auction!";
 
-    const endDate = document.createElement("p");
-    endDate.className = "text-xs text-gray-500";
-    endDate.textContent = `Ended ${new Date(auction.endsAt).toLocaleDateString()}`;
+    const endInfo = document.createElement("p");
+    endInfo.className = "text-xs text-brown-700";
+    endInfo.textContent = `Ended ${new Date(auction.endsAt).toLocaleString()}`;
 
-    content.append(title, status, endDate);
-    wrapper.append(imageBox, content);
-    container.appendChild(wrapper);
+    infoContainer.append(title, winningText, endInfo);
+
+    card.append(imageWrapper, infoContainer);
+    container.appendChild(card);
   });
 }
 
@@ -244,7 +243,7 @@ export async function showYourOwnBids() {
 
     ownBids.forEach((bid) => {
       const card = document.createElement("div");
-      card.className = "bg-white border border-gray-300 rounded shadow-lg w-full h-[420px] flex flex-col p-4 cursor-pointer";
+      card.className = "shadow-lg flex flex-col items-center aspect-[3/4] p-3 border border-brown-100 hover:scale-105 cursor-pointer";
       card.addEventListener("click", () => {
         window.location.href = `/listings/detail-listing.html?id=${bid.listing?.id}`;
       });
@@ -279,6 +278,10 @@ export async function showYourOwnBids() {
       const endInfo = document.createElement("p");
       endInfo.className = "text-sm text-body";
       endInfo.textContent = `Ends in: ${daysLeft} days and ${hoursLeft} hours`;
+      if (timeDiff < 0) {
+        endInfo.textContent = "Auction ended";
+        endInfo.className = "text-sm text-red-600";
+      }
 
       infoContainer.append(title, bidAmount, endInfo);
 
