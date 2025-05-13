@@ -64,9 +64,10 @@ export async function showUserListings() {
   
 
 function createDeleteButton(postId) {
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.className = "text-black px-4 py-2 rounded hover:bg-brown-300";
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.style.color = "red";
+  deleteButton.className = "px-4 py-2 rounded hover:bg-brown-300";
 
     deleteButton.addEventListener("click", async () => {
         const confirmDelete = confirm("Are you sure you want to delete this post?");
