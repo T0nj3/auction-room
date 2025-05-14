@@ -13,8 +13,7 @@ function createCardElement(listing) {
 
   const card = document.createElement("a");
   card.href = `./listings/detail-listing.html?id=${listing.id}`;
-  card.className =
-    "min-w-full md:min-w-0 snap-center bg-white shadow-lg flex flex-col h-[420px] overflow-hidden";
+  card.className = "min-w-full md:min-w-0 snap-center bg-white shadow-xl flex flex-col h-[420px] overflow-hidden border border-brown-100 hover:shadow-xl transition";
 
   const img = document.createElement("img");
   img.src = image;
