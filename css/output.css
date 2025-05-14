@@ -1161,6 +1161,10 @@ video {
   overflow-x: auto;
 }
 
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
 .scroll-smooth {
   scroll-behavior: smooth;
 }
@@ -1580,6 +1584,18 @@ video {
   font-weight: 100;
 }
 
+.font-light {
+  font-weight: 300;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-extralight {
+  font-weight: 200;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -1972,6 +1988,22 @@ video {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-\[37\%\] {
+    width: 37%;
+  }
+
+  .md\:w-\[3\%\] {
+    width: 3%;
+  }
+
+  .md\:w-\[6\%\] {
+    width: 6%;
+  }
+
+  .md\:w-\[66\%\] {
+    width: 66%;
   }
 
   .md\:min-w-0 {

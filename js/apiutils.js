@@ -8,7 +8,7 @@ const API_KEY = "580b33a9-04f3-4da3-bb38-de9adcf9d9f8";
  * @returns {Promise<Array>} - Array of listing objects.
  */
 export async function fetchListings(sort = "created", order = "desc") {
-  const url = `${API_BASE_URL}/listings?sort=${sort}&sortOrder=${order}&limit=3`;
+  const url = `${API_BASE_URL}/listings?_bids=true&sort=${sort}&sortOrder=${order}&limit=3`;
 
   try {
     const response = await fetch(url, {
