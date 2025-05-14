@@ -46,7 +46,6 @@ function createCardElement(listing) {
   const price = listing.bids?.length
     ? Math.max(...listing.bids.map((b) => b.amount))
     : 0;
-    console.log(listing.bids);
   const priceText = document.createElement("p");
   priceText.textContent = `Highest bid: ${price} credits`;
   priceText.className = "text-sm text-gray-700";
