@@ -1,15 +1,13 @@
-import { fetchListings } from "./apiUtils.js";
+import { fetchListings, fetchAllListings } from "./apiUtils.js";
 
 const newsMobile = document.getElementById("news-carousel");
 const newsDesktop = document.getElementById("news-grid");
-const oldMobile = document.getElementById("oldest-carousel");
-const oldDesktop = document.getElementById("oldest-grid");
+const popularMobile = document.getElementById("popular-carousel");
+const popularDesktop = document.getElementById("popular-grid");
 
 function createCardElement(listing) {
   const image =
-    Array.isArray(listing.media) &&
-    listing.media.length > 0 &&
-    listing.media[0].url
+    Array.isArray(listing.media) && listing.media[0]?.url
       ? listing.media[0].url
       : "https://placehold.co/400x300?text=No+Image";
 
@@ -35,33 +33,36 @@ function createCardElement(listing) {
 
   return card;
 }
-  
-  function insertListings(listings, mobileContainer, desktopContainer) {
-    if (mobileContainer) {
-      mobileContainer.innerHTML = "";
-      listings.slice(0, 3).forEach(listing => {
-        mobileContainer.appendChild(createCardElement(listing));
-      });
-    }
-  
-    if (desktopContainer) {
-      desktopContainer.innerHTML = "";
-      listings.slice(0, 3).forEach(listing => {
-        const card = createCardElement(listing);
-        card.classList.remove("min-w-full", "snap-center");
-        card.classList.add("bg-white", "shadow-lg");
-        desktopContainer.appendChild(card);
-      });
-    }
+
+function insertListings(listings, mobileContainer, desktopContainer) {
+  if (mobileContainer) {
+    mobileContainer.innerHTML = "";
+    listings.slice(0, 3).forEach((listing) => {
+      mobileContainer.appendChild(createCardElement(listing));
+    });
   }
-  
+
+  if (desktopContainer) {
+    desktopContainer.innerHTML = "";
+    listings.slice(0, 3).forEach((listing) => {
+      const card = createCardElement(listing);
+      card.classList.remove("min-w-full", "snap-center");
+      card.classList.add("bg-white", "shadow-lg");
+      desktopContainer.appendChild(card);
+    });
+  }
+}
 
 async function renderListings() {
   const newestListings = await fetchListings("created", "desc");
-  const oldestListings = await fetchListings("created", "asc");
+  const allListings = await fetchAllListings();
+
+  const popularListings = allListings
+    .filter(listing => listing.bids && listing.bids.length > 0)
+    .sort((a, b) => b.bids.length - a.bids.length);
 
   insertListings(newestListings, newsMobile, newsDesktop);
-  insertListings(oldestListings, oldMobile, oldDesktop);
+  insertListings(popularListings, popularMobile, popularDesktop);
 }
 
 renderListings();
