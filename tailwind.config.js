@@ -9,7 +9,6 @@ module.exports = {
         },
 
       colors: {
-        // Farger fra styleguiden
         black: "#252625",
         brown: "#514439",
         beige: "#DBB391",
@@ -33,7 +32,6 @@ module.exports = {
           white: "#FFFFFF",
         },
 
-        // Hover states = white bg with original color as text
         hover: {
           primeText: "#4D8FB8",
           secondaryText: "#AAA668",
