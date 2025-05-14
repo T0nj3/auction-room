@@ -95,16 +95,30 @@ async function renderProfile() {
 
    
     renderListings(activeListings);
-
+    
+    activeTabBtn.classList.add("bg-button-prime", "text-white");
+    activeTabBtn.classList.remove("bg-brown");
+    
+    oldTabBtn.classList.remove("bg-button-prime");
+    oldTabBtn.classList.add("bg-brown", "text-white");
+    
     activeTabBtn.addEventListener("click", () => {
-      activeTabBtn.classList.add("bg-brown");
-      oldTabBtn.classList.remove("bg-brown");
+      activeTabBtn.classList.add("bg-button-prime", "text-white");
+      activeTabBtn.classList.remove("bg-brown");
+    
+      oldTabBtn.classList.remove("bg-button-prime");
+      oldTabBtn.classList.add("bg-brown", "text-white");
+    
       renderListings(activeListings);
     });
     
     oldTabBtn.addEventListener("click", () => {
-      oldTabBtn.classList.add("bg-brown");
-      activeTabBtn.classList.remove("bg-brown");
+      oldTabBtn.classList.add("bg-button-prime", "text-white");
+      oldTabBtn.classList.remove("bg-brown");
+    
+      activeTabBtn.classList.remove("bg-button-prime");
+      activeTabBtn.classList.add("bg-brown", "text-white");
+    
       renderListings(oldListings);
     });
 
