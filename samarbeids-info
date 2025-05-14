@@ -1,6 +1,0 @@
-Jeg har lagt til alle "header-funksjoner" i hamburger.js. Som å bytte ut login med brukernavn, credits når du logger inn samt en log out knapp.
-Alle fetchene fra API'et ligger i apiutils.js (fetchCredits, fetchPaginatedListings(dette er for feed siden) fetchAllListings, fetchListingById (for en og en listing) fetchListings(for landing siden/index))
-
-Trenger muligens litt bedre styling for headeren, men det kan vi se på sammen. 
-
-Har oppdatert alle filene med den nye "header-endringen"
