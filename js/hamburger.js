@@ -31,37 +31,82 @@ async function renderUserUI() {
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
 
+  userLinks.innerHTML = "";
+  mobileUserLinks.innerHTML = "";
+
   if (token && username) {
     try {
       const { credits } = await fetchCredits(username);
 
-      userLinks.innerHTML = `
-      <span>${credits} kr</span>
-      <a href="../profile/index.html" class="font-semibold hover:underline">${username}</a>
-      <button id="logout-btn" class="text-red-600 hover:underline">Sign Out</button>
-      `;
+      // Desktop
+      const creditSpan = document.createElement("span");
+      creditSpan.textContent = `${credits} kr`;
 
-      mobileUserLinks.innerHTML = `
-      <span class="border-b pb-2 uppercase">${credits} kr</span>
-      <a href="../profile/index.html" class="font-semibold font-inter text-[15px] border-b pb-2">${username}</a>
-      <button id="mobile-logout-btn" class="text-red-600 border-b pb-2">Sign Out</button>
-      `;
+      const profileLink = document.createElement("a");
+      profileLink.href = "../profile/index.html";
+      profileLink.className = "font-semibold hover:underline";
+      profileLink.textContent = username;
 
-      document.getElementById("logout-btn").addEventListener("click", handleLogout);
-      document.getElementById("mobile-logout-btn").addEventListener("click", handleLogout);
+      const logoutBtn = document.createElement("button");
+      logoutBtn.id = "logout-btn";
+      logoutBtn.className = "text-red-600 hover:underline";
+      logoutBtn.textContent = "Sign Out";
+      logoutBtn.addEventListener("click", handleLogout);
+
+      userLinks.appendChild(creditSpan);
+      userLinks.appendChild(profileLink);
+      userLinks.appendChild(logoutBtn);
+
+    
+      const mobileCredit = document.createElement("span");
+      mobileCredit.className = "border-b pb-2 uppercase";
+      mobileCredit.textContent = `${credits} kr`;
+
+      const mobileProfile = document.createElement("a");
+      mobileProfile.href = "../profile/index.html";
+      mobileProfile.className = "font-semibold font-inter text-[15px] border-b pb-2";
+      mobileProfile.textContent = username;
+
+      const mobileLogout = document.createElement("button");
+      mobileLogout.id = "mobile-logout-btn";
+      mobileLogout.className = "text-red-600 border-b pb-2";
+      mobileLogout.textContent = "Sign Out";
+      mobileLogout.addEventListener("click", handleLogout);
+
+      mobileUserLinks.appendChild(mobileCredit);
+      mobileUserLinks.appendChild(mobileProfile);
+      mobileUserLinks.appendChild(mobileLogout);
     } catch (error) {
       console.error("Error fetching credits:", error);
     }
   } else {
-    userLinks.innerHTML = `
-    <a href="../auth/login.html" class="hover:underline">LOGIN</a>
-    <a href="../auth/register.html" class="hover:underline">REGISTER</a>
-  `;
+    
+    const loginLink = document.createElement("a");
+    loginLink.href = "../auth/login.html";
+    loginLink.className = "hover:underline";
+    loginLink.textContent = "LOGIN";
 
-  mobileUserLinks.innerHTML = `
-  <a href="../auth/login.html" class="hover:text-button-prime border-b pb-2">LOGIN</a>
-  <a href="../auth/register.html" class="hover:text-button-prime border-b pb-2">REGISTER</a>
-`;
+    const registerLink = document.createElement("a");
+    registerLink.href = "../auth/register.html";
+    registerLink.className = "hover:underline";
+    registerLink.textContent = "REGISTER";
+
+    userLinks.appendChild(loginLink);
+    userLinks.appendChild(registerLink);
+
+    
+    const mobileLogin = document.createElement("a");
+    mobileLogin.href = "../auth/login.html";
+    mobileLogin.className = "hover:text-button-prime border-b pb-2";
+    mobileLogin.textContent = "LOGIN";
+
+    const mobileRegister = document.createElement("a");
+    mobileRegister.href = "../auth/register.html";
+    mobileRegister.className = "hover:text-button-prime border-b pb-2";
+    mobileRegister.textContent = "REGISTER";
+
+    mobileUserLinks.appendChild(mobileLogin);
+    mobileUserLinks.appendChild(mobileRegister);
   }
 }
 
