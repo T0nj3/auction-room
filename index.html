@@ -10,7 +10,7 @@
     <script type="module" src="../js/hamburger.js" defer></script>
     <script type="module" src="../js/listings.js"></script>
 </head>
-<body>
+<body class="bg-white">
   <header class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
     <!-- Venstre -->
     <div class="hidden md:flex space-x-6 justify-start">
@@ -67,42 +67,32 @@
   </div>
 </section>
 
-  <!-- News seksjonen -->
-  <section class="max-w-6xl mx-auto px-4 mb-16">
+  <section class="max-w-7xl mx-auto px-4 mb-16">
     <h3 class="font-serif text-s uppercase mb-6 text-center md:text-left md:ml-6">News</h3>
 
-<!-- Mobilkarusell -->
 <div class="relative md:hidden">
   <div id="news-carousel" class="flex overflow-x-auto snap-x scroll-smooth gap-6 px-4 pb-4"></div>
 </div>
-<!-- Desktop-grid -->
 <div id="news-grid" class="hidden md:grid grid-cols-3 gap-6"></div>
   </section>
 
   <!-- Velkommen-seksjon -->
-  <section class="max-w-6xl mx-auto my-10 overflow-hidden shadow-lg">
-    <div class="relative h-[360px] w-full">
-      <!-- Bilde -->
-      <img
-        src="assets/hero2.jpg"
-        alt="Books"
-        class="absolute inset-0 w-full h-full object-cover" />
-      <div class="absolute inset-0 w-full h-full bg-brown/70 backdrop-blur-sm"></div>
-      <div class="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-6">
-        <h2 class="text-h2 font-body font-semibold mb-4">Welcome to the Auction Room</h2>
-        <p class="text-textLg font-body mb-2">You're all set – now it’s time to explore the auctions!</p>
-        <p class="text-textLg font-body mb-4">Click below to browse live listings, place bids, and discover what others are selling.</p>
-        <a href="./listings/feed.html"
-           class="bg-button-prime text-white text-base font-bold px-5 py-1.5 rounded-full border-white hover:bg-white hover:text-button-prime border border-button-prime transition inline-block">
-          Go to Feed
-        </a>
+  <section class="w-full overflow-hidden">
+    <div class="relative w-full h-[360px] md:h-[420px]">
+      <img src="assets/heronew2.png" alt="Books" class="absolute inset-0 w-full h-full object-cover"/>
+
+      <div class="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 py-8 text-center">
+        <h2 class="text-2xl md:text-h2 font-body font-semibold mb-3 md:mb-4"> Welcome to The Auction Room</h2>
+        <p class="text-base md:text-textLg font-body mb-2"> You're all set – now it's time to explore the auctions!</p>
+        <p class="text-base md:text-textLg font-body mb-4"> Click below to browse live listings, place bids, and discover what others are selling.</p>
+        <a href="./listings/feed.html" class="mt-6 inline-block px-6 py-2 text-base font-bold text-white transition border rounded-full bg-button-prime border-button-prime border-white hover:bg-white hover:text-button-prime">Go to Feed</a>
       </div>
     </div>
   </section>
 
   <!-- Oldest seksjonen -->
-  <section class="max-w-6xl mx-auto px-4 mb-16">
-    <h3 class="font-serif text-s uppercase mb-6 text-center md:text-left md:ml-6">Oldest</h3>
+  <section class="max-w-7xl mx-auto px-4 mb-16">
+    <h3 class="font-serif text-s uppercase mb-6 text-center md:text-left md:ml-6 mt-12">Oldest</h3>
 
     <!-- Mobilkarusell -->
     <div class="relative md:hidden">
