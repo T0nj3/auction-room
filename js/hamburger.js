@@ -8,31 +8,6 @@ hamburgerBtn.addEventListener("click", () => {
 });
 
 
-const links = document.querySelectorAll("header a");
-const currentPath = window.location.pathname;
-
-links.forEach((link) => {
-  const linkHref = new URL(link.href).pathname;
-
-  let isActive = false;
-
-  if (linkHref === "/index.html" && currentPath === "/index.html") {
-    isActive = true;
-  } else if (linkHref === "/listings/feed.html" && currentPath === "/listings/feed.html") {
-    isActive = true;
-  } else if (
-    (linkHref === "/profile/index.html" && currentPath === "/profile/index.html") ||
-    (linkHref === "/profile/index.html" && currentPath === "/profile/")
-  ) {
-    isActive = true;
-  }
-
-  if (isActive) {
-    link.classList.add("text-button-prime");
-  } else {
-    link.classList.remove("text-button-prime");
-  }
-});
 
 const userLinks = document.getElementById("user-links");
 const mobileUserLinks = document.getElementById("mobile-user-links");
