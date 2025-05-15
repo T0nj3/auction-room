@@ -7,8 +7,6 @@ hamburgerBtn.addEventListener("click", () => {
   mobileMenu.classList.toggle("hidden");
 });
 
-
-
 const userLinks = document.getElementById("user-links");
 const mobileUserLinks = document.getElementById("mobile-user-links");
 

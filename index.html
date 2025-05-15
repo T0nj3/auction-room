@@ -1,109 +1,181 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home – See Listings and Explore the Newest and Most Popular Products</title>
-    <meta name="description" content="Welcome to The Auction Room, where you can see listings and explore the newest and most popular products.">
-    <meta name="author" content="Andre Lier og Tonje Albertisen">
-    <meta name="keywords" content="auction, listings, products, auction room, home">
-    <link rel="stylesheet" href="./css/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Home – See Listings and Explore the Newest and Most Popular Products
+    </title>
+    <meta
+      name="description"
+      content="Welcome to The Auction Room, where you can see listings and explore the newest and most popular products."
+    />
+    <meta name="author" content="Andre Lier og Tonje Albertisen" />
+    <meta
+      name="keywords"
+      content="auction, listings, products, auction room, home"
+    />
+    <link rel="stylesheet" href="./css/output.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="../js/carousel.js" defer></script>
     <script type="module" src="../js/hamburger.js" defer></script>
     <script type="module" src="../js/listings.js"></script>
-</head>
-<body class="bg-white">
-  <header class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
+  </head>
+  <body class="bg-white">
+    <header
+      class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown"
+    >
+      <div class="hidden md:flex space-x-6 justify-start">
+        <a href="./index.html" class="hover:underline text-button-prime"
+          >HOME</a
+        >
+        <a href="./listings/feed.html" class="hover:underline">FEED</a>
+      </div>
 
-    <div class="hidden md:flex space-x-6 justify-start">
+      <a href="./index.html">
+        <h1 class="text-[20px] text-center whitespace-nowrap">
+          <span class="text-button-prime">The</span>
+          <span class="text-brown">Auction Room</span>
+        </h1>
+      </a>
+
+      <div class="flex justify-end">
+        <nav
+          class="hidden md:flex space-x-6 items-center"
+          id="user-links"
+        ></nav>
+        <button
+          id="hamburger-btn"
+          class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2"
+        >
+          <svg
+            class="w-6 h-6 text-brown"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav
+      id="mobile-menu"
+      class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in"
+    >
       <a href="./index.html" class="hover:underline text-button-prime">HOME</a>
-      <a href="./listings/feed.html" class="hover:underline">FEED</a>
-    </div>
-  
-    <a href="./index.html">
-    <h1 class="text-[20px] text-center whitespace-nowrap">
-      <span class="text-button-prime">The</span> <span class="text-brown">Auction Room</span>
-    </h1>
-    </a>
+      <a
+        href="./listings/feed.html"
+        class="hover:text-button-prime border-b pb-2"
+        >FEED</a
+      >
+      <div id="mobile-user-links" class="flex flex-col gap-3"></div>
+    </nav>
 
-    <div class="flex justify-end">
-      <nav class="hidden md:flex space-x-6 items-center" id="user-links">
-
-      </nav>
-      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
-        <svg class="w-6 h-6 text-brown" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-  </header>
-  
-  <nav id="mobile-menu"
-    class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
-    <a href="./index.html" class="hover:underline text-button-prime">HOME</a>
-    <a href="./listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
-    <div id="mobile-user-links" class="flex flex-col gap-3">
-
-    </div>
-  </nav>
-
-
-<section class="w-screen shadow-xl my-12">
-  <div class="flex flex-col-reverse md:flex-row w-full h-auto md:h-[420px]">
-
-    <div class="bg-brown text-white flex items-center justify-center px-8 py-12 md:w-[36%]">
-      <div class="text-center flex flex-col items-center justify-center space-y-6">
-        <h2 class="text-2xl font-heading leading-snug">Register to Participate<br>in Auctions</h2>
-        <p class="font-body text-textLg">Join exclusive auctions and bid like a pro.</p>
-        <a href="../auth/register.html"
-           class="inline-block bg-button-prime text-white font-bold text-base px-6 py-2 rounded-full border border-white shadow-md hover:bg-white hover:text-button-prime transition">
-          Create Account
-        </a>
+    <section class="w-screen shadow-xl my-12">
+      <div class="flex flex-col-reverse md:flex-row w-full h-auto md:h-[420px]">
+        <div
+          class="bg-brown text-white flex items-center justify-center px-8 py-12 md:w-[36%]"
+        >
+          <div
+            class="text-center flex flex-col items-center justify-center space-y-6"
+          >
+            <h2 class="text-2xl font-heading leading-snug">
+              Register to Participate<br />in Auctions
+            </h2>
+            <p class="font-body text-textLg">
+              Join exclusive auctions and bid like a pro.
+            </p>
+            <a
+              href="../auth/register.html"
+              class="inline-block bg-button-prime text-white font-bold text-base px-6 py-2 rounded-full border border-white shadow-md hover:bg-white hover:text-button-prime transition"
+            >
+              Create Account
+            </a>
+          </div>
+        </div>
+        <div class="w-full h-[240px] md:h-full md:w-[64%]">
+          <img
+            src="./assets/klokkkene.png"
+            alt="Auction hero"
+            class="w-full h-full object-cover block align-top"
+          />
+        </div>
       </div>
-    </div>
-    <div class="w-full h-[240px] md:h-full md:w-[64%]">
-      <img src="./assets/klokkkene.png" alt="Auction hero" class="w-full h-full object-cover block align-top" />
-    </div>
-  </div>
-</section>
+    </section>
 
-  <section class="max-w-7xl mx-auto px-4 mb-16">
-    <h3 class="font-serif text-s uppercase mb-6 text-center md:text-left md:ml-6">News</h3>
+    <section class="max-w-7xl mx-auto px-4 mb-16">
+      <h3
+        class="font-serif text-s uppercase mb-6 text-center md:text-left md:ml-6"
+      >
+        News
+      </h3>
 
-<div class="relative md:hidden">
-  <div id="news-carousel" class="flex overflow-x-auto snap-x scroll-smooth gap-6 px-4 pb-4"></div>
-</div>
-<div id="news-grid" class="hidden md:grid grid-cols-3 gap-6"></div>
-  </section>
-
-
-  <section class="w-full overflow-hidden">
-    <div class="relative w-full h-[360px] md:h-[420px]">
-      <img src="assets/heronew2.png" alt="Books" class="absolute inset-0 w-full h-full object-cover"/>
-
-      <div class="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 py-8 text-center">
-        <h2 class="text-2xl md:text-h2 font-heading font- mb-3 md:mb-4"> Welcome to The Auction Room</h2>
-        <p class="text-base md:text-textLg font-body mb-2"> You're all set – now it's time to explore the auctions!</p>
-        <p class="text-base md:text-textLg font-body mb-4"> Click below to browse live listings, place bids, and discover what others are selling.</p>
-        <a href="./listings/feed.html" class="mt-6 inline-block px-6 py-2 text-base font-bold text-white transition border rounded-full bg-button-prime border-button-prime border-white hover:bg-white hover:text-button-prime">Go to Feed</a>
+      <div class="relative md:hidden">
+        <div
+          id="news-carousel"
+          class="flex overflow-x-auto snap-x scroll-smooth gap-6 px-4 pb-4"
+        ></div>
       </div>
-    </div>
-  </section>
+      <div id="news-grid" class="hidden md:grid grid-cols-3 gap-6"></div>
+    </section>
 
+    <section class="w-full overflow-hidden">
+      <div class="relative w-full h-[360px] md:h-[420px]">
+        <img
+          src="assets/heronew2.png"
+          alt="Books"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
 
-  <section class="max-w-7xl mx-auto px-4 mb-16">
-    <h3 class="font-serif text-s uppercase mb-6 text-center md:text-left md:ml-6 mt-12">Popular Now</h3>
-    <div class="relative md:hidden">
-      <div id="popular-carousel" class="flex overflow-x-auto snap-x scroll-smooth gap-6 px-4 pb-4"></div>
-    </div>
-    <div id="popular-grid" class="hidden md:grid grid-cols-3 gap-6"></div>
-  </section>
+        <div
+          class="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 py-8 text-center"
+        >
+          <h2 class="text-2xl md:text-h2 font-heading font- mb-3 md:mb-4">
+            Welcome to The Auction Room
+          </h2>
+          <p class="text-base md:text-textLg font-body mb-2">
+            You're all set – now it's time to explore the auctions!
+          </p>
+          <p class="text-base md:text-textLg font-body mb-4">
+            Click below to browse live listings, place bids, and discover what
+            others are selling.
+          </p>
+          <a
+            href="./listings/feed.html"
+            class="mt-6 inline-block px-6 py-2 text-base font-bold text-white transition border rounded-full bg-button-prime border-button-prime border-white hover:bg-white hover:text-button-prime"
+            >Go to Feed</a
+          >
+        </div>
+      </div>
+    </section>
 
-  <footer class="bg-brown text-white text-center py-6 mt-12">
-    <p class="font-bold text-sm">&copy; The Auction Room</p>
-  </footer>
-</body>
-  </html>
+    <section class="max-w-7xl mx-auto px-4 mb-16">
+      <h3
+        class="font-serif text-s uppercase mb-6 text-center md:text-left md:ml-6 mt-12"
+      >
+        Popular Now
+      </h3>
+      <div class="relative md:hidden">
+        <div
+          id="popular-carousel"
+          class="flex overflow-x-auto snap-x scroll-smooth gap-6 px-4 pb-4"
+        ></div>
+      </div>
+      <div id="popular-grid" class="hidden md:grid grid-cols-3 gap-6"></div>
+    </section>
+
+    <footer class="bg-brown text-white text-center py-6 mt-12">
+      <p class="font-bold text-sm">&copy; The Auction Room</p>
+    </footer>
+  </body>
+</html>

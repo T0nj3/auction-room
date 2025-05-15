@@ -1,7 +1,7 @@
 {
-    "liveServer.settings.port": 5500,
-    "liveServer.settings.root": "/",
-    "liveServer.settings.file": "index.html",
-    "liveServer.settings.wait": 100,
-    "liveServer.settings.donotShowInfoMsg": true
-  }
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.root": "/",
+  "liveServer.settings.file": "index.html",
+  "liveServer.settings.wait": 100,
+  "liveServer.settings.donotShowInfoMsg": true
+}

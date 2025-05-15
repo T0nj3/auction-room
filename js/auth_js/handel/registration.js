@@ -58,7 +58,7 @@ registerButton.addEventListener("click", async (event) => {
       // Suksess!
       showSuccess("Registration successful. Redirecting...");
     } catch (error) {
-      ShowError(error.message); 
+      ShowError(error.message);
       console.error("Registrering feilet:", error.message);
     }
   }
@@ -66,5 +66,5 @@ registerButton.addEventListener("click", async (event) => {
 
 const token = localStorage.getItem("token");
 if (token) {
-  window.location.href = "../index.html"; 
+  window.location.href = "../index.html";
 }

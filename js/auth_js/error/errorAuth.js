@@ -24,7 +24,7 @@ export function validateForm() {
     const emailError = document.getElementById("email-error");
     emailError.textContent = "Vennligst fyll inn e-post.";
     emailError.classList.remove("hidden");
-    emailError.classList.add("text-red-500"); 
+    emailError.classList.add("text-red-500");
     isValid = false;
   } else if (
     !email.endsWith("@stud.noroff.no") &&
@@ -75,9 +75,8 @@ export function validateForm() {
 }
 
 export function validateLoginForm(userData) {
-  const { email, password } = userData; 
+  const { email, password } = userData;
   let isValid = true;
-
 
   ["email-error", "password-error"].forEach((id) => {
     const el = document.getElementById(id);

@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.{html,js}","!./node_modules/**/*.{html,js}"],
+  content: ["./**/*.{html,js}", "!./node_modules/**/*.{html,js}"],
   theme: {
     extend: {
-
-        boxShadow: {
-          fancy: '0px 10px 30px rgba(0, 0, 0, 0.25)',
-        },
+      boxShadow: {
+        fancy: "0px 10px 30px rgba(0, 0, 0, 0.25)",
+      },
 
       colors: {
         black: "#252625",
@@ -40,20 +39,20 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['Inter', 'serif'],
-        body: ['Playfair Display', 'sans-serif'],
+        heading: ["Inter", "serif"],
+        body: ["Playfair Display", "sans-serif"],
       },
       fontSize: {
-        h1: ['2.25rem', '2.5rem'],
-        h2: ['1.875rem', '2.25rem'],
-        h3: ['1.5rem', '2rem'],
-        textLg: ['1.25rem', '1.75rem'],
-        textBase: ['1rem', '1.5rem'],
-        textSm: ['0.875rem', '1.25rem'],
+        h1: ["2.25rem", "2.5rem"],
+        h2: ["1.875rem", "2.25rem"],
+        h3: ["1.5rem", "2rem"],
+        textLg: ["1.25rem", "1.75rem"],
+        textBase: ["1rem", "1.5rem"],
+        textSm: ["0.875rem", "1.25rem"],
       },
       backgroundImage: {
-        'login-bg': "url('/assets/bg_login.jpg')",
-        'reg-bg': "url('/assets/bg_reg.jpeg')"
+        "login-bg": "url('/assets/bg_login.jpg')",
+        "reg-bg": "url('/assets/bg_reg.jpeg')",
       },
     },
   },

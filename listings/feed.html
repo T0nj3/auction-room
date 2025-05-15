@@ -1,91 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Explore alle the auctions on The Auction Room</title>
-    <meta name="description" content="Explore all the auctions on The Auction Room">
-    <meta name="keywords" content="auction, listings, products, auction room">
-    <meta name="author" content="Andre Lier og Tonje Albertisen">
-    <link rel="stylesheet" href="../css/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta
+      name="description"
+      content="Explore all the auctions on The Auction Room"
+    />
+    <meta name="keywords" content="auction, listings, products, auction room" />
+    <meta name="author" content="Andre Lier og Tonje Albertisen" />
+    <link rel="stylesheet" href="../css/output.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="../js/carousel.js" defer></script>
     <script type="module" src="../js/hamburger.js" defer></script>
     <script type="module" src="../js/feed/feed.js"></script>
-</head>
-<body>
-  <header class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
-    <div class="hidden md:flex space-x-6 justify-start">
-      <a href="../index.html" class="hover:underline">HOME</a>
-      <a href="./feed.html" class="hover:underline text-button-prime">FEED</a>
-    </div>
-  
-    <a href="../index.html">
-      <h1 class="text-[20px] text-center whitespace-nowrap">
-        <span class="text-button-prime">The</span> <span class="text-brown">Auction Room</span>
-      </h1>
+  </head>
+  <body>
+    <header
+      class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown"
+    >
+      <div class="hidden md:flex space-x-6 justify-start">
+        <a href="../index.html" class="hover:underline">HOME</a>
+        <a href="./feed.html" class="hover:underline text-button-prime">FEED</a>
+      </div>
+
+      <a href="../index.html">
+        <h1 class="text-[20px] text-center whitespace-nowrap">
+          <span class="text-button-prime">The</span>
+          <span class="text-brown">Auction Room</span>
+        </h1>
       </a>
-  
-    <div class="flex justify-end">
-      <nav class="hidden md:flex space-x-6 items-center" id="user-links">
-      </nav>
-      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
-        <svg class="w-6 h-6 text-brown" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-  </header>
-  
-  <nav id="mobile-menu"
-    class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
-    <a href="../index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
-    <a href="./feed.html" class="hover:underline text-button-prime">FEED</a>
-    <div id="mobile-user-links" class="flex flex-col gap-3">
-    </div>
-  </nav>
 
-  <section class="max-w-4xl mx-auto px-6 pt-8 space-y-6 text-center">
-    <input
-      id="search-input"
-      type="text"
-      placeholder="Search..."
-      class="w-64 mx-auto rounded-full px-4 py-2 text-brown placeholder-brown bg-[#514439]/10 border border-brown/30 focus:outline-none focus:ring-2 focus:ring-button-prime transition"
-    />
-    <div class="flex justify-center flex-wrap gap-3 sm:gap-4 text-sm sm:text-base font-inter font-medium text-brown">
-      <button
-        data-filter="all"
-        class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition">
-        All Posts
-      </button>
-      <button
-        data-filter="active"
-        class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition">
-        Active Listings
-      </button>
-      <button
-        data-filter="ended"
-        class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition">
-        Ended Listings
-      </button>
-    </div>
-  </section>
+      <div class="flex justify-end">
+        <nav
+          class="hidden md:flex space-x-6 items-center"
+          id="user-links"
+        ></nav>
+        <button
+          id="hamburger-btn"
+          class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2"
+        >
+          <svg
+            class="w-6 h-6 text-brown"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </header>
 
- 
-  <section class="max-w-6xl mx-auto px-6 pt-10">
-    <h2 class="text-2xl font-serif mb-6">Auction</h2>
-    <div id="listing-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
-  </section>
+    <nav
+      id="mobile-menu"
+      class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in"
+    >
+      <a href="../index.html" class="hover:text-button-prime border-b pb-2"
+        >HOME</a
+      >
+      <a href="./feed.html" class="hover:underline text-button-prime">FEED</a>
+      <div id="mobile-user-links" class="flex flex-col gap-3"></div>
+    </nav>
 
-  <div id="pagination" class="flex flex-wrap justify-center gap-2 mt-8 px-4 overflow-x-auto max-w-full"></div>
+    <section class="max-w-4xl mx-auto px-6 pt-8 space-y-6 text-center">
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search..."
+        class="w-64 mx-auto rounded-full px-4 py-2 text-brown placeholder-brown bg-[#514439]/10 border border-brown/30 focus:outline-none focus:ring-2 focus:ring-button-prime transition"
+      />
+      <div
+        class="flex justify-center flex-wrap gap-3 sm:gap-4 text-sm sm:text-base font-inter font-medium text-brown"
+      >
+        <button
+          data-filter="all"
+          class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition"
+        >
+          All Posts
+        </button>
+        <button
+          data-filter="active"
+          class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition"
+        >
+          Active Listings
+        </button>
+        <button
+          data-filter="ended"
+          class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition"
+        >
+          Ended Listings
+        </button>
+      </div>
+    </section>
 
-  
+    <section class="max-w-6xl mx-auto px-6 pt-10">
+      <h2 class="text-2xl font-serif mb-6">Auction</h2>
+      <div
+        id="listing-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      ></div>
+    </section>
 
-  <footer class="bg-brown text-white text-center py-6 mt-12">
-    <p class="font-bold text-sm">&copy; The Auction Room</p>
-  </footer>
-</body>
-  </html>
+    <div
+      id="pagination"
+      class="flex flex-wrap justify-center gap-2 mt-8 px-4 overflow-x-auto max-w-full"
+    ></div>
+
+    <footer class="bg-brown text-white text-center py-6 mt-12">
+      <p class="font-bold text-sm">&copy; The Auction Room</p>
+    </footer>
+  </body>
 </html>

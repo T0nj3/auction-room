@@ -44,10 +44,11 @@ async function renderListingDetail() {
 
     titleEl.textContent = listing.title;
     descriptionEl.textContent = listing.description;
-    imageEl.src = listing.media[0]?.url || "https://placehold.co/400x300?text=No+Image";
+    imageEl.src =
+      listing.media[0]?.url || "https://placehold.co/400x300?text=No+Image";
     imageEl.alt = listing.media[0]?.alt || listing.title;
 
-    sellerNameEl.innerHTML = ""; 
+    sellerNameEl.innerHTML = "";
     if (listing.seller?.name) {
       const sellerLink = document.createElement("a");
       sellerLink.href = `../profile/public-profile.html?user=${listing.seller.name}`;
@@ -57,22 +58,31 @@ async function renderListingDetail() {
     } else {
       sellerNameEl.textContent = "Unknown";
     }
-    sellerEmailEl.remove(); 
+    sellerEmailEl.remove();
 
     timeLeftEl.textContent = calculateTimeLeft(listing.endsAt);
 
-    const sortedBids = Array.isArray(listing.bids) ? listing.bids.sort((a, b) => b.amount - a.amount) : [];
+    const sortedBids = Array.isArray(listing.bids)
+      ? listing.bids.sort((a, b) => b.amount - a.amount)
+      : [];
     const highestBid = sortedBids[0];
-    const startAmount = sortedBids.length ? sortedBids[sortedBids.length - 1].amount : 0;
+    const startAmount = sortedBids.length
+      ? sortedBids[sortedBids.length - 1].amount
+      : 0;
 
     startPriceEl.textContent = formatAmount(startAmount || 0);
-    currentBidEl.textContent = highestBid ? formatAmount(highestBid.amount) : "No bids yet";
+    currentBidEl.textContent = highestBid
+      ? formatAmount(highestBid.amount)
+      : "No bids yet";
 
     if (highestBid?.bidder) {
       leaderNameEl.textContent = highestBid.bidder.name || "Unknown";
       leaderPriceEl.textContent = formatAmount(highestBid.amount);
-      leaderAvatarEl.src = highestBid.bidder.avatar?.url || "https://placehold.co/100x100?text=Avatar";
-      leaderAvatarEl.alt = highestBid.bidder.avatar?.alt || highestBid.bidder.name || "Avatar";
+      leaderAvatarEl.src =
+        highestBid.bidder.avatar?.url ||
+        "https://placehold.co/100x100?text=Avatar";
+      leaderAvatarEl.alt =
+        highestBid.bidder.avatar?.alt || highestBid.bidder.name || "Avatar";
     } else {
       leaderNameEl.textContent = "–";
       leaderPriceEl.textContent = "–";
@@ -84,10 +94,12 @@ async function renderListingDetail() {
 
     sortedBids.forEach((bid) => {
       const wrapper = document.createElement("div");
-      wrapper.className = "bg-gray-400 p-4 rounded-md flex items-center gap-4 max-w-md";
+      wrapper.className =
+        "bg-gray-400 p-4 rounded-md flex items-center gap-4 max-w-md";
 
       const img = document.createElement("img");
-      img.src = bid.bidder?.avatar?.url || "https://placehold.co/100x100?text=Avatar";
+      img.src =
+        bid.bidder?.avatar?.url || "https://placehold.co/100x100?text=Avatar";
       img.alt = bid.bidder?.avatar?.alt || bid.bidder?.name || "Avatar";
       img.className = "w-10 h-10 rounded-full";
 
@@ -98,7 +110,7 @@ async function renderListingDetail() {
       nameLabel.className = "font-medium";
       nameLabel.textContent = "Name:";
       nameLine.appendChild(nameLabel);
-      
+
       if (bid.bidder?.name) {
         const bidderLink = document.createElement("a");
         bidderLink.href = `../profile/public-profile.html?user=${bid.bidder.name}`;
@@ -142,7 +154,8 @@ bidInput.className = "border rounded px-3 py-2 w-full";
 
 const submitBtn = document.createElement("button");
 submitBtn.textContent = "Submit Bid";
-submitBtn.className = "bg-button-prime hover:bg-white hover:text-button-prime text-white font-bold px-6 py-2 rounded-md border border-button-prime transition w-full";
+submitBtn.className =
+  "bg-button-prime hover:bg-white hover:text-button-prime text-white font-bold px-6 py-2 rounded-md border border-button-prime transition w-full";
 
 bidForm.appendChild(bidInput);
 bidForm.appendChild(submitBtn);
@@ -165,12 +178,9 @@ submitBtn.addEventListener("click", async () => {
     alert("Bid placed successfully!");
     bidInput.value = "";
     bidForm.classList.add("hidden");
-    
-    renderListingDetail();  
-    renderUserUI(); 
 
-   
-
+    renderListingDetail();
+    renderUserUI();
   } catch (error) {
     alert("Error placing bid: " + error.message);
   }
