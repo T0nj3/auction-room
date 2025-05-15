@@ -7,22 +7,32 @@ hamburgerBtn.addEventListener("click", () => {
   mobileMenu.classList.toggle("hidden");
 });
 
-// Marker aktiv side
-const links = document.querySelectorAll("a[href]");
-let currentPage = location.pathname.split("/").pop();
-if (currentPage === "") currentPage = "index.html";
 
-links.forEach(link => {
-  let href = link.getAttribute("href").split("/").pop();
-  href = href.replace(/^\.\/|^\.\.\//, ""); // fjerner ./ og ../ fra starten
+const links = document.querySelectorAll("header a");
+const currentPath = window.location.pathname;
 
-  if (href === currentPage) {
-    link.classList.add("text-lightblue", "hover:text-black");
+links.forEach((link) => {
+  const linkHref = new URL(link.href).pathname;
+
+  let isActive = false;
+
+  if (linkHref === "/index.html" && currentPath === "/index.html") {
+    isActive = true;
+  } else if (linkHref === "/listings/feed.html" && currentPath === "/listings/feed.html") {
+    isActive = true;
+  } else if (
+    (linkHref === "/profile/index.html" && currentPath === "/profile/index.html") ||
+    (linkHref === "/profile/index.html" && currentPath === "/profile/")
+  ) {
+    isActive = true;
+  }
+
+  if (isActive) {
+    link.classList.add("text-button-prime");
   } else {
-    link.classList.remove("text-lightblue", "hover:text-black");
+    link.classList.remove("text-button-prime");
   }
 });
-
 
 const userLinks = document.getElementById("user-links");
 const mobileUserLinks = document.getElementById("mobile-user-links");
@@ -37,15 +47,19 @@ async function renderUserUI() {
   if (token && username) {
     try {
       const { credits } = await fetchCredits(username);
+      const currentPath = window.location.pathname;
 
-      // Desktop
       const creditSpan = document.createElement("span");
       creditSpan.textContent = `${credits} kr`;
 
       const profileLink = document.createElement("a");
       profileLink.href = "../profile/index.html";
-      profileLink.className = "font-semibold hover:underline";
       profileLink.textContent = username;
+
+      profileLink.className = "font-semibold hover:underline";
+      if (currentPath.endsWith("/profile/index.html")) {
+        profileLink.classList.add("text-button-prime");
+      }
 
       const logoutBtn = document.createElement("button");
       logoutBtn.id = "logout-btn";
@@ -57,15 +71,20 @@ async function renderUserUI() {
       userLinks.appendChild(profileLink);
       userLinks.appendChild(logoutBtn);
 
-    
+      // Mobile
       const mobileCredit = document.createElement("span");
       mobileCredit.className = "border-b pb-2 uppercase";
       mobileCredit.textContent = `${credits} kr`;
 
       const mobileProfile = document.createElement("a");
       mobileProfile.href = "../profile/index.html";
-      mobileProfile.className = "font-semibold font-inter text-[15px] border-b pb-2";
       mobileProfile.textContent = username;
+
+      mobileProfile.className =
+        "font-semibold font-inter text-[15px] border-b pb-2";
+      if (currentPath.endsWith("/profile/index.html")) {
+        mobileProfile.classList.add("text-button-prime");
+      }
 
       const mobileLogout = document.createElement("button");
       mobileLogout.id = "mobile-logout-btn";
@@ -80,7 +99,6 @@ async function renderUserUI() {
       console.error("Error fetching credits:", error);
     }
   } else {
-    
     const loginLink = document.createElement("a");
     loginLink.href = "../auth/login.html";
     loginLink.className = "hover:underline";
@@ -94,7 +112,6 @@ async function renderUserUI() {
     userLinks.appendChild(loginLink);
     userLinks.appendChild(registerLink);
 
-    
     const mobileLogin = document.createElement("a");
     mobileLogin.href = "../auth/login.html";
     mobileLogin.className = "hover:text-button-prime border-b pb-2";
