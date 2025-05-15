@@ -63,5 +63,5 @@
 
 ### Authors 
 
-	•	Tonje Albertisen
+	•	Tonje Albertin
 	•	Andre Lier
