@@ -114,7 +114,7 @@ async function renderListingDetail() {
       priceLabel.className = "font-medium";
       priceLabel.textContent = "Price:";
       priceLine.appendChild(priceLabel);
-      priceLine.append(` ${formatAmount(bid.amount)} kr`);
+      priceLine.append(` ${formatAmount(bid.amount)} Credits`);
 
       text.appendChild(nameLine);
       text.appendChild(priceLine);

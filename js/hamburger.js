@@ -25,7 +25,15 @@ async function renderUserUI() {
       const currentPath = window.location.pathname;
 
       const creditSpan = document.createElement("span");
-      creditSpan.textContent = `${credits} kr`;
+      creditSpan.innerHTML = `
+        <span class="flex items-center gap-1 text-accent font-medium">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5 text-yellow-500">
+        // <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        // <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor" font-weight="bold">$</text>
+        // </svg>
+          ${credits} Credits
+        </span>
+      `;
 
       const profileLink = document.createElement("a");
       profileLink.href = "../profile/index.html";
@@ -49,7 +57,7 @@ async function renderUserUI() {
       // Mobile
       const mobileCredit = document.createElement("span");
       mobileCredit.className = "border-b pb-2 uppercase";
-      mobileCredit.textContent = `${credits} kr`;
+      mobileCredit.textContent = `${credits} Credits`;
 
       const mobileProfile = document.createElement("a");
       mobileProfile.href = "../profile/index.html";
