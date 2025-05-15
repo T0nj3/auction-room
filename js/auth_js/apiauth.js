@@ -25,7 +25,9 @@ export async function loginUser(userData) {
 
     if (!response.ok) {
       ShowError(result.errors ? result.errors[0].message : "Login failed");
-      throw new Error(result.errors ? result.errors[0].message : "Login failed");
+      throw new Error(
+        result.errors ? result.errors[0].message : "Login failed",
+      );
     }
 
     return result;
@@ -58,7 +60,9 @@ export async function registerUser(userData) {
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.errors ? result.errors[0].message : "Registration failed");
+      throw new Error(
+        result.errors ? result.errors[0].message : "Registration failed",
+      );
     }
 
     return result;

@@ -15,7 +15,9 @@ export async function getUserProfile() {
     return null;
   }
 
-  const decodedPayload = JSON.parse(window.atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+  const decodedPayload = JSON.parse(
+    window.atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")),
+  );
   const name = decodedPayload.name;
 
   if (!name) {
@@ -48,15 +50,15 @@ export async function getUserProfile() {
 
 /**
  * Update user profile data
- * @param {string} name 
- * @param {string} bio 
- * @param {string} avatar 
- * @param {string} banner 
+ * @param {string} name
+ * @param {string} bio
+ * @param {string} avatar
+ * @param {string} banner
  * @returns {Promise<Object|null>}
  */
 export async function updateUserProfile(name, bio, avatar, banner) {
   if (!token) {
-    console.error('Token is missing');
+    console.error("Token is missing");
     return null;
   }
 
@@ -66,7 +68,7 @@ export async function updateUserProfile(name, bio, avatar, banner) {
   if (banner) dataToSend.banner = { url: banner, alt: "User banner" };
 
   if (Object.keys(dataToSend).length === 0) {
-    console.error('No fields provided for update.');
+    console.error("No fields provided for update.");
     return null;
   }
 
@@ -81,7 +83,10 @@ export async function updateUserProfile(name, bio, avatar, banner) {
   });
 
   if (!response.ok) {
-    console.error(`Failed to update profile: ${response.status}`, await response.text());
+    console.error(
+      `Failed to update profile: ${response.status}`,
+      await response.text(),
+    );
     return null;
   }
 
@@ -90,10 +95,10 @@ export async function updateUserProfile(name, bio, avatar, banner) {
 
 /**
  * Create a new auction listing
- * @param {string} title 
- * @param {string} description 
- * @param {string} imageUrl 
- * @param {string} endsAt 
+ * @param {string} title
+ * @param {string} description
+ * @param {string} imageUrl
+ * @param {string} endsAt
  * @returns {Promise<Object|null>}
  */
 export async function createPost(title, description, imageUrl, endsAt) {
@@ -134,7 +139,7 @@ export async function createPost(title, description, imageUrl, endsAt) {
 
 /**
  * Fetch listings created by a specific user
- * @param {string} username 
+ * @param {string} username
  * @returns {Promise<Object|null>}
  */
 export async function fetchListing(username) {
@@ -163,7 +168,7 @@ export async function fetchListing(username) {
 
 /**
  * Delete a listing by ID
- * @param {string} postId 
+ * @param {string} postId
  */
 export async function deleteUserPost(postId) {
   if (!token) {
@@ -187,10 +192,10 @@ export async function deleteUserPost(postId) {
 
 /**
  * Edit/update an existing listing
- * @param {string} postId 
- * @param {string} newTitle 
- * @param {string} newBody 
- * @param {string} newImageUrl 
+ * @param {string} postId
+ * @param {string} newTitle
+ * @param {string} newBody
+ * @param {string} newImageUrl
  * @returns {Promise<Object|undefined>}
  */
 export async function editPost(postId, newTitle, newBody, newImageUrl) {
@@ -230,7 +235,9 @@ export async function SeeWinningAuction() {
     return null;
   }
 
-  const decoded = JSON.parse(window.atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+  const decoded = JSON.parse(
+    window.atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")),
+  );
   const username = decoded.name;
 
   if (!username) {
@@ -266,12 +273,15 @@ export async function yourOwnBids() {
   }
 
   try {
-    const response = await fetch(`${API_BASE_URL}/profiles/${username}/bids?_listings=true`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "X-Noroff-API-Key": X_NOROFF_API_KEY,
+    const response = await fetch(
+      `${API_BASE_URL}/profiles/${username}/bids?_listings=true`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "X-Noroff-API-Key": X_NOROFF_API_KEY,
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       console.error("Failed to fetch your bids.");

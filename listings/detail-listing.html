@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Listing-detaljside</title>
-    <meta name="description" content="Listing detail page for The Auction Room" />
+    <meta
+      name="description"
+      content="Listing detail page for The Auction Room"
+    />
     <meta name="keywords" content="auction, listing, detail, auction room" />
     <meta name="author" content="Andre Lier og Tonje Albertisen" />
     <link rel="stylesheet" href="../css/output.css" />
@@ -12,64 +15,109 @@
     <script type="module" src="../js/detail-listing.js"></script>
   </head>
   <body class="bg-white font-sans">
-    <header class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
-
+    <header
+      class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown"
+    >
       <div class="hidden md:flex space-x-6 justify-start">
         <a href="../index.html" class="hover:underline">HOME</a>
         <a href="../listings/feed.html" class="hover:underline">FEED</a>
       </div>
-    
+
       <a href="../index.html">
         <h1 class="text-[20px] text-center whitespace-nowrap">
-          <span class="text-button-prime">The</span> <span class="text-brown">Auction Room</span>
+          <span class="text-button-prime">The</span>
+          <span class="text-brown">Auction Room</span>
         </h1>
-        </a>
-    
+      </a>
+
       <div class="flex justify-end">
-        <nav class="hidden md:flex space-x-6 items-center" id="user-links">
-        </nav>
-        <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
-          <svg class="w-6 h-6 text-brown" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M4 6h16M4 12h16M4 18h16" />
+        <nav
+          class="hidden md:flex space-x-6 items-center"
+          id="user-links"
+        ></nav>
+        <button
+          id="hamburger-btn"
+          class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2"
+        >
+          <svg
+            class="w-6 h-6 text-brown"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
       </div>
     </header>
-    
-    <nav id="mobile-menu"
-      class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
-      <a href="../index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
-      <a href="../listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
-      <div id="mobile-user-links" class="flex flex-col gap-3">
 
-      </div>
+    <nav
+      id="mobile-menu"
+      class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in"
+    >
+      <a href="../index.html" class="hover:text-button-prime border-b pb-2"
+        >HOME</a
+      >
+      <a
+        href="../listings/feed.html"
+        class="hover:text-button-prime border-b pb-2"
+        >FEED</a
+      >
+      <div id="mobile-user-links" class="flex flex-col gap-3"></div>
     </nav>
-
 
     <main class="max-w-7xl mx-auto px-6 py-12 space-y-10">
       <div id="listing-container" class="grid md:grid-cols-2 gap-10 md:ml-32">
-
         <div class="space-y-4">
-            <h2 id="listing-title" class="text-3xl font-body font-bold mb-4 ">Tittel</h2>
-          <img id="listing-image" src="" alt="Listing image" class="rounded-lg w-full h-auto object-cover max-h-[400px]" />
-          <button id="bid-toggle-btn" class="bg-button-prime hover:bg-white hover:text-button-prime text-white font-bold px-6 py-2 rounded-md border border-button-prime transition mt-4">
+          <h2 id="listing-title" class="text-3xl font-body font-bold mb-4">
+            Tittel
+          </h2>
+          <img
+            id="listing-image"
+            src=""
+            alt="Listing image"
+            class="rounded-lg w-full h-auto object-cover max-h-[400px]"
+          />
+          <button
+            id="bid-toggle-btn"
+            class="bg-button-prime hover:bg-white hover:text-button-prime text-white font-bold px-6 py-2 rounded-md border border-button-prime transition mt-4"
+          >
             PLACE A BID
           </button>
         </div>
 
-
         <div class="space-y-3 text-base md:mt-12 md:ml-6">
-          <div><span class="font-semibold">Seller:</span> <span id="seller-name"></span></div>
-          <div><a href="#" id="seller-email" class="text-sm underline text-blue-700 break-all"></a></div>
-          <div><span class="font-semibold">Time left:</span> <span id="time-left"></span></div>
-          <div><span class="font-semibold">Start price:</span> <span id="start-price"></span> Credits </div>
-          <div><span class="font-semibold">Current bid:</span> <span id="current-bid"></span> Credits </div>
+          <div>
+            <span class="font-semibold">Seller:</span>
+            <span id="seller-name"></span>
+          </div>
+          <div>
+            <a
+              href="#"
+              id="seller-email"
+              class="text-sm underline text-blue-700 break-all"
+            ></a>
+          </div>
+          <div>
+            <span class="font-semibold">Time left:</span>
+            <span id="time-left"></span>
+          </div>
+          <div>
+            <span class="font-semibold">Start price:</span>
+            <span id="start-price"></span> Credits
+          </div>
+          <div>
+            <span class="font-semibold">Current bid:</span>
+            <span id="current-bid"></span> Credits
+          </div>
         </div>
       </div>
 
- 
       <section class="md:ml-32">
         <h3 class="font-bold text-lg mb-1">Description</h3>
         <p id="listing-description" class="text-gray-800 leading-relaxed">
@@ -79,10 +127,23 @@
 
       <section class="md:ml-32">
         <h4 class="font-bold mb-2">Leader</h4>
-        <div class="bg-brown text-white p-4 rounded-md flex items-center gap-4 max-w-md">
-            <img id="leader-avatar" src="placeholder" alt="Leader avatar" class="w-10 h-10 rounded-full"  class="w-10 h-10 rounded-full" /> <div><span class="font-medium">Name:</span> <span id="leader-name"></span></div>
-            <div><span class="font-medium">Price:</span> <span id="leader-price"></span> Credits</div>
-            
+        <div
+          class="bg-brown text-white p-4 rounded-md flex items-center gap-4 max-w-md"
+        >
+          <img
+            id="leader-avatar"
+            src="placeholder"
+            alt="Leader avatar"
+            class="w-10 h-10 rounded-full"
+            class="w-10 h-10 rounded-full"
+          />
+          <div>
+            <span class="font-medium">Name:</span>
+            <span id="leader-name"></span>
+          </div>
+          <div>
+            <span class="font-medium">Price:</span>
+            <span id="leader-price"></span> Credits
           </div>
         </div>
       </section>

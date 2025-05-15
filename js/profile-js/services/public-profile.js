@@ -15,11 +15,10 @@ const oldTabBtn = document.getElementById("old-tab");
 
 function accessProfile() {
   if (token === null) {
-      alert("You need to log in to access this page.");
-      window.location.href = "../index.html";
+    alert("You need to log in to access this page.");
+    window.location.href = "../index.html";
   }
 }
-
 
 function createListingCard(listing) {
   const wrapper = document.createElement("a");
@@ -35,7 +34,8 @@ function createListingCard(listing) {
     "w-full h-[250px] flex items-center justify-center bg-white p-2";
 
   const img = document.createElement("img");
-  img.src = listing.media[0]?.url || "https://placehold.co/240x240?text=No+Image";
+  img.src =
+    listing.media[0]?.url || "https://placehold.co/240x240?text=No+Image";
   img.alt = listing.title;
   img.className = "w-full h-full object-cover rounded";
 
@@ -43,7 +43,7 @@ function createListingCard(listing) {
 
   const content = document.createElement("div");
   content.className =
-  "flex flex-col justify-end items-center text-center px-2 pt-8 pb-4 mt-auto gap-1";
+    "flex flex-col justify-end items-center text-center px-2 pt-8 pb-4 mt-auto gap-1";
 
   const title = document.createElement("h3");
   title.className = "text-base font-bold";
@@ -59,7 +59,7 @@ function createListingCard(listing) {
   time.className = "text-xs text-gray-500";
   time.textContent = `Time left: ${Math.max(
     Math.floor((new Date(listing.endsAt) - new Date()) / 3600000),
-    0
+    0,
   )}h`;
 
   content.append(title, bid, time);
@@ -84,44 +84,44 @@ async function renderProfile() {
 
     nameEl.textContent = profile.name || "Unknown";
     bioEl.textContent = profile.bio || "No bio available";
-    avatarEl.src = profile.avatar?.url || "https://placehold.co/100x100?text=Avatar";
+    avatarEl.src =
+      profile.avatar?.url || "https://placehold.co/100x100?text=Avatar";
     avatarEl.alt = profile.avatar?.alt || profile.name || "User avatar";
-    bannerEl.src = profile.banner?.url || "https://placehold.co/1200x300?text=Banner";
+    bannerEl.src =
+      profile.banner?.url || "https://placehold.co/1200x300?text=Banner";
     bannerEl.alt = profile.banner?.alt || "Header banner";
 
     const now = new Date();
     const activeListings = listings.filter((l) => new Date(l.endsAt) > now);
     const oldListings = listings.filter((l) => new Date(l.endsAt) <= now);
 
-   
     renderListings(activeListings);
-    
+
     activeTabBtn.classList.add("bg-button-prime", "text-white");
     activeTabBtn.classList.remove("bg-brown");
-    
+
     oldTabBtn.classList.remove("bg-button-prime");
     oldTabBtn.classList.add("bg-brown", "text-white");
-    
+
     activeTabBtn.addEventListener("click", () => {
       activeTabBtn.classList.add("bg-button-prime", "text-white");
       activeTabBtn.classList.remove("bg-brown");
-    
+
       oldTabBtn.classList.remove("bg-button-prime");
       oldTabBtn.classList.add("bg-brown", "text-white");
-    
+
       renderListings(activeListings);
     });
-    
+
     oldTabBtn.addEventListener("click", () => {
       oldTabBtn.classList.add("bg-button-prime", "text-white");
       oldTabBtn.classList.remove("bg-brown");
-    
+
       activeTabBtn.classList.remove("bg-button-prime");
       activeTabBtn.classList.add("bg-brown", "text-white");
-    
+
       renderListings(oldListings);
     });
-
   } catch (error) {
     console.error("Error rendering profile:", error);
   }

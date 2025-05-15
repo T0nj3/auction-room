@@ -191,10 +191,10 @@ function validateInput({ title, description, imageUrl, endsAt }) {
 
 /**
  * Sends data to API to create new auction.
- * @param {string} title 
- * @param {string} description 
- * @param {string} imageUrl 
- * @param {string} endsAt 
+ * @param {string} title
+ * @param {string} description
+ * @param {string} imageUrl
+ * @param {string} endsAt
  */
 async function createAuction(title, description, imageUrl, endsAt) {
   const result = await createPost(title, description, imageUrl, endsAt);

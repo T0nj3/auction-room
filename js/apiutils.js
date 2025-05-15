@@ -41,7 +41,7 @@ export async function fetchListingById(id) {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-    }
+    },
   );
 
   const data = await response.json();

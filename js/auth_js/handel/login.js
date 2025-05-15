@@ -12,7 +12,6 @@ function getLoginData() {
   return { email, password };
 }
 
-
 function clickLoginButton() {
   loginButton.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -25,7 +24,7 @@ function clickLoginButton() {
 
         if (result.data?.accessToken) {
           localStorage.setItem("token", result.data.accessToken);
-          localStorage.setItem("username", result.data.name); 
+          localStorage.setItem("username", result.data.name);
           localStorage.setItem("credits", result.data.credits);
           showSuccess("Login successful. Redirecting...");
         } else {
@@ -41,11 +40,13 @@ function clickLoginButton() {
 
 function showSuccess() {
   const spinnerWrapper = document.createElement("div");
-  spinnerWrapper.className = "fixed inset-0 bg-black/50 flex items-center justify-center z-50";
+  spinnerWrapper.className =
+    "fixed inset-0 bg-black/50 flex items-center justify-center z-50";
 
   const spinner = document.createElement("div");
-  spinner.className = "border-4 border-white border-t-button-prime rounded-full w-12 h-12 animate-spin";
-  
+  spinner.className =
+    "border-4 border-white border-t-button-prime rounded-full w-12 h-12 animate-spin";
+
   const successMsg = document.createElement("p");
   successMsg.className = "text-white text-lg mt-4";
   successMsg.textContent = "Login successful! Redirecting...";
@@ -64,4 +65,3 @@ function showSuccess() {
 }
 
 clickLoginButton();
-

@@ -1,199 +1,416 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="View your profile, profile picture, and your own auctions on The Auction Room. Full overview of your active and old history." />
-  <meta name="author" content="Andre Lier og Tonje Albertisen" />
-  <meta name="keywords" content="auction, profile, authentication" />
-  <title>The Auction Room Profile</title>
-  <link rel="stylesheet" href="../css/output.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script type="module" src="../js/hamburger.js" defer></script>
-  <script type="module" src="../js/profile-js/services/fetchapi.js" defer></script>
-  <script type="module" src="../js/profile-js/fuction/button.js" defer></script>
-</head>
-<html class="h-full">
-  <body class="min-h-screen flex flex-col">
-    <header class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
-    <div class="hidden md:flex space-x-6 justify-start">
-      <a href="../index.html" class="hover:underline">HOME</a>
-      <a href="../listings/feed.html" class="hover:underline">FEED</a>
-    </div>
-  
-    <a href="../index.html">
-      <h1 class="text-[20px] text-center whitespace-nowrap">
-        <span class="text-button-prime">The</span> <span class="text-brown">Auction Room</span>
-      </h1>
-      </a>
-
-    <div class="flex justify-end">
-      <nav class="hidden md:flex space-x-6 items-center" id="user-links">
-      </nav>
-      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
-        <svg class="w-6 h-6 text-brown" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-  </header>
-  
-  <nav id="mobile-menu"
-    class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
-    <a href="../index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
-    <a href="../listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
-    <div id="mobile-user-links" class="flex flex-col gap-3">
-    </div>
-  </nav>
-
-  <main class="flex-grow max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12 relative">
-    <button id="toggle-create-btn"
-            class="fixed bottom-24 right-6 bg-brown text-white rounded-full pt-2 pr-2 pl-2 pb-1 shadow-lg hover:bg-hover-fourText z-50">
-      <span class="material-icons text-2xl">add</span>
-    </button>
-
-    <div class="relative md:w-full md:bg-brown md:bg-opacity-60 md:rounded-lg">
-      <img id="banner" alt="User banner" class="w-full h-32 object-cover md:h-56" />
-      <div class="absolute top-4 right-6">
-        <button id="edit-profile-btn"
-                class="text-button-prime hover:text-white ease-in-out rounded-full pt-2 pl-2 pr-2 pb-1 bg-white hover:bg-button-prime transition duration-300">
-          <span class="material-icons">edit</span>
-        </button>
-      </div>
-      <div class="absolute inset-0 flex justify-center mt-12 md:justify-start md:ml-12 md:mt-40">
-        <img id="avatar" alt="User avatar" class="rounded-full border-4 border-white object-cover shadow-md w-32 h-32 md:w-44 md:h-44" />
-      </div>
-      <div class="mt-12 text-center px-6 pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16">
-        <h2 id="name" class="text-lg font-bold text-black uppercase md:text-white md:text-textLg"></h2>
-        <p id="bio" class="font-body text-black md:text-white md:text-textBase md:mt-2"></p>
-      </div>
-    </div>
-<section>
-  <div class="flex justify-center mt-4 space-x-0.5 mr-2 ml-2"> 
-    <button id="active-auctions-btn" class="btn">Your Auctions</button>
-    <button id="won-auctions-btn" class="btn">Won Auctions</button>
-    <button id="active-bids-btn" class="btn">Bid history</button>
-</div>
-</section>
-    <section>
-      <div id="edit-profile-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 hidden">
-        
-        <h3 class="text-lg font-bold text-white mb-4">Edit Profile</h3>
-        <div id="edit-profile-success" class=" hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto">
-          <svg class="w-6 h-6 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z" clip-rule="evenodd" />
-          </svg>
-          <p>Profile updated successfully!</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="View your profile, profile picture, and your own auctions on The Auction Room. Full overview of your active and old history."
+    />
+    <meta name="author" content="Andre Lier og Tonje Albertisen" />
+    <meta name="keywords" content="auction, profile, authentication" />
+    <title>The Auction Room Profile</title>
+    <link rel="stylesheet" href="../css/output.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script type="module" src="../js/hamburger.js" defer></script>
+    <script
+      type="module"
+      src="../js/profile-js/services/fetchapi.js"
+      defer
+    ></script>
+    <script
+      type="module"
+      src="../js/profile-js/fuction/button.js"
+      defer
+    ></script>
+  </head>
+  <html class="h-full">
+    <body class="min-h-screen flex flex-col">
+      <header
+        class="relative w-full border-b border-[#514439]/40 px-6 py-8 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown"
+      >
+        <div class="hidden md:flex space-x-6 justify-start">
+          <a href="../index.html" class="hover:underline">HOME</a>
+          <a href="../listings/feed.html" class="hover:underline">FEED</a>
         </div>
-        <form id="profile-form">
-          <div class="mb-4">
-            <label for="avatar" class="block text-sm font-medium text-white">Avatar</label>
-            <input type="text" id="avatar-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+
+        <a href="../index.html">
+          <h1 class="text-[20px] text-center whitespace-nowrap">
+            <span class="text-button-prime">The</span>
+            <span class="text-brown">Auction Room</span>
+          </h1>
+        </a>
+
+        <div class="flex justify-end">
+          <nav
+            class="hidden md:flex space-x-6 items-center"
+            id="user-links"
+          ></nav>
+          <button
+            id="hamburger-btn"
+            class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2"
+          >
+            <svg
+              class="w-6 h-6 text-brown"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <nav
+        id="mobile-menu"
+        class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in"
+      >
+        <a href="../index.html" class="hover:text-button-prime border-b pb-2"
+          >HOME</a
+        >
+        <a
+          href="../listings/feed.html"
+          class="hover:text-button-prime border-b pb-2"
+          >FEED</a
+        >
+        <div id="mobile-user-links" class="flex flex-col gap-3"></div>
+      </nav>
+
+      <main
+        class="flex-grow max-full mx-auto mt-8 overflow-hidden md:ml-12 md:mr-12 relative"
+      >
+        <button
+          id="toggle-create-btn"
+          class="fixed bottom-24 right-6 bg-brown text-white rounded-full pt-2 pr-2 pl-2 pb-1 shadow-lg hover:bg-hover-fourText z-50"
+        >
+          <span class="material-icons text-2xl">add</span>
+        </button>
+
+        <div
+          class="relative md:w-full md:bg-brown md:bg-opacity-60 md:rounded-lg"
+        >
+          <img
+            id="banner"
+            alt="User banner"
+            class="w-full h-32 object-cover md:h-56"
+          />
+          <div class="absolute top-4 right-6">
+            <button
+              id="edit-profile-btn"
+              class="text-button-prime hover:text-white ease-in-out rounded-full pt-2 pl-2 pr-2 pb-1 bg-white hover:bg-button-prime transition duration-300"
+            >
+              <span class="material-icons">edit</span>
+            </button>
           </div>
-          <div class="mb-4">
-            <label for="banner" class="block text-sm font-medium text-white">Banner</label>
-            <input type="text" id="banner-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+          <div
+            class="absolute inset-0 flex justify-center mt-12 md:justify-start md:ml-12 md:mt-40"
+          >
+            <img
+              id="avatar"
+              alt="User avatar"
+              class="rounded-full border-4 border-white object-cover shadow-md w-32 h-32 md:w-44 md:h-44"
+            />
           </div>
-          <div class="mb-4">
-            <label for="bio" class="block text-sm font-medium text-white">Bio</label>
-            <textarea id="bio-input" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
+          <div
+            class="mt-12 text-center px-6 pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16"
+          >
+            <h2
+              id="name"
+              class="text-lg font-bold text-black uppercase md:text-white md:text-textLg"
+            ></h2>
+            <p
+              id="bio"
+              class="font-body text-black md:text-white md:text-textBase md:mt-2"
+            ></p>
           </div>
-          <button type="submit" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Save Changes</button>
-        </form>
-      </div>
-    </section>
-    <section>
-      <div>
-        <form id="create-auction-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 mt-4 text-brown hidden">
-          <h3 class="text-lg font-bold mb-4 text-white">Create Auction</h3>
-          <div id="create-auction-success" class=" hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto">
-            <svg class="w-6 h-6 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z" clip-rule="evenodd" />
+        </div>
+        <section>
+          <div class="flex justify-center mt-4 space-x-0.5 mr-2 ml-2">
+            <button id="active-auctions-btn" class="btn">Your Auctions</button>
+            <button id="won-auctions-btn" class="btn">Won Auctions</button>
+            <button id="active-bids-btn" class="btn">Bid history</button>
+          </div>
+        </section>
+        <section>
+          <div
+            id="edit-profile-form"
+            class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 hidden"
+          >
+            <h3 class="text-lg font-bold text-white mb-4">Edit Profile</h3>
+            <div
+              id="edit-profile-success"
+              class="hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto"
+            >
+              <svg
+                class="w-6 h-6 shrink-0 text-green-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p>Profile updated successfully!</p>
+            </div>
+            <form id="profile-form">
+              <div class="mb-4">
+                <label for="avatar" class="block text-sm font-medium text-white"
+                  >Avatar</label
+                >
+                <input
+                  type="text"
+                  id="avatar-edit"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="banner" class="block text-sm font-medium text-white"
+                  >Banner</label
+                >
+                <input
+                  type="text"
+                  id="banner-edit"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="bio" class="block text-sm font-medium text-white"
+                  >Bio</label
+                >
+                <textarea
+                  id="bio-input"
+                  rows="3"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText"
+              >
+                Save Changes
+              </button>
+            </form>
+          </div>
+        </section>
+        <section>
+          <div>
+            <form
+              id="create-auction-form"
+              class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md m-2 mt-4 text-brown hidden"
+            >
+              <h3 class="text-lg font-bold mb-4 text-white">Create Auction</h3>
+              <div
+                id="create-auction-success"
+                class="hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto"
+              >
+                <svg
+                  class="w-6 h-6 shrink-0 text-green-600"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <p>Auction created successfully!</p>
+              </div>
+              <div class="mb-4">
+                <label
+                  for="auction-title"
+                  class="block text-sm font-medium text-white"
+                  >Auction Title</label
+                >
+                <input
+                  type="text"
+                  id="title"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="auction-description"
+                  class="block text-sm font-medium text-white"
+                  >Auction Description</label
+                >
+                <textarea
+                  id="description"
+                  rows="3"
+                  class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+                ></textarea>
+              </div>
+              <div class="mb-4">
+                <label class="text-white" for="image"
+                  >Image of the product</label
+                >
+                <input
+                  type="text"
+                  id="image"
+                  class="mt-1 mb-2 w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="due-date" class="text-white">Due date</label>
+                <input
+                  type="date"
+                  id="due-date"
+                  class="mt-1 block w-28 border-gray-300 rounded-md shadow-sm"
+                />
+              </div>
+              <button
+                type="submit"
+                id="create-auction-btn"
+                class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText mt-4"
+              >
+                Create Auction
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section
+          id="edit-form"
+          class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4 mb-10 hidden"
+        >
+          <h3 class="text-lg font-bold text-white mb-4">Edit Auction</h3>
+          <div
+            id="edit-success"
+            class="hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto"
+          >
+            <svg
+              class="w-6 h-6 shrink-0 text-green-600"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z"
+                clip-rule="evenodd"
+              />
             </svg>
             <p>Auction created successfully!</p>
           </div>
-          <div class="mb-4">
-            <label for="auction-title" class="block text-sm font-medium text-white">Auction Title</label>
-            <input type="text" id="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+
+          <form id="edit-auction-form">
+            <div class="mb-4">
+              <label
+                for="auction-title"
+                class="block text-sm font-medium text-white"
+                >Auction Title</label
+              >
+              <input
+                type="text"
+                id="auction-title-edit"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                for="auction-description"
+                class="block text-sm font-medium text-white"
+                >Auction Description</label
+              >
+              <textarea
+                id="auction-description-edit"
+                rows="3"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"
+              ></textarea>
+            </div>
+            <div class="mb-4">
+              <label
+                for="image-edit"
+                class="block text-sm font-medium text-white"
+                >Image of the product</label
+              >
+              <input
+                type="text"
+                id="image-edit"
+                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus;border-button-prime"
+              />
+            </div>
+            <div class="flex justify-between">
+              <button
+                type="submit"
+                class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText"
+              >
+                Save Changes
+              </button>
+              <button
+                type="button"
+                id="close-edit-form-btn"
+                class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText"
+              >
+                Close
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section
+          class="max-w-5xl mx-auto px-4 mt-12 mb-12"
+          id="active-auctions"
+        >
+          <div class="px-6 py-4 flex justify-center md:justify-start">
+            <h3 class="text-lg text-black border-b font-thin font-body">
+              Your Auctions
+            </h3>
           </div>
-          <div class="mb-4">
-            <label for="auction-description" class="block text-sm font-medium text-white">Auction Description</label>
-            <textarea id="description" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
+          <div
+            id="productsContainer"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+          ></div>
+        </section>
+
+        <section
+          class="hidden mb-12 mt-12 max-w-5xl mx-auto px-4"
+          id="won-auctions"
+        >
+          <div class="px-6 py-4 flex justify-center md:justify-start">
+            <h3 class="text-lg text-black border-b font-thin font-body">
+              Won Auctions
+            </h3>
           </div>
-          <div class="mb-4">
-            <label class="text-white" for="image">Image of the product</label>
-            <input type="text" id="image" class="mt-1 mb-2 w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
+          <div
+            id="winning_bid"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+          ></div>
+        </section>
+
+        <section
+          class="hidden mb-12 mt-12 max-w-5xl mx-auto px-4"
+          id="active-bids-section"
+        >
+          <div class="px-6 py-4 flex justify-center md:justify-start">
+            <h3 class="text-lg text-black border-b font-thin font-body">
+              Your Active Bids
+            </h3>
           </div>
-          <div class="mb-4">
-            <label for="due-date" class="text-white">Due date</label>
-            <input type="date" id="due-date" class="mt-1 block w-28 border-gray-300 rounded-md shadow-sm" />
-          </div>
-          <button type="submit" id="create-auction-btn" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText mt-4">Create Auction</button>
-        </form>
-      </div>
-    </section>
+          <div
+            id="active-bids"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+          ></div>
+        </section>
+      </main>
 
-
-    <section id="edit-form" class="bg-brown bg-opacity-50 p-6 rounded-lg shadow-md mt-4 mb-10 hidden">
-
-      <h3 class="text-lg font-bold text-white mb-4">Edit Auction</h3>
-      <div id="edit-success" class=" hidden flex justify-center bg-green-100 text-green-800 p-4 rounded-md mt-4 w-full max-w-xs mx-auto">
-        <svg class="w-6 h-6 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 002 0zm0 6v-4a1 1 0 10-2 0v4a1 1 0 002 0z" clip-rule="evenodd" />
-        </svg>
-        <p>Auction created successfully!</p>
-      </div>
-
-      <form id="edit-auction-form">
-        <div class="mb-4">
-          <label for="auction-title" class="block text-sm font-medium text-white">Auction Title</label>
-          <input type="text" id="auction-title-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime" />
-        </div>
-        <div class="mb-4">
-          <label for="auction-description" class="block text-sm font-medium text-white">Auction Description</label>
-          <textarea id="auction-description-edit" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus:border-button-prime"></textarea>
-        </div>
-        <div class="mb-4">
-          <label for="image-edit" class="block text-sm font-medium text-white">Image of the product</label>
-          <input type="text" id="image-edit" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-button-prime focus;border-button-prime" />
-        </div>
-        <div class="flex justify-between">
-        <button type="submit" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Save Changes</button>
-        <button type="button" id="close-edit-form-btn" class="bg-button-prime text-white px-4 py-2 rounded-md hover:bg-hover-primeText">Close</button>
-      </div>
-      </form>
-    </section>
-
-<section class="max-w-5xl mx-auto px-4 mt-12 mb-12" id="active-auctions">
-  <div class="px-6 py-4 flex justify-center md:justify-start">
-    <h3 class="text-lg text-black border-b font-thin font-body">Your Auctions</h3>
-  </div>
-  <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
-</section>
-
-<section class="hidden mb-12 mt-12 max-w-5xl mx-auto px-4" id="won-auctions">
-  <div class="px-6 py-4 flex justify-center md:justify-start">
-    <h3 class="text-lg text-black border-b font-thin font-body">Won Auctions</h3>
-  </div>
-  <div id="winning_bid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
-</section>
-
-<section class="hidden mb-12 mt-12 max-w-5xl mx-auto px-4" id="active-bids-section">
-  <div class="px-6 py-4 flex justify-center md:justify-start">
-    <h3 class="text-lg text-black border-b font-thin font-body">Your Active Bids</h3>
-  </div>
-  <div id="active-bids" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
-</section>
-  </main>
-
-  <footer class="bg-brown text-white text-center py-6 ">
-    <p class="font-bold text-sm">&copy; The Auction Room</p>
-  </footer>
-</body>
-
+      <footer class="bg-brown text-white text-center py-6">
+        <p class="font-bold text-sm">&copy; The Auction Room</p>
+      </footer>
+    </body>
+  </html>
 </html>

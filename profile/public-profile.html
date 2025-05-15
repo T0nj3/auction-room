@@ -1,84 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Public Profile</title>
-  <meta name="description" content="Public profile page for users to explore others profile."/>
-  <meta name="keywords" content="auction, profile, public profile, auction room"/>
-  <meta name="author" content="Andre Lier og Tonje Albertisen" />
-  <link rel="stylesheet" href="../css/output.css" />
-  <script type="module" src="../js/profile-js/services/public-profile.js" defer></script>
-  <script type="module" src="../js/hamburger.js" defer></script>
-</head>
-<html class="h-full">
-<body class="font-sans bg-white">
-  <header class="relative w-full border-b border-[#514439]/40 px-6 py-4 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown">
-    <div class="hidden md:flex space-x-6 justify-start">
-      <a href="../index.html" class="hover:underline">HOME</a>
-      <a href="../listings/feed.html" class="hover:underline">FEED</a>
-    </div>
-  
-    <a href="../index.html">
-      <h1 class="text-[20px] text-center whitespace-nowrap">
-        <span class="text-button-prime">The</span> <span class="text-brown">Auction Room</span>
-      </h1>
-      </a>
-  
-    <div class="flex justify-end">
-      <nav class="hidden md:flex space-x-6 items-center" id="user-links">
-      </nav>
-      <button id="hamburger-btn" class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2">
-        <svg class="w-6 h-6 text-brown" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-  </header>
-  
-  <nav id="mobile-menu"
-    class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in">
-    <a href="./index.html" class="hover:text-button-prime border-b pb-2">HOME</a>
-    <a href="./listings/feed.html" class="hover:text-button-prime border-b pb-2">FEED</a>
-    <div id="mobile-user-links" class="flex flex-col gap-3">
-    </div>
-  </nav>
-
-      <section class="relative md:bg-opacity-60 md:rounded-lg overflow-hidden mt-12 md:bg-brown md:mx-12">
-        <img id="profile-banner" class="w-full h-32 object-cover md:h-56" src="https://placehold.co/1200x320?text=Header+banner" alt="Header banner"/>
-        <div class="absolute inset-0 flex justify-center mt-12 md:justify-start md:ml-12 md:mt-40">
-          <img id="profile-avatar" class="w-28 h-28 md:w-44 md:h-44 rounded-full border-4 border-white shadow-lg object-cover" src="https://placehold.co/128x128" alt="Profile avatar"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public Profile</title>
+    <meta
+      name="description"
+      content="Public profile page for users to explore others profile."
+    />
+    <meta
+      name="keywords"
+      content="auction, profile, public profile, auction room"
+    />
+    <meta name="author" content="Andre Lier og Tonje Albertisen" />
+    <link rel="stylesheet" href="../css/output.css" />
+    <script
+      type="module"
+      src="../js/profile-js/services/public-profile.js"
+      defer
+    ></script>
+    <script type="module" src="../js/hamburger.js" defer></script>
+  </head>
+  <html class="h-full">
+    <body class="font-sans bg-white">
+      <header
+        class="relative w-full border-b border-[#514439]/40 px-6 py-4 grid grid-cols-3 items-center font-inter text-[15px] font-semibold text-brown"
+      >
+        <div class="hidden md:flex space-x-6 justify-start">
+          <a href="../index.html" class="hover:underline">HOME</a>
+          <a href="../listings/feed.html" class="hover:underline">FEED</a>
         </div>
-      
-        <div class="mt-12 text-center pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16">
-          <h2 id="public-username" class="text-xl font-bold uppercase tracking-wide mb-1 md:ml-8 text-black md:text-white">Username</h2>
-          <p id="public-bio" class="text-sm leading-snug opacity-90 text-black md:text-white md:text-base md:mt-2 md:ml-8">No bio available</p>
+
+        <a href="../index.html">
+          <h1 class="text-[20px] text-center whitespace-nowrap">
+            <span class="text-button-prime">The</span>
+            <span class="text-brown">Auction Room</span>
+          </h1>
+        </a>
+
+        <div class="flex justify-end">
+          <nav
+            class="hidden md:flex space-x-6 items-center"
+            id="user-links"
+          ></nav>
+          <button
+            id="hamburger-btn"
+            class="md:hidden absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-2"
+          >
+            <svg
+              class="w-6 h-6 text-brown"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <nav
+        id="mobile-menu"
+        class="md:hidden hidden flex flex-col gap-3 bg-white px-6 py-6 border-t border-brown shadow-md text-[15px] font-black tracking-wide uppercase text-brown font-inter animate-fade-in"
+      >
+        <a href="./index.html" class="hover:text-button-prime border-b pb-2"
+          >HOME</a
+        >
+        <a
+          href="./listings/feed.html"
+          class="hover:text-button-prime border-b pb-2"
+          >FEED</a
+        >
+        <div id="mobile-user-links" class="flex flex-col gap-3"></div>
+      </nav>
+
+      <section
+        class="relative md:bg-opacity-60 md:rounded-lg overflow-hidden mt-12 md:bg-brown md:mx-12"
+      >
+        <img
+          id="profile-banner"
+          class="w-full h-32 object-cover md:h-56"
+          src="https://placehold.co/1200x320?text=Header+banner"
+          alt="Header banner"
+        />
+        <div
+          class="absolute inset-0 flex justify-center mt-12 md:justify-start md:ml-12 md:mt-40"
+        >
+          <img
+            id="profile-avatar"
+            class="w-28 h-28 md:w-44 md:h-44 rounded-full border-4 border-white shadow-lg object-cover"
+            src="https://placehold.co/128x128"
+            alt="Profile avatar"
+          />
+        </div>
+
+        <div
+          class="mt-12 text-center pb-8 md:mt-6 md:text-left md:ml-52 md:pb-16"
+        >
+          <h2
+            id="public-username"
+            class="text-xl font-bold uppercase tracking-wide mb-1 md:ml-8 text-black md:text-white"
+          >
+            Username
+          </h2>
+          <p
+            id="public-bio"
+            class="text-sm leading-snug opacity-90 text-black md:text-white md:text-base md:mt-2 md:ml-8"
+          >
+            No bio available
+          </p>
+        </div>
       </section>
-  
+
       <main class="max-w-5xl mx-auto px-6 pt-20 pb-16">
         <div class="text-center my-10">
-            <button id="active-tab" class="btn btn-four">
-              Active
-            </button>
-            <button id="old-tab" class="btn btn-four">
-              Old
-            </button>
-          </div>
-          <section class="mt-8">
-            <h2 class="text-lg font-body text-black mb-4 inline-block border-b border-black pb-1 font-thin">Active Auctions</h2>
-            <div id="user-listings" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            </div>
-          </section>
-  
-        <section>
-          <div id="user-listings" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+          <button id="active-tab" class="btn btn-four">Active</button>
+          <button id="old-tab" class="btn btn-four">Old</button>
+        </div>
+        <section class="mt-8">
+          <h2
+            class="text-lg font-body text-black mb-4 inline-block border-b border-black pb-1 font-thin"
+          >
+            Active Auctions
+          </h2>
+          <div
+            id="user-listings"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+          ></div>
         </section>
       </main>
-
-      <footer class="bg-brown text-white text-center py-6 ">
+      <footer class="bg-brown text-white text-center py-6">
         <p class="font-bold text-sm">&copy; The Auction Room</p>
       </footer>
-</body>
+    </body>
+  </html>
 </html>

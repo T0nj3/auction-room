@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 @layer components {
-    .btn {
-      @apply font-bold px-4 py-2 rounded border transition duration-200;
-    }
-  
-    .btn-prime {
-      @apply bg-button-prime text-white border-transparent hover:bg-white hover:text-hover-primeText hover:border-hover-primeText;
-    }
-  
-    .btn-secondary {
-      @apply bg-button-secondary text-white border-transparent hover:bg-white hover:text-hover-secondaryText hover:border-hover-secondaryText;
-    }
-  
-    .btn-third {
-      @apply bg-button-third text-white border-transparent hover:bg-white hover:text-hover-thirdText hover:border-hover-thirdText;
-    }
-  
-    .btn-four {
-      @apply bg-button-four text-white border-transparent hover:bg-white hover:text-hover-fourText hover:border-hover-fourText;
-    }
+  .btn {
+    @apply font-bold px-4 py-2 rounded border transition duration-200;
   }
+
+  .btn-prime {
+    @apply bg-button-prime text-white border-transparent hover:bg-white hover:text-hover-primeText hover:border-hover-primeText;
+  }
+
+  .btn-secondary {
+    @apply bg-button-secondary text-white border-transparent hover:bg-white hover:text-hover-secondaryText hover:border-hover-secondaryText;
+  }
+
+  .btn-third {
+    @apply bg-button-third text-white border-transparent hover:bg-white hover:text-hover-thirdText hover:border-hover-thirdText;
+  }
+
+  .btn-four {
+    @apply bg-button-four text-white border-transparent hover:bg-white hover:text-hover-fourText hover:border-hover-fourText;
+  }
+}
