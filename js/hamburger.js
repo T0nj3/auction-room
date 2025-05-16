@@ -52,7 +52,7 @@ async function renderUserUI() {
       userLinks.appendChild(profileLink);
       userLinks.appendChild(logoutBtn);
 
-      // Mobile
+
       const mobileCredit = document.createElement("span");
       mobileCredit.className = "border-b pb-2 uppercase";
       mobileCredit.textContent = `${credits} Credits`;

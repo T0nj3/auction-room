@@ -142,7 +142,7 @@ async function renderListingDetail() {
 
 renderListingDetail();
 
-// Bid-funksjon
+
 const bidButton = document.getElementById("bid-toggle-btn");
 const bidForm = document.createElement("div");
 bidForm.className = "mt-4 space-y-2 hidden";
