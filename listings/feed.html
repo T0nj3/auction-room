@@ -83,23 +83,24 @@
         placeholder="Search..."
         class="w-64 mx-auto rounded-full px-4 py-2 text-brown placeholder-brown bg-[#514439]/10 border border-brown/30 focus:outline-none focus:ring-2 focus:ring-button-prime transition"
       />
-      <div
-        class="flex justify-center flex-wrap gap-3 sm:gap-4 text-sm sm:text-base font-inter font-medium text-brown"
-      >
+      <div class="flex justify-center flex-wrap gap-3 sm:gap-4 text-sm sm:text-base font-inter font-medium text-brown">
         <button
           data-filter="all"
+          aria-pressed="true"
           class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition"
         >
           All Posts
         </button>
         <button
           data-filter="active"
+          aria-pressed="false"
           class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition"
         >
           Active Listings
         </button>
         <button
           data-filter="ended"
+          aria-pressed="false"
           class="filter-btn px-5 py-2 rounded-full border border-brown/40 hover:bg-brown/10 transition"
         >
           Ended Listings

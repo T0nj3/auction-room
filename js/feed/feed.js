@@ -11,6 +11,21 @@ const listingsPerPage = 12;
 let currentFilter = "all";
 let currentSearch = "";
 
+function updateActiveFilterButton() {
+  filterButtons.forEach((b) => {
+    const isActive = b.dataset.filter === currentFilter;
+
+    b.classList.toggle("bg-button-prime", isActive);
+    b.classList.toggle("text-white", isActive);
+    b.classList.toggle("border-button-prime", isActive);
+
+    b.classList.toggle("border-brown/40", !isActive);
+    b.classList.toggle("hover:bg-brown/10", !isActive);
+
+    b.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
 function createCard(listing) {
   const wrapper = document.createElement("a");
   wrapper.href = `detail-listing.html?id=${listing.id}`;
@@ -51,6 +66,7 @@ function createCard(listing) {
   const price = listing.bids?.length
     ? Math.max(...listing.bids.map((b) => b.amount))
     : 0;
+
   const priceText = document.createElement("p");
   priceText.textContent = `Highest bid: ${price} credits`;
   priceText.className = "text-sm text-gray-700";
@@ -124,6 +140,7 @@ filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     currentFilter = btn.dataset.filter;
     currentPage = 1;
+    updateActiveFilterButton();
     renderFeed();
   });
 });
@@ -136,5 +153,6 @@ searchInput.addEventListener("input", () => {
 
 (async () => {
   allListings = await fetchAllListings();
+  updateActiveFilterButton();
   renderFeed();
 })();

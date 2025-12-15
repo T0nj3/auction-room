@@ -2,6 +2,9 @@
 
 # The Auction Room
 
+## Improved
+The feed filter buttons were improved to clearly indicate which filter is currently active (All, Active, Ended). (T0nj3)
+
 ## Features
 
 - **Authentication** – Register and log in with token-based authentication
