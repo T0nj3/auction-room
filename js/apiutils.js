@@ -99,23 +99,30 @@ export async function fetchPaginatedListings(page = 1, limit = 12) {
  * @returns {Promise<number>} - Amount of credits the user has.
  */
 export async function fetchCredits(username) {
-  const token = localStorage.getItem("token");
-  const url = `${API_BASE_URL}/profiles/${username}/credits`;
+  try {
+    const token = localStorage.getItem("token");
+    const url = `${API_BASE_URL}/profiles/${username}/credits`;
 
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      "X-Noroff-API-Key": API_KEY,
-    },
-  });
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": API_KEY,
+      },
+    });
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch credits");
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Failed to fetch credits:", errorData);
+      throw new Error(errorData.errors?.[0]?.message || "Failed to fetch credits");
+    }
+
+    const data = await response.json();
+    return data.data || 0; // Returner bare kredittverdien, fallback til 0
+  } catch (error) {
+    console.error("Error fetching credits:", error);
+    throw error;
   }
-
-  const data = await response.json();
-  return data.data;
 }
 
 /**
@@ -128,22 +135,29 @@ export async function placeBid(listingId, amount) {
   const token = localStorage.getItem("token");
   const url = `${API_BASE_URL}/listings/${listingId}/bids`;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-      "X-Noroff-API-Key": API_KEY,
-    },
-    body: JSON.stringify({ amount: Number(amount) }),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": API_KEY,
+      },
+      body: JSON.stringify({ amount: Number(amount) }),
+    });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.errors?.[0]?.message || "Failed to place bid");
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Failed to place bid:", errorData);
+      throw new Error(errorData.errors?.[0]?.message || "Failed to place bid");
+    }
+
+    const data = await response.json();
+    return data; 
+  } catch (error) {
+    console.error("Error in placeBid:", error);
+    throw error; 
   }
-
-  return await response.json();
 }
 
 /**
@@ -155,20 +169,27 @@ export async function fetchListingsByUser(username) {
   const token = localStorage.getItem("token");
   const url = `${API_BASE_URL}/profiles/${username}/listings`;
 
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      "X-Noroff-API-Key": API_KEY,
-    },
-  });
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": API_KEY,
+      },
+    });
 
-  if (!response.ok) {
-    throw new Error("Could not fetch user's listings");
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Failed to fetch user's listings:", errorData);
+      throw new Error(errorData.errors?.[0]?.message || "Could not fetch user's listings");
+    }
+
+    const data = await response.json();
+    return data.data || [];
+  } catch (error) {
+    console.error("Error in fetchListingsByUser:", error);
+    throw error; 
   }
-
-  const data = await response.json();
-  return data.data || [];
 }
 
 /**
@@ -180,18 +201,25 @@ export async function fetchProfile(username) {
   const token = localStorage.getItem("token");
   const url = `${API_BASE_URL}/profiles/${username}`;
 
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      "X-Noroff-API-Key": API_KEY,
-    },
-  });
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": API_KEY,
+      },
+    });
 
-  if (!response.ok) {
-    throw new Error("Could not fetch profile");
-  }
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Failed to fetch profile:", errorData);
+      throw new Error(errorData.errors?.[0]?.message || "Could not fetch profile");
+    }
 
-  const data = await response.json();
-  return data.data;
+    const data = await response.json();
+    return data.data || null; 
+  } catch (error) {
+    console.error("Error in fetchProfile:", error);
+    throw error; 
+}
 }

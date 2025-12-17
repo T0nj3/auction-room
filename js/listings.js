@@ -83,6 +83,7 @@ function insertListings(listings, mobileContainer, desktopContainer) {
 }
 
 async function renderListings() {
+try {
   const newestListings = await fetchListings("created", "desc");
   const allListings = await fetchAllListings();
 
@@ -92,6 +93,10 @@ async function renderListings() {
 
   insertListings(newestListings, newsMobile, newsDesktop);
   insertListings(popularListings, popularMobile, popularDesktop);
+}
+catch (error) {
+  console.error("Error rendering listings:", error);
+}
 }
 
 renderListings();
