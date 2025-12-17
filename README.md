@@ -5,6 +5,8 @@
 ## Improved
 The feed filter buttons were improved to clearly indicate which filter is currently active (All, Active, Ended). (T0nj3)
 
+Added try and catch block to utility functions and listing rendering. To ensure that network and server errors are properly caught and logged in the console. (Andlie94)
+
 ## Features
 
 - **Authentication** – Register and log in with token-based authentication
